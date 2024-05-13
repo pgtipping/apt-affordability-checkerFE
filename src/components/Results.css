@@ -1,0 +1,22 @@
+.results-container {
+  display: flex !important;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.result-box {
+  flex: 1;
+  min-width: 200px; /* Adjust as needed */
+  margin: 10px;
+  color: #f0f0f0;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.affordable {
+  background-color: #198754;
+}
+
+.unaffordable {
+  background-color: #dc3545;
+}

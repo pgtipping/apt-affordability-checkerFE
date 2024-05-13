@@ -1,0 +1,96 @@
+/* Custom CSS */
+.dark-mode {
+  background-color: #444; /* Dark background color */
+  color: #fff; /* White text color */
+}
+
+.dark-mode input,
+.dark-mode select {
+  background-color: #555; /* Dark background color for form inputs */
+  color: #fff; /* White text color for form inputs */
+}
+
+html.dark-mode #root {
+  background-color: #444; /* Dark background color */
+  color: #fff; /* White text color */
+}
+
+html.dark-mode input,
+html.dark-mode select,
+html.dark-mode textarea {
+  background-color: #555; /* Dark background color for form inputs */
+  color: #fff; /* White text color for form inputs */
+}
+
+html.dark-mode .container,
+html.dark-mode .row,
+html.dark-mode .col,
+html.dark-mode .modal-content {
+  background-color: #444; /* Dark background color for containers, rows, and columns */
+}
+
+html.dark-mode .error {
+  color: #ffcccc; /* Light red color for error messages */
+}
+
+html.dark-mode .modal-header,
+html.dark-mode .form-label {
+  color: #ffffff;
+}
+
+.dark-mode .btn-info {
+  background-color: #333; /* Dark background color for info buttons */
+  border-color: #fff; /* White border color for info buttons */
+  color: #fff; /* White text color for info buttons */
+}
+
+.dark-mode .btn-primary,
+.dark-mode .btn-outline-primary {
+  background-color: #007bff; /* Primary color for buttons */
+  border-color: #007bff; /* Primary border color for buttons */
+  color: #fff; /* White text color for buttons */
+}
+
+.dark-mode .btn-dark,
+.dark-mode .btn-outline-dark {
+  background-color: #343a40; /* Dark color for buttons */
+  border-color: #343a40; /* Dark border color for buttons */
+  color: #fff; /* White text color for buttons */
+}
+
+.form-check {
+  justify-content: center;
+  display: flex !important;
+  gap: 5px;
+}
+
+@media (max-width: 576px) {
+  /* Apply smaller font size for all elements */
+  body,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  input,
+  button {
+    font-size: 14px !important;
+  }
+  span.input-group-text {
+    font-size: 14px !important;
+    min-width: 145px !important;
+  }
+  .h1,
+  h1 {
+    font-size: calc(1rem + 1.5vw) !important;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Apply tooltip on the left for screen widths 768px and below */
+  .tooltip.tooltip-left .tooltip-inner {
+    margin-right: 3px !important;
+    font-size: 30rem !important;
+  }
+}

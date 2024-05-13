@@ -1,0 +1,56 @@
+/* Light Mode Styles */
+.feedback-modal {
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+.feedback-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Dark Mode Styles */
+.dark-mode .feedback-modal {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+.dark-mode .feedback-content {
+  background-color: #333333;
+  border: 1px solid #fff;
+}
+.dark-mode .close {
+  color: #ffffff;
+}
+
+/* Styles for Submit Button */
+.feedback-modal button[type="submit"] {
+  background-color: #007bff; /* Blue background color for submit button in light mode */
+  color: #fff; /* White text color for submit button in light mode */
+  border: none; /* Remove border */
+  padding: 8px 16px; /* Adjust padding */
+  margin-top: 16px; /* Adjust margin */
+}
+
+.dark-mode .feedback-modal button[type="submit"] {
+  background-color: #343a40; /* Dark background color for submit button in dark mode */
+  color: #fff; /* White text color for submit button in dark mode */
+}
