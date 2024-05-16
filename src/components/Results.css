@@ -20,3 +20,27 @@
 .unaffordable {
   background-color: #dc3545;
 }
+
+.dark-mode .modal-content {
+  background-color: #333; /* Dark background color for modal content */
+  color: #fff; /* White text color for modal content */
+}
+
+.dark-mode .modal-header,
+.dark-mode .modal-footer {
+  background-color: #222; /* Dark background color for modal header and footer */
+  border-color: #333; /* Dark border color for modal header and footer */
+}
+
+.dark-mode .modal-header .dark-mode .modal-title {
+  color: #fff; /* White text color for modal title */
+}
+
+.dark-mode .modal-header .dark-mode button.close {
+  color: #fff; /* White text color for modal close button */
+}
+
+.dark-mode .modal-footer .dark-mode button {
+  background-color: #555; /* Dark background color for modal footer buttons */
+  color: #fff; /* White text color for modal footer buttons */
+}
