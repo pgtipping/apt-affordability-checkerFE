@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import {
   Col,
   Container,
@@ -31,6 +31,8 @@ function FormComponent() {
     <Tooltip id="feedback-tooltip">Leave us feedback</Tooltip>
   );
 
+  const [results, setResults] = useState(null);
+  const [showResults, setShowResults] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
 
   const toggleDarkMode = () => {
@@ -41,13 +43,8 @@ function FormComponent() {
   const handleCalculate = (e) => {
     e.preventDefault();
     handleSubmit(e); // Handle form submission
-    scrollToResults(); // Scroll to results after submission
-  };
-
-  const resultsRef = useRef(null); // Create a ref for the results section
-
-  const scrollToResults = () => {
-    resultsRef.current.scrollIntoView({ behavior: "smooth" }); // Scroll to the results section
+    setResults({}); // Assuming this will hold the calculation results
+    setShowResults(true); // Show the results modal
   };
 
   return (
@@ -97,9 +94,11 @@ function FormComponent() {
             </Button>
             {formError && <div className="error mt-3">{formError}</div>}
           </form>
-          <div ref={resultsRef}>
-            <Results />
-          </div>
+          <Results
+            results={results}
+            showResults={showResults}
+            setShowResults={setShowResults}
+          />
         </Col>
       </Row>
     </Container>
