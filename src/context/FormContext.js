@@ -16,7 +16,6 @@ export const FormProvider = ({ children }) => {
     savings: "",
     monthsToEvaluate: "",
     otherExpenses: "",
-    // savingsGoal: "",
   });
 
   const [formErrors, setFormErrors] = useState({
@@ -35,6 +34,7 @@ export const FormProvider = ({ children }) => {
   const [formError, setFormError] = useState(""); // Global form error state
   const [results, setResults] = useState(null); // State to store calculation results
   const [showFeedbackForm, setShowFeedbackForm] = useState(false);
+  const [showResults, setShowResults] = useState(false);
 
   // handle feedback submissions
 
@@ -170,11 +170,14 @@ export const FormProvider = ({ children }) => {
         formErrors,
         formError,
         results,
+        showResults,
         setFormError,
         handleSubmit,
         handleInputChange,
         showFeedbackForm,
         setShowFeedbackForm,
+        setResults,
+        setShowResults,
         handleFeedbackSubmit,
       }}
     >
