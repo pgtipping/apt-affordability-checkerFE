@@ -39,7 +39,6 @@ export const FormProvider = ({ children }) => {
   // handle feedback submissions
 
   const handleFeedbackSubmit = async (feedback) => {
-    console.log("Feedback submitted:", feedback);
     try {
       const response = await fetch("http://localhost:3001/feedback", {
         method: "POST",
@@ -50,13 +49,11 @@ export const FormProvider = ({ children }) => {
       });
       const data = await response.json();
       if (response.ok) {
-        console.log("Feedback submission success:", data);
         setShowFeedbackForm(false); // Optionally close the form on successful submission
       } else {
         throw new Error(data.error || "Failed to submit feedback");
       }
     } catch (error) {
-      console.error("Error submitting feedback:", error);
       // Optionally handle errors specifically related to feedback submission
     }
   };
@@ -126,7 +123,7 @@ export const FormProvider = ({ children }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Submit button clicked");
+
     setFormError(""); // Reset form error message
 
     // Validate all fields before submission
@@ -135,11 +132,7 @@ export const FormProvider = ({ children }) => {
       return isValid; // Update validation state
     });
 
-    console.log("Form validation status:", isFormValid);
-
     if (isFormValid) {
-      console.log("Form is valid, proceed with calculation.");
-      console.log("Data to be sent:", formData);
       // Proceed with form submission
       try {
         const response = await fetch("http://localhost:3001/validate", {
@@ -151,15 +144,13 @@ export const FormProvider = ({ children }) => {
         });
         const data = await response.json();
         setResults(data); // Update the results state with the response
-        console.log("Success:", data);
+
         // Handle response data here
       } catch (error) {
-        console.error("Error:", error);
         setFormError("Failed to submit form. Please try again later.");
       }
     } else {
       setFormError("Please correct the errors in the form.");
-      console.log("Validation failed"); // Log if validation fails
     }
   };
 
