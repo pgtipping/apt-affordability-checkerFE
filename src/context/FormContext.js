@@ -16,6 +16,7 @@ export const FormProvider = ({ children }) => {
     savings: "",
     monthsToEvaluate: "",
     otherExpenses: "",
+    monthlySavings: "",
   });
 
   const [formErrors, setFormErrors] = useState({
@@ -29,7 +30,7 @@ export const FormProvider = ({ children }) => {
     savingsError: "",
     monthsToEvaluateError: "",
     otherExpensesError: "",
-    // savingsGoalError: "",
+    monthlySavingsError: "",
   });
   const [formError, setFormError] = useState(""); // Global form error state
   const [results, setResults] = useState(null); // State to store calculation results
@@ -92,6 +93,9 @@ export const FormProvider = ({ children }) => {
         break;
       case "otherExpenses":
         fieldLabel = "Other Expenses";
+        break;
+      case "monthlySavings":
+        fieldLabel = "Monthly Savings & Investment";
         break;
       default:
         break;
@@ -158,6 +162,7 @@ export const FormProvider = ({ children }) => {
     <FormContext.Provider
       value={{
         formData,
+        setFormData,
         formErrors,
         formError,
         results,
