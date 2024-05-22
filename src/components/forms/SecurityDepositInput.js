@@ -7,11 +7,13 @@ import {
 } from "react-bootstrap";
 import { useFormContext } from "../../context/FormContext";
 
-function SecurityDepositInput() {
-  const { formData, formErrors, handleInputChange } = useFormContext();
+function SecurityDepositInput({ onInputChange }) {
+  const { formData, formErrors } = useFormContext();
 
-  const renderTooltip = (tooltipText) => (
-    <Tooltip id="tooltip">{tooltipText}</Tooltip>
+  const renderTooltip = (props) => (
+    <Tooltip id="security-deposit-tooltip" {...props}>
+      Typically the same as one month's rent, but can be adjusted.
+    </Tooltip>
   );
 
   return (
@@ -19,18 +21,13 @@ function SecurityDepositInput() {
       <InputGroup.Text style={{ minWidth: "162px" }}>
         Security Deposit
       </InputGroup.Text>
-      <OverlayTrigger
-        placement="top"
-        overlay={renderTooltip(
-          "Deposit (in addition to rent) required before moving in."
-        )}
-      >
+      <OverlayTrigger placement="top" overlay={renderTooltip}>
         <FormControl
           id="security-deposit"
           placeholder="Enter security deposit amount"
           type="number"
           value={formData.securityDeposit}
-          onChange={(e) => handleInputChange("securityDeposit", e.target.value)}
+          onChange={(e) => onInputChange("securityDeposit", e.target.value)}
           isInvalid={!!formErrors.securityDepositError}
         />
       </OverlayTrigger>
