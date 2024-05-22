@@ -1,24 +1,8 @@
-.results-container {
-  display: flex !important;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.result-box {
-  flex: 1;
-  min-width: 200px; /* Adjust as needed */
-  margin: 10px;
-  color: #f0f0f0;
-  padding: 20px;
-  border-radius: 5px;
-}
-
-.affordable {
-  background-color: #198754;
-}
-
-.unaffordable {
-  background-color: #dc3545;
+.results-divider {
+  height: 1px;
+  background-color: #ccc; /* Line color */
+  margin: 20px 0; /* Top, right, bottom, left */
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2); /* Add depth */
 }
 
 .dark-mode .modal-content {
