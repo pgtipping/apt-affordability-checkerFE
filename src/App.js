@@ -6,7 +6,7 @@ import FormComponent from "./components/FormComponent"; // Import the new form c
 function App() {
   return (
     <FormProvider>
-      <div className="container mt-5">
+      <div className="mt-5">
         <FormComponent />
       </div>
     </FormProvider>
