@@ -17,13 +17,14 @@ function Results({ showResults, setShowResults }) {
       <Modal.Body>
         {results && (
           <>
-            <CostDetails />
             <Affordability />
+            <div className="results-divider" />
+            <CostDetails />
           </>
         )}
       </Modal.Body>
       <Modal.Footer>
-        <Button variant="secondary" onClick={() => setShowResults(false)}>
+        <Button variant="danger" onClick={() => setShowResults(false)}>
           Close
         </Button>
       </Modal.Footer>
