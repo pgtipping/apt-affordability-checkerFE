@@ -8,7 +8,7 @@ const Affordability = ({ affordability }) => {
   return (
     <div>
       <h2>Affordability Details</h2>
-      <p>Can you afford this apartment? {results.canAfford ? "Yes" : "No"}</p>
+      <p>You {results.canAfford ? "can" : "cannot"} afford this apartment.</p>
       {results.canAfford ? (
         <p>
           You can afford this apartment for {results.affordabilityDuration}{" "}
