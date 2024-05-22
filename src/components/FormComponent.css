@@ -94,3 +94,40 @@ html.dark-mode .form-label {
     font-size: 30rem !important;
   }
 }
+
+/* Add these styles to your CSS file */
+
+/* Make sure html and body take up the full height */
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+/* Flexbox container to ensure footer is at the bottom */
+.page-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Flex-grow 1 ensures that the main content area grows to take up remaining space */
+.content-wrap {
+  flex: 1;
+  margin-bottom: 80px;
+}
+
+.footer {
+  background-color: #f5f5f5;
+  color: #212529bf;
+  text-align: center;
+  padding: 20px 0;
+  width: 100%;
+  position: relative;
+  left: 0;
+}
+
+.dark-mode .footer {
+  background-color: #333;
+  color: #adb5bd !important;
+}
