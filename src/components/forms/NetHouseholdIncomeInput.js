@@ -27,7 +27,7 @@ function NetHouseholdIncomeInput() {
       >
         <FormControl
           id="net-income"
-          placeholder="Enter net monthly income"
+          placeholder="Enter monthly net income"
           type="number"
           value={formData.netIncome}
           onChange={(e) => handleInputChange("netIncome", e.target.value)}
