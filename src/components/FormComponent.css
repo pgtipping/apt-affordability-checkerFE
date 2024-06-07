@@ -64,26 +64,47 @@ html.dark-mode .form-label {
   gap: 5px;
 }
 
+#darkModeSwitch .form-check-label {
+  display: flex;
+  align-items: center;
+}
+
+#darkModeSwitch .form-check-label span {
+  margin: 0 0.5 rem;
+}
+
 @media (max-width: 576px) {
   /* Apply smaller font size for all elements */
   body,
-  h2,
   h3,
   h4,
   h5,
   h6,
-  p,
+  .blog-intro,
   input,
-  button {
-    font-size: 14px !important;
+  button,
+  svg {
+    font-size: 13px !important;
+  }
+  ul,
+  .info {
+    font-size: 10px !important;
   }
   span.input-group-text {
-    font-size: 14px !important;
-    min-width: 145px !important;
+    font-size: 13px !important;
+    min-width: 150px !important;
   }
   .h1,
   h1 {
     font-size: calc(1rem + 1.5vw) !important;
+  }
+  .h2,
+  h2 {
+    font-size: calc(1rem + 1.5vw) !important;
+  }
+  .credits {
+    margin-right: 30px;
+    max-width: 105px;
   }
 }
 
@@ -115,19 +136,4 @@ body {
 .content-wrap {
   flex: 1;
   margin-bottom: 80px;
-}
-
-.footer {
-  background-color: #f5f5f5;
-  color: #212529bf;
-  text-align: center;
-  padding: 20px 0;
-  width: 100%;
-  position: relative;
-  left: 0;
-}
-
-.dark-mode .footer {
-  background-color: #333;
-  color: #adb5bd !important;
 }
