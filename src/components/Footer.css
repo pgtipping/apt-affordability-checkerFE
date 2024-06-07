@@ -1,17 +1,78 @@
-/* .footer {
-  position: absolute;
-  bottom: 0;
-  left: 0; 
-  width: 100%;
-  height: 60px; 
+.footer {
   background-color: #f5f5f5;
-  color: #333;
+  color: #212529bf;
   text-align: center;
-  padding-top: 20px;
-  margin-top: auto;
-  z-index: 1000; 
+  padding: 20px 0;
+  width: 100%;
+  position: relative;
+  left: 0;
 }
 
-.form-container {
-  margin-bottom: 80px; 
-} */
+.footer-content {
+  display: flex;
+  align-items: flex-start;
+  max-width: 1200px;
+  margin: 0 auto;
+  justify-content: space-between;
+}
+
+.credits {
+  text-align: left;
+  margin-left: 10px;
+  margin-right: 0px;
+}
+
+.credits-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 13px;
+}
+
+.credits-list li {
+  margin: 5px 0;
+}
+
+.credits-list a {
+  color: #212529bf;
+  text-decoration: none;
+}
+
+.credits-list a:hover {
+  text-decoration: underline;
+}
+
+.info {
+  text-align: center;
+  flex-grow: 1;
+  font-size: 14px;
+}
+
+.info p {
+  margin: 5px 0;
+}
+
+.social-media {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+  align-items: center;
+  margin-right: 30px;
+}
+
+.social-icon {
+  font-size: 24px;
+}
+.dark-mode .credits-list a {
+  color: #adb5bd;
+  text-decoration: none;
+}
+
+.dark-mode .social-icon {
+  color: #aaa; /* Lighter color for dark mode */
+}
+
+.dark-mode .footer {
+  background-color: #333;
+  color: #adb5bd !important;
+}
