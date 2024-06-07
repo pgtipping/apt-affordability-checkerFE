@@ -6,39 +6,41 @@ const FormContext = createContext();
 // Provider Component
 export const FormProvider = ({ children }) => {
   const [formData, setFormData] = useState({
-    movingCost: "",
-    immediateCost: "",
+    movingAndSetupCost: "",
+    monthlyLivingCost: "",
     rent: "",
     securityDeposit: "",
-    utilities: "",
-    associatedCost: "",
-    netIncome: "",
-    savings: "",
+    totalMonthlyIncome: "",
+    totalSavings: "",
     monthsToEvaluate: "",
-    otherExpenses: "",
-    monthlySavings: "",
   });
 
   const [formErrors, setFormErrors] = useState({
-    movingCostError: "",
-    immediateCostError: "",
+    movingAndSetupCostError: "",
+    monthlyLivingCostError: "",
     rentError: "",
     securityDepositError: "",
-    utilitiesError: "",
-    associatedCostError: "",
-    netIncomeError: "",
-    savingsError: "",
+    totalMonthlyIncomeError: "",
+    totalSavingsError: "",
     monthsToEvaluateError: "",
-    otherExpensesError: "",
-    monthlySavingsError: "",
   });
   const [formError, setFormError] = useState(""); // Global form error state
   const [results, setResults] = useState(null); // State to store calculation results
   const [showFeedbackForm, setShowFeedbackForm] = useState(false);
   const [showResults, setShowResults] = useState(false);
 
-  // handle feedback submissions
+  // Field name to label mapping
+  const fieldLabels = {
+    movingAndSetupCost: "Moving & Setup Costs",
+    monthlyLivingCost: "Monthly Living Costs",
+    rent: "Monthly Rent",
+    securityDeposit: "Security Deposit",
+    totalMonthlyIncome: "Total Monthly Income",
+    totalSavings: "Total Savings",
+    monthsToEvaluate: "Months to Evaluate",
+  };
 
+  // handle feedback submissions
   const handleFeedbackSubmit = async (feedback) => {
     try {
       const response = await fetch("http://localhost:3001/feedback", {
@@ -61,61 +63,24 @@ export const FormProvider = ({ children }) => {
 
   // Handle input changes
   const handleInputChange = (fieldName, value) => {
-    let fieldLabel = fieldName;
-    // Map field names to field labels
-    switch (fieldName) {
-      case "movingCost":
-        fieldLabel = "Moving Cost";
-        break;
-      case "immediateCost":
-        fieldLabel = "Immediate Cost";
-        break;
-      case "rent":
-        fieldLabel = "Rent";
-        break;
-      case "securityDeposit":
-        fieldLabel = "Security Deposit";
-        break;
-      case "utilities":
-        fieldLabel = "Utilities";
-        break;
-      case "associatedCost":
-        fieldLabel = "Associated Cost";
-        break;
-      case "netIncome":
-        fieldLabel = "Net Income";
-        break;
-      case "savings":
-        fieldLabel = "Savings";
-        break;
-      case "monthsToEvaluate":
-        fieldLabel = "Months To Evaluate";
-        break;
-      case "otherExpenses":
-        fieldLabel = "Other Expenses";
-        break;
-      case "monthlySavings":
-        fieldLabel = "Monthly Savings & Investment";
-        break;
-      default:
-        break;
-    }
     setFormData((prev) => ({
       ...prev,
       [fieldName]: value,
     }));
-    validateField(fieldName, value, fieldLabel); // Assuming validateField updates the appropriate error in state
+    validateField(fieldName, value); // Assuming validateField updates the appropriate error in state
   };
 
-  const validateField = (fieldName, value, fieldLabel) => {
+  const validateField = (fieldName, value) => {
     let errorMessage = "";
+    const fieldLabel = fieldLabels[fieldName]; // Get the label for the field name
+
     if (!value) {
       errorMessage = `${fieldLabel} is required.`;
     }
     if (isNaN(value) || value < 0) {
       errorMessage = `Please enter a valid positive number for ${fieldLabel}.`;
     }
-    if (fieldName === "Months To Evaluate" && (value < 1 || value > 60)) {
+    if (fieldName === "monthsToEvaluate" && (value < 1 || value > 60)) {
       errorMessage = `Please enter a valid range between 1 and 60 for ${fieldLabel}.`;
     }
     setFormErrors((prevErrors) => ({
@@ -127,7 +92,6 @@ export const FormProvider = ({ children }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     setFormError(""); // Reset form error message
 
     // Validate all fields before submission
@@ -181,5 +145,6 @@ export const FormProvider = ({ children }) => {
     </FormContext.Provider>
   );
 };
+
 // Custom hook to use Form Context
 export const useFormContext = () => useContext(FormContext);

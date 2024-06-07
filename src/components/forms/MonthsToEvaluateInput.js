@@ -7,32 +7,27 @@ import {
 } from "react-bootstrap";
 import { useFormContext } from "../../context/FormContext";
 
-function MonthsToEvaluateInput() {
-  const { formData, formErrors, handleInputChange } = useFormContext();
+function MonthsToEvaluateInput({ onInputChange }) {
+  const { formData, formErrors } = useFormContext();
 
-  const renderTooltip = (tooltipText) => (
-    <Tooltip id="tooltip">{tooltipText}</Tooltip>
+  const renderTooltip = (props) => (
+    <Tooltip id="months-to-evaluate-tooltip" {...props}>
+      Duration to calculate the affordability of the new apartment.
+    </Tooltip>
   );
 
   return (
     <InputGroup className="mb-3">
-      <InputGroup.Text style={{ minWidth: "162px" }}>
+      <InputGroup.Text style={{ minWidth: "178px" }}>
         Months to Evaluate
       </InputGroup.Text>
-      <OverlayTrigger
-        placement="top"
-        overlay={renderTooltip(
-          "Duration to calculate affordability of the new apartment (max 60)."
-        )}
-      >
+      <OverlayTrigger placement="top" overlay={renderTooltip}>
         <FormControl
           id="months-to-evaluate"
           placeholder="Enter number of months to evaluate affordability"
           type="number"
           value={formData.monthsToEvaluate}
-          onChange={(e) =>
-            handleInputChange("monthsToEvaluate", e.target.value)
-          }
+          onChange={(e) => onInputChange("monthsToEvaluate", e.target.value)}
           isInvalid={!!formErrors.monthsToEvaluateError}
         />
       </OverlayTrigger>

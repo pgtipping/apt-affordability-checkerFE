@@ -7,28 +7,27 @@ import {
 } from "react-bootstrap";
 import { useFormContext } from "../../context/FormContext";
 
-function RentInput() {
-  const { formData, formErrors, handleInputChange } = useFormContext();
+function MonthlyRentInput({ onInputChange }) {
+  const { formData, formErrors } = useFormContext();
 
-  const renderTooltip = (tooltipText) => (
-    <Tooltip id="tooltip">{tooltipText}</Tooltip>
+  const renderTooltip = (props) => (
+    <Tooltip id="monthly-rent-tooltip" {...props}>
+      Monthly rent amount.
+    </Tooltip>
   );
 
   return (
     <InputGroup className="mb-3">
-      <InputGroup.Text style={{ minWidth: "162px" }}>
+      <InputGroup.Text style={{ minWidth: "178px" }}>
         Monthly Rent
       </InputGroup.Text>
-      <OverlayTrigger
-        placement="top"
-        overlay={renderTooltip("Monthly rental amount.")}
-      >
+      <OverlayTrigger placement="top" overlay={renderTooltip}>
         <FormControl
-          id="rent"
+          id="monthly-rent"
           placeholder="Enter monthly rent"
           type="number"
           value={formData.rent}
-          onChange={(e) => handleInputChange("rent", e.target.value)}
+          onChange={(e) => onInputChange("rent", e.target.value)}
           isInvalid={!!formErrors.rentError}
         />
       </OverlayTrigger>
@@ -39,4 +38,4 @@ function RentInput() {
   );
 }
 
-export default RentInput;
+export default MonthlyRentInput;

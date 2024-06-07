@@ -7,35 +7,33 @@ import {
 } from "react-bootstrap";
 import { useFormContext } from "../../context/FormContext";
 
-function TotalSavingsInput() {
-  const { formData, formErrors, handleInputChange } = useFormContext();
+function TotalSavingsInput({ onInputChange }) {
+  const { formData, formErrors } = useFormContext();
 
-  const renderTooltip = (tooltipText) => (
-    <Tooltip id="tooltip">{tooltipText}</Tooltip>
+  const renderTooltip = (props) => (
+    <Tooltip id="total-savings-tooltip" {...props}>
+      Cash at bank plus near cash investments (can be converted to cash within
+      30 days).
+    </Tooltip>
   );
 
   return (
     <InputGroup className="mb-3">
-      <InputGroup.Text style={{ minWidth: "162px" }}>
+      <InputGroup.Text style={{ minWidth: "178px" }}>
         Total Savings
       </InputGroup.Text>
-      <OverlayTrigger
-        placement="top"
-        overlay={renderTooltip(
-          "Cash at bank plus near cash investments (can be converted to cash within 30 days)."
-        )}
-      >
+      <OverlayTrigger placement="top" overlay={renderTooltip}>
         <FormControl
-          id="savings"
+          id="total-savings"
           placeholder="Enter total savings"
           type="number"
-          value={formData.savings}
-          onChange={(e) => handleInputChange("savings", e.target.value)}
-          isInvalid={!!formErrors.savingsError}
+          value={formData.totalSavings}
+          onChange={(e) => onInputChange("totalSavings", e.target.value)}
+          isInvalid={!!formErrors.totalSavingsError}
         />
       </OverlayTrigger>
       <FormControl.Feedback type="invalid">
-        {formErrors.savingsError}
+        {formErrors.totalSavingsError}
       </FormControl.Feedback>
     </InputGroup>
   );

@@ -7,38 +7,36 @@ import {
 } from "react-bootstrap";
 import { useFormContext } from "../../context/FormContext";
 
-function NetHouseholdIncomeInput() {
-  const { formData, formErrors, handleInputChange } = useFormContext();
+function TotalMonthlyIncomeInput({ onInputChange }) {
+  const { formData, formErrors } = useFormContext();
 
-  const renderTooltip = (tooltipText) => (
-    <Tooltip id="tooltip">{tooltipText}</Tooltip>
+  const renderTooltip = (props) => (
+    <Tooltip id="total-monthly-income-tooltip" {...props}>
+      Monthly household income from all sources after deductions for tax, 401k,
+      savings, etc.
+    </Tooltip>
   );
 
   return (
     <InputGroup className="mb-3">
-      <InputGroup.Text style={{ minWidth: "162px" }}>
-        Net Income
+      <InputGroup.Text style={{ minWidth: "178px" }}>
+        Total Monthly Income
       </InputGroup.Text>
-      <OverlayTrigger
-        placement="top"
-        overlay={renderTooltip(
-          "Total household income after taxes and deductions."
-        )}
-      >
+      <OverlayTrigger placement="top" overlay={renderTooltip}>
         <FormControl
-          id="net-income"
-          placeholder="Enter monthly net income"
+          id="total-monthly-income"
+          placeholder="Enter total monthly income"
           type="number"
-          value={formData.netIncome}
-          onChange={(e) => handleInputChange("netIncome", e.target.value)}
-          isInvalid={!!formErrors.netIncomeError}
+          value={formData.totalMonthlyIncome}
+          onChange={(e) => onInputChange("totalMonthlyIncome", e.target.value)}
+          isInvalid={!!formErrors.totalMonthlyIncomeError}
         />
       </OverlayTrigger>
       <FormControl.Feedback type="invalid">
-        {formErrors.netIncomeError}
+        {formErrors.totalMonthlyIncomeError}
       </FormControl.Feedback>
     </InputGroup>
   );
 }
 
-export default NetHouseholdIncomeInput;
+export default TotalMonthlyIncomeInput;
