@@ -33,23 +33,27 @@ function FormComponent() {
   } = useFormContext();
   const [results, setResults] = useState(null);
   const [showResults, setShowResults] = useState(false);
-  const [darkMode, setDarkMode] = useState(false);
+  const [darkMode, setDarkMode] = useState(true); // Set dark mode as default
+  const [flipping, setFlipping] = useState(false);
   const [userAdjustedSecurityDeposit, setUserAdjustedSecurityDeposit] =
     useState(false);
 
   useEffect(() => {
-    if (darkMode) {
-      document.documentElement.classList.add("dark-mode");
-    }
-  }, [darkMode]);
+    // Ensure dark mode is set on initial load
+    document.documentElement.classList.add("dark-mode");
+  }, []);
 
   const feedbackTooltip = (
     <Tooltip id="feedback-tooltip">Leave us feedback</Tooltip>
   );
 
   const toggleDarkMode = () => {
-    setDarkMode(!darkMode);
-    document.documentElement.classList.toggle("dark-mode");
+    setFlipping(true);
+    setTimeout(() => {
+      setDarkMode((prevDarkMode) => !prevDarkMode);
+      document.documentElement.classList.toggle("dark-mode");
+      setFlipping(false);
+    }, 500); // Duration of the flip animation
   };
 
   const handleCalculate = (e) => {
@@ -81,39 +85,51 @@ function FormComponent() {
         <Row className="justify-content-center mt-3">
           <Col>
             <div className="d-flex align-items-center justify-content-center">
-              <img
-                src="/sunny.png"
-                alt="Light Mode"
-                style={{ width: "55px" }}
-              />
-              <Form.Check
-                type="switch"
-                id="darkModeSwitch"
-                checked={darkMode}
-                onChange={toggleDarkMode}
-              />
-              <img src="/moon.png" alt="Dark Mode" style={{ width: "50px" }} />
+              <div
+                className={`toggle-icon ${flipping ? "flip" : ""}`}
+                onClick={toggleDarkMode}
+              >
+                <img
+                  src={darkMode ? "/moon.png" : "/sunny.png"}
+                  alt={darkMode ? "Dark Mode" : "Light Mode"}
+                  style={{
+                    width: "55px",
+                    cursor: "pointer",
+                    transition: "transform 0.5s, opacity 0.5s",
+                  }}
+                />
+              </div>
             </div>
           </Col>
         </Row>
         <Row className="justify-content-center mt-5">
           <Col xs={12} md={10} lg={8}>
             <div className="blog-intro mb-4">
-              <h2>Welcome to the Apartment Affordability Analyzer!</h2>
+              <h3>Excited About Moving to a New Apartment?</h3>
               <p>
-                Finding a new apartment is an exciting journey, but figuring out
-                if you can afford it can be daunting. Our Apartment
-                Affordability Analyzer helps you evaluate your ability to afford
-                your new apartment with ease. Simply input the rental amount and
-                other associated costs, and let our tool do the rest. Whether
-                you're calculating moving costs, utilities, or other monthly
-                expenses, our analyzer provides a comprehensive view of your
-                financial commitment. Let's get started and ensure your new home
-                fits comfortably within your budget!
+                If you're like some of us who don't have a money tree in the
+                backyard, or tend to buy first and cry later (we've all been
+                there), moving can be a whirlwind of emotions. Picture this:
+                you've just snagged your dream job, and the thrill of leaving
+                dad's house, a friend's couch, or your current less-than-ideal
+                digs is hitting you like a confetti cannon at a surprise party.
+              </p>
+              <p>
+                You've found that perfect place! – the one you can't stop
+                thinking about. Your credit score is stellar, and yes, you've
+                done the math: your gross monthly income is at least three times
+                the rent. So, what's that last hurdle?{" "}
+              </p>
+
+              <p>
+                Affordability. Can your current lifestyle handle it? Let's dive
+                in and make sure your new home fits comfortably within your
+                budget. Ready to crunch some numbers and turn that dream into
+                reality? Let's go!
               </p>
             </div>
             <div className="d-flex justify-content-between align-items-center mb-3">
-              <h1 className="m-0">Apartment Affordability Analyzer</h1>
+              <h2 className="m-0">Apartment Affordability Analyzer</h2>
               <OverlayTrigger placement="left" overlay={feedbackTooltip}>
                 <Button
                   variant={darkMode ? "outline-light" : "outline-primary"}
@@ -124,7 +140,7 @@ function FormComponent() {
               </OverlayTrigger>
             </div>
             {showFeedbackForm && <FeedbackForm />}
-            <form onSubmit={handleSubmit}>
+            <Form onSubmit={handleSubmit}>
               <MovingAndSetupCostInput
                 onInputChange={handleInputChangeWrapper}
               />
@@ -140,13 +156,15 @@ function FormComponent() {
               <MonthsToEvaluateInput onInputChange={handleInputChangeWrapper} />
               <Button
                 type="submit"
-                className={`btn ${darkMode ? "btn-dark" : "btn-primary"}`}
+                className={`btn ${
+                  darkMode ? "btn-dark" : "btn-primary"
+                } calculate-button`}
                 onClick={handleCalculate}
               >
                 Calculate Affordability
               </Button>
               {formError && <div className="error mt-3">{formError}</div>}
-            </form>
+            </Form>
             <Results
               results={results}
               showResults={showResults}
