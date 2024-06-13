@@ -107,25 +107,41 @@ function FormComponent() {
             <div className="blog-intro mb-4">
               <h3>Excited About Moving to a New Apartment?</h3>
               <p>
-                If you're like some of us who don't have a money tree in the
-                backyard, or tend to buy first and cry later (we've all been
-                there), moving can be a whirlwind of emotions. Picture this:
-                you've just snagged your dream job, and the thrill of leaving
-                dad's house, a friend's couch, or your current less-than-ideal
-                digs is hitting you like a confetti cannon at a surprise party.
+                If you're like some who don't have a money tree in the backyard,
+                or who tend to buy first and cry later (we've all been there),
+                moving these days can be a little daunting.{" "}
               </p>
               <p>
-                You've found that perfect place! – the one you can't stop
-                thinking about. Your credit score is stellar, and yes, you've
-                done the math: your gross monthly income is at least three times
-                the rent. So, what's that last hurdle?{" "}
+                Picture this: you've just snagged your dream job, and the thrill
+                of leaving dad's house, a friend's couch, or your current
+                less-than-ideal digs is hitting you like a confetti cannon at a
+                surprise party.{" "}
               </p>
-
               <p>
-                Affordability. Can your current lifestyle handle it? Let's dive
-                in and make sure your new home fits comfortably within your
-                budget. Ready to crunch some numbers and turn that dream into
-                reality? Let's go!
+                Perhaps in your case you are just tired of your current
+                apartment. You want better living conditions, an upgrade, or you
+                need to get a bigger, better, more conveniently located
+                apartment.
+              </p>
+              <p>
+                Fast forward to a couple of weeks in the future. You've found
+                the perfect place! – the one you can't stop thinking about. Your
+                credit score is stellar, and yes, you've done the math: your
+                gross monthly income is at least three times the rent. Well,
+                before you sign the lease and make your payments, you may want
+                to consider one thing.
+              </p>
+              <p>Affordability.</p>{" "}
+              <p>
+                Though your gross monthly income meets the benchmark, it is
+                prudent to do a holistic review of your overall expenses. How
+                will this new cost affect your lifestyle? How long will you be
+                able to conveniently afford it?{" "}
+              </p>
+              <p>
+                Let's dive in and make sure your new home fits comfortably
+                within your budget. Ready to crunch some numbers and turn that
+                dream into reality? Let's go!
               </p>
             </div>
             <div className="d-flex justify-content-between align-items-center mb-3">
