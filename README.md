@@ -1,70 +1,62 @@
-# Getting Started with Create React App
+# Apartment Affordability Checker
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Welcome to the Apartment Affordability Checker, a comprehensive web application designed to help users evaluate their ability to afford a new apartment. This app is perfect for individuals who have found an ideal apartment and want to ensure it fits comfortably within their budget.
 
-## Available Scripts
+Apartment Affordability Checker helps users evaluate their ability to afford a new apartment. It evaluates cost associated with moving and living in the new apartment and your overall earnings. Features include real-time calculations, light/dark mode, and user feedback. Built with React, Node.js, Express, and PostgreSQL. Deployed on Vercel.
 
-In the project directory, you can run:
+## FEATURES
 
-### `npm start`
+Moving & Setup Costs: Calculate one-time costs like moving expenses and immediate setup fees.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Monthly Living Costs: Evaluate ongoing expenses such as utilities and other monthly bills.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Rent and Security Deposit: Automatically set security deposit based on the rent, with the option to adjust manually.
 
-### `npm test`
+Total Monthly Income: Input and analyze your net household income.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Savings and Financial Planning: Assess your total savings and plan for the future.
 
-### `npm run build`
+Customizable Evaluation Period: Determine affordability over a flexible time frame.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## HIGHLIGHTS
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Interactive and user-friendly interface
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Real-time affordability calculation
 
-### `npm run eject`
+Light and dark mode toggle for optimal user experience
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Feedback system to continually improve the app
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## TECHNOLOGY STACK
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Frontend: React, Bootstrap
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Backend: Node.js, Express
 
-## Learn More
+Database: PostgreSQL
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Deployment: Vercel
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## GETTING STARTED
 
-### Code Splitting
+### Prerequisites
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+    Node.js
+    npm or yarn
 
-### Analyzing the Bundle Size
+Clone the repository
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Install dependencies for both frontend and backend
 
-### Making a Progressive Web App
+Set up your environment variables
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Run the app locally and explore its features
 
-### Advanced Configuration
+## CONTRIBUTIONS
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+We welcome contributions from the community. Please read our contributing guidelines to get started.
 
-### Deployment
+## License
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This project is licensed under the MIT License - see the LICENSE file for details.
