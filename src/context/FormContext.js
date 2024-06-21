@@ -41,9 +41,11 @@ export const FormProvider = ({ children }) => {
   };
 
   // handle feedback submissions
+  const apiBaseUrl =
+    process.env.REACT_APP_API_BASE_URL || "http://localhost:3001";
   const handleFeedbackSubmit = async (feedback) => {
     try {
-      const response = await fetch("http://localhost:3001/feedback", {
+      const response = await fetch(`${apiBaseUrl}/feedback`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -103,7 +105,7 @@ export const FormProvider = ({ children }) => {
     if (isFormValid) {
       // Proceed with form submission
       try {
-        const response = await fetch("http://localhost:3001/validate", {
+        const response = await fetch(`${apiBaseUrl}/feedback`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
