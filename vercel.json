@@ -1,5 +1,6 @@
 {
   "version": 2,
+  "name": "apartment-affordability-checker",
   "builds": [
     {
       "src": "package.json",
