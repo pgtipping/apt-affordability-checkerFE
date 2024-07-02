@@ -54,3 +54,10 @@
   background-color: #343a40; /* Dark background color for submit button in dark mode */
   color: #fff; /* White text color for submit button in dark mode */
 }
+
+.dark-mode .btn-dark,
+.dark-mode .btn-outline-dark {
+  background-color: #343a40; /* Dark color for buttons */
+  border-color: #3e444a; /* Dark border color for buttons */
+  color: #fff; /* White text color for buttons */
+}

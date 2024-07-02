@@ -155,7 +155,7 @@ function FormComponent() {
                 </Button>
               </OverlayTrigger>
             </div>
-            {showFeedbackForm && <FeedbackForm />}
+            {showFeedbackForm && <FeedbackForm darkMode={darkMode} />}
             <Form onSubmit={handleSubmit}>
               <MovingAndSetupCostInput
                 onInputChange={handleInputChangeWrapper}

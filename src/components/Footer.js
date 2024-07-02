@@ -31,7 +31,7 @@ function Footer() {
         </div>
         <div className="info">
           <p>
-            © {currentYear} Apartment Affordability Analyzer. All rights
+            © {currentYear} Apartment Affordability Checker. All rights
             reserved.
           </p>
           <p>

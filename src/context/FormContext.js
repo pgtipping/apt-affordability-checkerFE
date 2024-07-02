@@ -105,7 +105,7 @@ export const FormProvider = ({ children }) => {
     if (isFormValid) {
       // Proceed with form submission
       try {
-        const response = await fetch(`${apiBaseUrl}/feedback`, {
+        const response = await fetch(`${apiBaseUrl}/validate`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

@@ -3,7 +3,7 @@ import { useFormContext } from "../context/FormContext";
 import "./FeedbackForm.css";
 import { Modal, Button, Form } from "react-bootstrap";
 
-const FeedbackForm = () => {
+const FeedbackForm = ({ darkMode }) => {
   const { handleFeedbackSubmit, setShowFeedbackForm } = useFormContext();
   const [feedback, setFeedback] = useState("");
 
@@ -11,8 +11,6 @@ const FeedbackForm = () => {
     event.preventDefault();
     handleFeedbackSubmit(feedback);
   };
-
-  // const [darkMode] = useState(false);
 
   return (
     <Modal show={true} onHide={() => setShowFeedbackForm(false)}>
@@ -30,7 +28,11 @@ const FeedbackForm = () => {
               required
             />
           </Form.Group>
-          <Button variant="primary" type="submit" className="mt-3">
+          <Button
+            variant={darkMode ? "dark" : "primary"}
+            type="submit"
+            className="mt-3"
+          >
             Submit
           </Button>
         </Form>
