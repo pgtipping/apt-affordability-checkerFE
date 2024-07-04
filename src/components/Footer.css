@@ -76,3 +76,12 @@
   background-color: #333;
   color: #adb5bd !important;
 }
+
+.dark-mode a {
+  color: #fff !important; /* White color for links in dark mode */
+}
+
+.credits-heading {
+  font-size: 1rem;
+  font-weight: bold;
+}

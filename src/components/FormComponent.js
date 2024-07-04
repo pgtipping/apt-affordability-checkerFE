@@ -81,114 +81,124 @@ function FormComponent() {
 
   return (
     <div className={`page-container ${darkMode ? "dark-mode" : ""}`}>
-      <Container className="content-wrap mt-6">
-        <Row className="justify-content-center mt-3">
-          <Col>
-            <div className="d-flex align-items-center justify-content-center">
-              <div
-                className={`toggle-icon ${flipping ? "flip" : ""}`}
-                onClick={toggleDarkMode}
-              >
-                <img
-                  src={darkMode ? "/moon.png" : "/sunny.png"}
-                  alt={darkMode ? "Dark Mode" : "Light Mode"}
-                  style={{
-                    width: "55px",
-                    cursor: "pointer",
-                    transition: "transform 0.5s, opacity 0.5s",
-                  }}
-                />
-              </div>
-            </div>
-          </Col>
-        </Row>
-        <Row className="justify-content-center mt-5">
-          <Col xs={12} md={10} lg={8}>
-            <div className="blog-intro mb-4">
-              <h3>Excited About Moving to a New Apartment?</h3>
-              <p>
-                If you're like some who don't have a money tree in the backyard,
-                or who tend to buy first and cry later (we've all been there),
-                moving these days can be a little daunting.{" "}
-              </p>
-              <p>
-                Picture this: you've just snagged your dream job, and the thrill
-                of leaving dad's house, a friend's couch, or your current
-                less-than-ideal digs is hitting you like a confetti cannon at a
-                surprise party.{" "}
-              </p>
-              <p>
-                Perhaps in your case you are just tired of your current
-                apartment. You want better living conditions, an upgrade, or you
-                need to get a bigger, better, more conveniently located
-                apartment.
-              </p>
-              <p>
-                Fast forward to a couple of weeks in the future. You've found
-                the perfect place! – the one you can't stop thinking about. Your
-                credit score is stellar, and yes, you've done the math: your
-                gross monthly income is at least three times the rent. Well,
-                before you sign the lease and make your payments, you may want
-                to consider one thing.
-              </p>
-              <p>Affordability.</p>{" "}
-              <p>
-                Though your gross monthly income meets the benchmark, it is
-                prudent to do a holistic review of your overall expenses. How
-                will this new cost affect your lifestyle? How long will you be
-                able to conveniently afford it?{" "}
-              </p>
-              <p>
-                Let's dive in and make sure your new home fits comfortably
-                within your budget. Ready to crunch some numbers and turn that
-                dream into reality? Let's go!
-              </p>
-            </div>
-            <div className="d-flex justify-content-between align-items-center mb-3">
-              <h2 className="m-0">Apartment Affordability Analyzer</h2>
-              <OverlayTrigger placement="left" overlay={feedbackTooltip}>
-                <Button
-                  variant={darkMode ? "outline-light" : "outline-primary"}
-                  onClick={() => setShowFeedbackForm(true)}
+      <header>
+        <Container className="content-wrap mt-6">
+          <Row className="justify-content-center mt-3">
+            <Col>
+              <div className="d-flex align-items-center justify-content-center">
+                <div
+                  className={`toggle-icon ${flipping ? "flip" : ""}`}
+                  onClick={toggleDarkMode}
                 >
-                  Feedback
+                  <img
+                    src={darkMode ? "/moon.png" : "/sunny.png"}
+                    alt={darkMode ? "Dark Mode" : "Light Mode"}
+                    style={{
+                      width: "55px",
+                      cursor: "pointer",
+                      transition: "transform 0.5s, opacity 0.5s",
+                    }}
+                  />
+                </div>
+              </div>
+            </Col>
+          </Row>
+        </Container>
+      </header>
+      <main>
+        <Container className="content-wrap mt-6">
+          <Row className="justify-content-center mt-5">
+            <Col xs={12} md={10} lg={8}>
+              <div className="blog-intro mb-4">
+                <h3>Excited About Moving to a New Apartment?</h3>
+                <p>
+                  If you're like some who don't have a money tree in the
+                  backyard, or who tend to buy first and cry later (we've all
+                  been there), moving these days can be a little daunting.{" "}
+                </p>
+                <p>
+                  Picture this: you've just snagged your dream job, and the
+                  thrill of leaving dad's house, a friend's couch, or your
+                  current less-than-ideal digs is hitting you like a confetti
+                  cannon at a surprise party.{" "}
+                </p>
+                <p>
+                  Perhaps in your case you are just tired of your current
+                  apartment. You want better living conditions, an upgrade, or
+                  you need to get a bigger, better, more conveniently located
+                  apartment.
+                </p>
+                <p>
+                  Fast forward to a couple of weeks in the future. You've found
+                  the perfect place! – the one you can't stop thinking about.
+                  Your credit score is stellar, and yes, you've done the math:
+                  your gross monthly income is at least three times the rent.
+                  Well, before you sign the lease and make your payments, you
+                  may want to consider one thing.
+                </p>
+                <p>Affordability.</p>{" "}
+                <p>
+                  Though your gross monthly income meets the benchmark, it is
+                  prudent to do a holistic review of your overall expenses. How
+                  will this new cost affect your lifestyle? How long will you be
+                  able to conveniently afford it?{" "}
+                </p>
+                <p>
+                  Let's dive in and make sure your new home fits comfortably
+                  within your budget. Ready to crunch some numbers and turn that
+                  dream into reality? Let's go!
+                </p>
+              </div>
+              <div className="d-flex justify-content-between align-items-center mb-3">
+                <h2 className="m-0">Apartment Affordability Analyzer</h2>
+                <OverlayTrigger placement="left" overlay={feedbackTooltip}>
+                  <Button
+                    variant={darkMode ? "outline-light" : "outline-primary"}
+                    onClick={() => setShowFeedbackForm(true)}
+                  >
+                    Feedback
+                  </Button>
+                </OverlayTrigger>
+              </div>
+              {showFeedbackForm && <FeedbackForm darkMode={darkMode} />}
+              <Form onSubmit={handleSubmit}>
+                <MovingAndSetupCostInput
+                  onInputChange={handleInputChangeWrapper}
+                />
+                <MonthlyLivingCostInput
+                  onInputChange={handleInputChangeWrapper}
+                />
+                <MonthlyRentInput onInputChange={handleInputChangeWrapper} />
+                <SecurityDepositInput
+                  onInputChange={handleInputChangeWrapper}
+                />
+                <TotalMonthlyIncomeInput
+                  onInputChange={handleInputChangeWrapper}
+                />
+                <TotalSavingsInput onInputChange={handleInputChangeWrapper} />
+                <MonthsToEvaluateInput
+                  onInputChange={handleInputChangeWrapper}
+                />
+                <Button
+                  type="submit"
+                  className={`btn ${
+                    darkMode ? "btn-dark" : "btn-primary"
+                  } calculate-button`}
+                  onClick={handleCalculate}
+                >
+                  Calculate Affordability
                 </Button>
-              </OverlayTrigger>
-            </div>
-            {showFeedbackForm && <FeedbackForm darkMode={darkMode} />}
-            <Form onSubmit={handleSubmit}>
-              <MovingAndSetupCostInput
-                onInputChange={handleInputChangeWrapper}
+                {formError && <div className="error mt-3">{formError}</div>}
+              </Form>
+              <Results
+                results={results}
+                showResults={showResults}
+                setShowResults={setShowResults}
               />
-              <MonthlyLivingCostInput
-                onInputChange={handleInputChangeWrapper}
-              />
-              <MonthlyRentInput onInputChange={handleInputChangeWrapper} />
-              <SecurityDepositInput onInputChange={handleInputChangeWrapper} />
-              <TotalMonthlyIncomeInput
-                onInputChange={handleInputChangeWrapper}
-              />
-              <TotalSavingsInput onInputChange={handleInputChangeWrapper} />
-              <MonthsToEvaluateInput onInputChange={handleInputChangeWrapper} />
-              <Button
-                type="submit"
-                className={`btn ${
-                  darkMode ? "btn-dark" : "btn-primary"
-                } calculate-button`}
-                onClick={handleCalculate}
-              >
-                Calculate Affordability
-              </Button>
-              {formError && <div className="error mt-3">{formError}</div>}
-            </Form>
-            <Results
-              results={results}
-              showResults={showResults}
-              setShowResults={setShowResults}
-            />
-          </Col>
-        </Row>
-      </Container>
+            </Col>
+          </Row>
+        </Container>
+      </main>
       <Footer /> {/* Render the Footer component outside the container */}
     </div>
   );

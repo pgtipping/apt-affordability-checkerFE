@@ -9,7 +9,7 @@ function Footer() {
     <footer className="footer">
       <div className="footer-content">
         <div className="credits">
-          <h6>Credits</h6>
+          <p className="credits-heading">Credits</p>
           <ul className="credits-list">
             <li>
               <a
