@@ -50,3 +50,4 @@ cypress/videos
 *.iml
 *.sublime-project
 *.sublime-workspace
+.vercel/
