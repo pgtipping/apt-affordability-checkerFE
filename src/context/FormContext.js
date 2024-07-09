@@ -43,6 +43,9 @@ export const FormProvider = ({ children }) => {
   // handle feedback submissions
   const apiBaseUrl =
     process.env.REACT_APP_API_BASE_URL || "http://localhost:3001";
+
+  console.log("API Base URL:", apiBaseUrl);
+
   const handleFeedbackSubmit = async (feedback) => {
     try {
       const response = await fetch(`${apiBaseUrl}/feedback`, {
