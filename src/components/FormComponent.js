@@ -110,7 +110,7 @@ function FormComponent() {
           <Row className="justify-content-center mt-5">
             <Col xs={12} md={10} lg={8}>
               <div className="blog-intro mb-4">
-                <h3>Excited About Moving to a New Apartment?</h3>
+                <h1>Excited About Moving to a New Apartment?</h1>
                 <p>
                   Moving these days can be a little daunting. If you're like
                   some who don't have a money tree in the yard, or who tend to
