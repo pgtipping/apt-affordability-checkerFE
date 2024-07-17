@@ -18,9 +18,7 @@ function MonthlyRentInput({ onInputChange }) {
 
   return (
     <InputGroup className="mb-3">
-      <InputGroup.Text style={{ minWidth: "178px" }}>
-        Monthly Rent
-      </InputGroup.Text>
+      <InputGroup.Text style={{ width: "170px" }}>Monthly Rent</InputGroup.Text>
       <OverlayTrigger placement="top" overlay={renderTooltip}>
         <FormControl
           id="monthly-rent"

@@ -19,7 +19,7 @@ function MovingAndSetupCostInput({ onInputChange }) {
 
   return (
     <InputGroup className="mb-3">
-      <InputGroup.Text style={{ minWidth: "178px" }}>
+      <InputGroup.Text style={{ width: "170px" }}>
         Moving & Setup Cost
       </InputGroup.Text>
       <OverlayTrigger placement="top" overlay={renderTooltip}>

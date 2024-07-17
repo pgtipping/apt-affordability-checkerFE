@@ -18,7 +18,7 @@ function MonthsToEvaluateInput({ onInputChange }) {
 
   return (
     <InputGroup className="mb-3">
-      <InputGroup.Text style={{ minWidth: "178px" }}>
+      <InputGroup.Text style={{ width: "170px" }}>
         Months to Evaluate
       </InputGroup.Text>
       <OverlayTrigger placement="top" overlay={renderTooltip}>

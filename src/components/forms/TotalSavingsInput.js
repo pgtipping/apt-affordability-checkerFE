@@ -19,7 +19,7 @@ function TotalSavingsInput({ onInputChange }) {
 
   return (
     <InputGroup className="mb-3">
-      <InputGroup.Text style={{ minWidth: "178px" }}>
+      <InputGroup.Text style={{ width: "170px" }}>
         Total Savings
       </InputGroup.Text>
       <OverlayTrigger placement="top" overlay={renderTooltip}>

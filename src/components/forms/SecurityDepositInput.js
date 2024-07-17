@@ -18,7 +18,7 @@ function SecurityDepositInput({ onInputChange }) {
 
   return (
     <InputGroup className="mb-3">
-      <InputGroup.Text style={{ minWidth: "178px" }}>
+      <InputGroup.Text style={{ width: "170px" }}>
         Security Deposit
       </InputGroup.Text>
       <OverlayTrigger placement="top" overlay={renderTooltip}>

@@ -19,8 +19,8 @@ function TotalMonthlyIncomeInput({ onInputChange }) {
 
   return (
     <InputGroup className="mb-3">
-      <InputGroup.Text style={{ minWidth: "178px" }}>
-        Total Monthly Income
+      <InputGroup.Text style={{ width: "170px" }}>
+        Monthly Income
       </InputGroup.Text>
       <OverlayTrigger placement="top" overlay={renderTooltip}>
         <FormControl
