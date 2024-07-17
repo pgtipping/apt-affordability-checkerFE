@@ -140,7 +140,7 @@ body {
 /* Flex-grow 1 ensures that the main content area grows to take up remaining space */
 .content-wrap {
   flex: 1;
-  margin-bottom: 80px;
+  margin-bottom: 10px;
 }
 
 .toggle-icon {
