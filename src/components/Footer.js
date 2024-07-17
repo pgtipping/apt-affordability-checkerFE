@@ -35,7 +35,10 @@ function Footer() {
             reserved.
           </p>
           <p>
-            Created by <a href="https://x.com/Pgtipping01">@pgtipping</a>
+            Created by{" "}
+            <a class="x" href="https://x.com/Pgtipping01">
+              @pgtipping
+            </a>
           </p>
         </div>
         <div className="social-media">

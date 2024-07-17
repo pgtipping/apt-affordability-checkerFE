@@ -86,10 +86,15 @@ html.dark-mode .form-label {
   svg {
     font-size: 13px !important;
   }
-  ul,
+
   .info {
     font-size: 10px !important;
   }
+
+  ul {
+    font-size: 8px !important;
+  }
+
   span.input-group-text {
     font-size: 13px !important;
     min-width: 150px !important;
