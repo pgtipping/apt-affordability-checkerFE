@@ -24,6 +24,7 @@ cypress/videos
 .idea/
 *.sublime-project
 *.sublime-workspace
+.vercel/
 
 # Environment variable files
 .env.local
