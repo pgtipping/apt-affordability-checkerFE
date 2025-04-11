@@ -11,7 +11,8 @@ import {
 import { useFormContext } from "../context/FormContext";
 import MovingAndSetupCostInput from "./forms/MovingAndSetupCostInput";
 import MonthlyLivingCostInput from "./forms/MonthlyLivingCostInput";
-import MonthlyRentInput from "./forms/RentInput";
+import LocationInput from "./forms/LocationInput";
+import RentEstimateInput from "./forms/RentEstimateInput";
 import SecurityDepositInput from "./forms/SecurityDepositInput";
 import TotalMonthlyIncomeInput from "./forms/NetHouseholdIncomeInput";
 import TotalSavingsInput from "./forms/TotalSavingsInput";
@@ -138,7 +139,8 @@ function FormComponent() {
                 <MonthlyLivingCostInput
                   onInputChange={handleInputChangeWrapper}
                 />
-                <MonthlyRentInput onInputChange={handleInputChangeWrapper} />
+                <LocationInput onInputChange={handleInputChangeWrapper} />
+                <RentEstimateInput onInputChange={handleInputChangeWrapper} />
                 <SecurityDepositInput
                   onInputChange={handleInputChangeWrapper}
                 />

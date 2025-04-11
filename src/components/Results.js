@@ -1,13 +1,13 @@
-// In Results.js
-import React from "react"; // Importing useRef
+import React from "react";
 import { Modal, Button } from "react-bootstrap";
 import CostDetails from "./CostDetails";
 import Affordability from "./Affordability";
+import RentEstimateView from "./views/RentEstimateView";
 import "./Results.css";
 import { useFormContext } from "../context/FormContext";
 
 function Results({ showResults, setShowResults }) {
-  const { results } = useFormContext();
+  const { results, formData } = useFormContext();
 
   return (
     <Modal show={showResults} onHide={() => setShowResults(false)}>
@@ -20,6 +20,12 @@ function Results({ showResults, setShowResults }) {
             <Affordability />
             <div className="results-divider" />
             <CostDetails />
+            {formData.rentEstimates && (
+              <>
+                <div className="results-divider" />
+                <RentEstimateView />
+              </>
+            )}
           </>
         )}
       </Modal.Body>

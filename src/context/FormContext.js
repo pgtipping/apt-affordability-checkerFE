@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState } from "react";
+import AIService from "../services/AIService";
 
 // Create a Context
 const FormContext = createContext();
@@ -13,6 +14,8 @@ export const FormProvider = ({ children }) => {
     totalMonthlyIncome: "",
     totalSavings: "",
     monthsToEvaluate: "",
+    rentEstimates: null,
+    location: "",
   });
 
   const [formErrors, setFormErrors] = useState({
@@ -70,7 +73,52 @@ export const FormProvider = ({ children }) => {
       ...prev,
       [fieldName]: value,
     }));
-    validateField(fieldName, value); // Assuming validateField updates the appropriate error in state
+    validateField(fieldName, value);
+
+    // If location changes and has length, fetch rent estimates
+    if (fieldName === "location" && value.length > 3) {
+      fetchRentEstimates(value);
+    }
+  };
+
+  const fetchRentEstimates = async (location) => {
+    try {
+      // TODO: Parameterize bedrooms, bathrooms, sqft from formData as UI evolves
+      const address = location;
+      const bedrooms = formData.bedrooms || 1;
+      const bathrooms = formData.bathrooms || 1;
+      const sqft = formData.sqft || 900;
+
+      const estimate = await AIService.getLocalRentEstimate({
+        address,
+        bedrooms,
+        bathrooms,
+        sqft,
+      });
+
+      setFormData((prev) => ({
+        ...prev,
+        rentEstimates: {
+          averageRent: estimate.estimatedRent,
+          confidence: estimate.confidence,
+          source: estimate.source,
+          details: estimate.details,
+          lastUpdated: new Date().toISOString(),
+        },
+        rent: estimate.estimatedRent,
+      }));
+    } catch (error) {
+      console.error("Failed to fetch rent estimates:", error);
+      setFormData((prev) => ({
+        ...prev,
+        rentEstimates: null,
+      }));
+      setFormErrors((prevErrors) => ({
+        ...prevErrors,
+        rentError:
+          "Unable to fetch rent estimate for this location. Please check your address or try again later.",
+      }));
+    }
   };
 
   const validateField = (fieldName, value) => {

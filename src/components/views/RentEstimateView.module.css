@@ -1,0 +1,52 @@
+.container {
+  margin: 1rem 0;
+  padding: 1rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+.estimates {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.estimateItem {
+  display: flex;
+  justify-content: space-between;
+}
+
+.estimateItem span:first-child {
+  font-weight: 600;
+}
+
+.estimateItem span:last-child {
+  color: #2e7d32;
+}
+
+.chartContainer {
+  width: 100%;
+  height: 300px;
+  margin-top: 1rem;
+}
+
+.noData {
+  color: #666;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0.75rem;
+  }
+
+  .chartContainer {
+    height: 250px;
+  }
+
+  .estimateItem {
+    font-size: 0.9rem;
+  }
+}

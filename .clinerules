@@ -1,0 +1,45 @@
+# Cline Rules: Apartment Cost Analyzer
+
+## Project Patterns
+
+1. **Form Structure**:
+
+   - Input components follow consistent naming: [CostType]Input.js
+   - All form components are colocated in src/components/forms/
+
+2. **State Management**:
+
+   - FormContext.js handles all application state
+   - State structure appears focused on cost calculations
+
+3. **Component Organization**:
+
+   - Clear separation between form and display components
+   - Results components in src/components/views/
+
+4. **Styling Approach**:
+   - CSS Modules used for component-specific styles
+   - No global CSS overrides detected
+
+## Development Rules
+
+1. **New Input Components**:
+
+   - Must follow existing naming convention
+   - Should be placed in src/components/forms/
+   - Must integrate with FormContext
+
+2. **State Modifications**:
+
+   - Changes should maintain current state structure
+   - New state properties should be clearly documented
+
+3. **Testing Standards**:
+   - New components should include basic test coverage
+   - Tests should verify interaction with FormContext
+
+## Project-Specific Insights
+
+- Calculation logic appears centralized in FormContext
+- No external API dependencies detected
+- All functionality is client-side
