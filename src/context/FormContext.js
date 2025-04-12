@@ -123,17 +123,65 @@ export const FormProvider = ({ children }) => {
 
   const validateField = (fieldName, value) => {
     let errorMessage = "";
-    const fieldLabel = fieldLabels[fieldName]; // Get the label for the field name
+    const fieldLabel = fieldLabels[fieldName];
 
-    if (!value) {
+    // Required check for all fields except rentEstimates
+    if (
+      fieldName !== "rentEstimates" &&
+      (value === undefined ||
+        value === null ||
+        value === "" ||
+        (typeof value === "string" && value.trim() === ""))
+    ) {
       errorMessage = `${fieldLabel} is required.`;
     }
-    if (isNaN(value) || value < 0) {
-      errorMessage = `Please enter a valid positive number for ${fieldLabel}.`;
+
+    // Numeric fields validation
+    const numericFields = [
+      "movingAndSetupCost",
+      "monthlyLivingCost",
+      "rent",
+      "securityDeposit",
+      "totalMonthlyIncome",
+      "totalSavings",
+      "monthsToEvaluate",
+    ];
+    if (!errorMessage && numericFields.includes(fieldName)) {
+      const num = Number(value);
+      if (isNaN(num) || num < 0) {
+        errorMessage = `Please enter a valid positive number for ${fieldLabel}.`;
+      }
+      // Field-specific range checks
+      if (
+        !errorMessage &&
+        fieldName === "monthsToEvaluate" &&
+        (num < 1 || num > 60)
+      ) {
+        errorMessage = `Please enter a valid range between 1 and 60 for ${fieldLabel}.`;
+      }
+      if (
+        !errorMessage &&
+        fieldName === "rent" &&
+        num > Number(formData.totalMonthlyIncome || 0)
+      ) {
+        errorMessage = `Monthly Rent should not exceed Total Monthly Income.`;
+      }
+      if (
+        !errorMessage &&
+        fieldName === "securityDeposit" &&
+        num > 12 * Number(formData.rent || 0)
+      ) {
+        errorMessage = `Security Deposit should not exceed 12 months of rent.`;
+      }
     }
-    if (fieldName === "monthsToEvaluate" && (value < 1 || value > 60)) {
-      errorMessage = `Please enter a valid range between 1 and 60 for ${fieldLabel}.`;
+
+    // Location validation
+    if (!errorMessage && fieldName === "location") {
+      if (typeof value !== "string" || value.trim().length < 5) {
+        errorMessage = "Please enter a valid address (at least 5 characters).";
+      }
     }
+
     setFormErrors((prevErrors) => ({
       ...prevErrors,
       [`${fieldName}Error`]: errorMessage,
