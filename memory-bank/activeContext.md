@@ -1,7 +1,12 @@
 # Active Context: Apartment Cost Analyzer
 
-## Current Focus [Updated: 2025-04-11 20:01 EDT]
+## Current Focus [Updated: 2025-04-11 20:33 EDT]
 
+- **Serverless Migration**
+  - All backend endpoints migrated to Vercel serverless functions under /api (validate, feedback, ai/rent-estimates)
+  - Client fetch calls updated to use new endpoints
+  - Feedback submission and validation now fully serverless
+  - Next: Remove any legacy backend/server.js or similar files if present (none found)
 - **Results Visualization & UX**
   - Enhanced results visualization in RentEstimateView.js: added ARIA labels, axis labels, data source/confidence, improved color contrast, and clarity
   - All results components are now more mobile responsive and accessible
@@ -16,12 +21,11 @@
   - RentCast API integration complete (backend and frontend)
   - Error handling and user feedback for geocoding and rent estimate failures implemented in FormContext and UI
   - Security audit completed: MAPBOX_API_KEY and RENTCAST_API_KEY confirmed not exposed to client code
-- **Serverless Migration**
-  - Migration plan and options finalized (see serverless-options.md and serverless-migration-plan.md)
-  - Prepare for backend refactor to Vercel serverless functions
 
 ## Recent Changes (This Session)
 
+- Migrated all backend endpoints to Vercel serverless functions: /api/validate, /api/feedback, /api/ai/rent-estimates
+- Updated client fetch calls for feedback and validation to use new serverless endpoints
 - Enhanced RentEstimateView.js for accessibility, clarity, and data context: ARIA labels, axis labels, data source/confidence, improved color contrast, and chart clarity
 - Implemented robust, comprehensive form validation in FormContext.js, including required checks, numeric and range validation, logical constraints, and clear error messaging
 - All validation errors are now displayed to users in a mobile-responsive, accessible way
@@ -41,15 +45,16 @@
 
 ## Next Steps (Priority Order)
 
-1. **Results UX & Feedback**
+1. **Serverless Migration Finalization**
+
+   - Remove any legacy backend/server.js or similar files if present (none found)
+   - Test all serverless endpoints in staging/production
+   - Update environment variables and secrets in Vercel dashboard as needed
+
+2. **Results UX & Feedback**
 
    - Review and improve user experience for results and feedback, ensuring clarity, accessibility, and mobile responsiveness
    - Consider adding user guidance, tooltips, or summary explanations for results
-
-2. **Serverless Migration**
-
-   - Continue backend refactor to Vercel serverless functions as per migration plan
-   - Update client-side code to use new endpoints
 
 3. **Testing & Documentation**
    - Write and run unit/integration tests for all new features
@@ -58,7 +63,7 @@
 ## How to Resume
 
 - Review this file and referenced memory bank docs for all context and plans.
-- Begin with reviewing and improving user experience for results and feedback. Focus on clarity, accessibility, and mobile responsiveness.
+- Begin with finalizing serverless migration: remove any legacy backend/server.js or similar files if present, test all endpoints, and update Vercel environment variables as needed.
 - All technical and project rules are documented in .cline/rules and .clinerules.
 
-_Last updated: 2025-04-11 20:01 EDT_
+_Last updated: 2025-04-11 20:33 EDT_

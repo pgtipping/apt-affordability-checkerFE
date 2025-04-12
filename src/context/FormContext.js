@@ -49,7 +49,7 @@ export const FormProvider = ({ children }) => {
 
   const handleFeedbackSubmit = async (feedback) => {
     try {
-      const response = await fetch(`${apiBaseUrl}/feedback`, {
+      const response = await fetch("/api/feedback", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -202,7 +202,7 @@ export const FormProvider = ({ children }) => {
     if (isFormValid) {
       // Proceed with form submission
       try {
-        const response = await fetch(`${apiBaseUrl}/validate`, {
+        const response = await fetch("/api/validate", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -210,8 +210,22 @@ export const FormProvider = ({ children }) => {
           body: JSON.stringify(formData),
         });
         const data = await response.json();
+        if (!response.ok) {
+          // If serverless validation fails, show errors
+          if (data.errors) {
+            Object.entries(data.errors).forEach(([field, msg]) => {
+              setFormErrors((prev) => ({
+                ...prev,
+                [`${field}Error`]: msg,
+              }));
+            });
+            setFormError("Please correct the errors in the form.");
+            return;
+          }
+          setFormError("Failed to submit form. Please try again later.");
+          return;
+        }
         setResults(data); // Update the results state with the response
-
         // Handle response data here
       } catch (error) {
         setFormError("Failed to submit form. Please try again later.");
