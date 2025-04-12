@@ -2,6 +2,7 @@
   "name": "apartment-affordabily-checker",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:5000",
   "dependencies": {
     "@fortawesome/free-brands-svg-icons": "^6.5.2",
     "@fortawesome/react-fontawesome": "^0.2.2",
@@ -54,6 +55,8 @@
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@babel/preset-react": "^7.24.1",
+    "@vercel/node": "^5.1.14",
+    "@vercel/static-build": "^2.7.6",
     "customize-cra": "^1.0.0",
     "react-app-rewired": "^2.2.1"
   }

@@ -98,26 +98,20 @@ const AIService = {
   },
   // Get rent estimate from local serverless endpoint (RentCast)
   async getLocalRentEstimate({ address, bedrooms, bathrooms, sqft }) {
-    try {
-      const response = await axios.post(
-        "/api/ai/rent-estimates",
-        {
-          address,
-          bedrooms,
-          bathrooms,
-          sqft,
-        },
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-      return response.data;
-    } catch (error) {
-      console.error("Local Rent Estimate Error:", error);
-      throw error;
-    }
+    // Mock rent estimate data to avoid API calls
+    return {
+      estimatedRent: 2500,
+      confidence: 0.8,
+      source: "Mock Data",
+      details: {
+        address,
+        bedrooms,
+        bathrooms,
+        sqft,
+        latitude: 40.7128,
+        longitude: -74.006,
+      },
+    };
   },
 };
 

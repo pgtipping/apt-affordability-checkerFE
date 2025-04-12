@@ -1,0 +1,21 @@
+{
+  "version": 2,
+  "builds": [
+    { "src": "api/ai/insights.js", "use": "@vercel/node" },
+    { "src": "api/ai/predictions.js", "use": "@vercel/node" },
+    { "src": "api/ai/recommendations.js", "use": "@vercel/node" },
+    { "src": "api/ai/rent-estimates.js", "use": "@vercel/node" },
+    { "src": "api/feedback/index.js", "use": "@vercel/node" },
+    { "src": "api/validate/index.js", "use": "@vercel/node" },
+    { "src": "package.json", "use": "@vercel/static-build" }
+  ],
+  "routes": [
+    { "src": "/api/ai/insights", "dest": "api/ai/insights.js" },
+    { "src": "/api/ai/predictions", "dest": "api/ai/predictions.js" },
+    { "src": "/api/ai/recommendations", "dest": "api/ai/recommendations.js" },
+    { "src": "/api/ai/rent-estimates", "dest": "api/ai/rent-estimates.js" },
+    { "src": "/api/feedback", "dest": "api/feedback/index.js" },
+    { "src": "/api/validate", "dest": "api/validate/index.js" },
+    { "src": "/(.*)", "dest": "/index.html" }
+  ]
+}

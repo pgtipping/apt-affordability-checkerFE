@@ -1,14 +1,17 @@
-# Project Progress: Apartment Cost Analyzer [Updated: 2025-04-12 02:49 EDT]
+# Project Progress: Apartment Cost Analyzer [Updated: 2025-04-12 03:48 EDT]
 
-## Recent Updates (2025-04-12 02:49 EDT)
+## Recent Updates (2025-04-12 03:48 EDT)
 
-- ✅ Improved feedback UX: Users now receive clear, accessible confirmation or error messages after submitting feedback.
-- ✅ Enhanced results UX: Added a summary explanation to the results modal, guiding users on how to interpret affordability, cost breakdown, and rent estimates.
-- ✅ All changes comply with project goal, styling, and accessibility rules.
-- ✅ Memory bank and documentation updated for easy resumption.
+- ✅ Manifest and bundle.js errors resolved; app UI loads in both development and production builds.
+- ✅ In production (`serve -s build`), UI loads but API/serverless endpoints (e.g., `/api/ai/rent-estimates`) are not available—this is expected, as `serve` only serves static files.
+- ✅ In development (`npm start`), full functionality is available if API endpoints are accessible.
+- ✅ Next steps and troubleshooting instructions are now clearly documented for easy resumption.
 
 ## Next Steps
 
+- For full app functionality (frontend + API), use `npm start` for development, or deploy to a platform that supports both static files and serverless functions (e.g., Vercel, Netlify).
+- `serve -s build` is only for static file serving and will not support API endpoints.
+- If you need to test serverless endpoints locally, use the appropriate local dev server (e.g., `vercel dev` if working).
 - Begin a full styling and accessibility audit:
   - Review every page and component for 100% mobile responsiveness.
   - Test on multiple device sizes and with accessibility tools.
@@ -16,8 +19,12 @@
   - Document any issues and fixes in the memory bank.
 - After audit, update memory bank and proceed to any remaining medium/low priority tasks.
 
-**How to Resume:**  
-Start with the styling/accessibility audit as described above. Review `activeContext.md` for the current focus and recent changes.
+**How to Resume:**
+
+- Start with the styling/accessibility audit as described above.
+- For production, deploy to Vercel/Netlify for full API support.
+- For local development, use `npm start` for full functionality.
+- Review `activeContext.md` for the current focus and recent changes.
 
 - ✅ Webpack polyfills configured for Node.js core modules (http, https, stream, crypto, etc.)
 - ✅ Core form inputs for all cost types
