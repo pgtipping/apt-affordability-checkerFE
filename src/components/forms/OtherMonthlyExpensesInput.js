@@ -5,7 +5,7 @@ import {
   Tooltip,
   OverlayTrigger,
 } from "react-bootstrap";
-import { useFormContext } from "../../context/FormContext";
+import { useFormContext } from "@/context/FormContext";
 
 function OtherMonthlyExpensesInput() {
   const { formData, formErrors, handleInputChange } = useFormContext();

@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { useFormContext } from "../context/FormContext";
-import "./FeedbackForm.css";
+import { useFormContext } from "@/context/FormContext";
 import { Modal, Button, Form } from "react-bootstrap";
 
 const FeedbackForm = ({ darkMode }) => {

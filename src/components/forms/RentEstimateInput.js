@@ -6,7 +6,7 @@ import {
   OverlayTrigger,
   Button,
 } from "react-bootstrap";
-import { useFormContext } from "../../context/FormContext";
+import { useFormContext } from "@/context/FormContext";
 
 function RentEstimateInput({ onInputChange }) {
   const { formData, formErrors } = useFormContext();

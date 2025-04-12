@@ -8,19 +8,18 @@ import {
   Tooltip,
   Form,
 } from "react-bootstrap";
-import { useFormContext } from "../context/FormContext";
-import MovingAndSetupCostInput from "./forms/MovingAndSetupCostInput";
-import MonthlyLivingCostInput from "./forms/MonthlyLivingCostInput";
-import LocationInput from "./forms/LocationInput";
-import RentEstimateInput from "./forms/RentEstimateInput";
-import SecurityDepositInput from "./forms/SecurityDepositInput";
-import TotalMonthlyIncomeInput from "./forms/NetHouseholdIncomeInput";
-import TotalSavingsInput from "./forms/TotalSavingsInput";
-import MonthsToEvaluateInput from "./forms/MonthsToEvaluateInput";
-import Results from "./Results";
-import FeedbackForm from "./FeedbackForm";
-import Footer from "./Footer"; // Import the Footer component
-import "./FormComponent.css";
+import { useFormContext } from "@/context/FormContext";
+import MovingAndSetupCostInput from "@/components/forms/MovingAndSetupCostInput";
+import MonthlyLivingCostInput from "@/components/forms/MonthlyLivingCostInput";
+import LocationInput from "@/components/forms/LocationInput";
+import RentEstimateInput from "@/components/forms/RentEstimateInput";
+import SecurityDepositInput from "@/components/forms/SecurityDepositInput";
+import TotalMonthlyIncomeInput from "@/components/forms/NetHouseholdIncomeInput";
+import TotalSavingsInput from "@/components/forms/TotalSavingsInput";
+import MonthsToEvaluateInput from "@/components/forms/MonthsToEvaluateInput";
+import Results from "@/components/Results";
+import FeedbackForm from "@/components/FeedbackForm";
+import Footer from "@/components/Footer"; // Import the Footer component
 
 function FormComponent() {
   const {

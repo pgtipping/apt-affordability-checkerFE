@@ -1,5 +1,4 @@
 import React from "react";
-import "./Footer.css";
 import { FaReddit } from "react-icons/fa";
 
 function Footer() {

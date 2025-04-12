@@ -1,5 +1,5 @@
 import React from "react";
-import { useFormContext } from "../../context/FormContext";
+import { useFormContext } from "@/context/FormContext";
 import styles from "./RentEstimateView.module.css";
 import {
   BarChart,

@@ -1,10 +1,9 @@
 import React from "react";
 import { Modal, Button } from "react-bootstrap";
-import CostDetails from "./CostDetails";
-import Affordability from "./Affordability";
-import RentEstimateView from "./views/RentEstimateView";
-import "./Results.css";
-import { useFormContext } from "../context/FormContext";
+import CostDetails from "@/components/CostDetails";
+import Affordability from "@/components/Affordability";
+import RentEstimateView from "@/components/views/RentEstimateView";
+import { useFormContext } from "@/context/FormContext";
 
 function Results({ showResults, setShowResults }) {
   const { results, formData } = useFormContext();
