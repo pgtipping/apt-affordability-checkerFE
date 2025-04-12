@@ -31,6 +31,8 @@ function FormComponent() {
     showFeedbackForm,
     setShowFeedbackForm,
     handleInputChange,
+    feedbackMessage,
+    feedbackError,
   } = useFormContext();
   const [results, setResults] = useState(null);
   const [showResults, setShowResults] = useState(false);
@@ -121,6 +123,25 @@ function FormComponent() {
                   calculations, light/dark mode, and user feedback.{" "}
                 </p>
               </div>
+              {/* Feedback confirmation/error messages */}
+              {feedbackMessage && (
+                <div
+                  className="alert alert-success alert-dismissible fade show"
+                  role="alert"
+                >
+                  {feedbackMessage}
+                  {/* Optionally add a close button */}
+                </div>
+              )}
+              {feedbackError && (
+                <div
+                  className="alert alert-danger alert-dismissible fade show"
+                  role="alert"
+                >
+                  {feedbackError}
+                  {/* Optionally add a close button */}
+                </div>
+              )}
               <div className="d-flex justify-content-between align-items-center mb-3">
                 <OverlayTrigger placement="left" overlay={feedbackTooltip}>
                   <Button

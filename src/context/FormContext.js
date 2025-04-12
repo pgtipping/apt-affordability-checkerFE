@@ -31,6 +31,8 @@ export const FormProvider = ({ children }) => {
   const [results, setResults] = useState(null); // State to store calculation results
   const [showFeedbackForm, setShowFeedbackForm] = useState(false);
   const [showResults, setShowResults] = useState(false);
+  const [feedbackMessage, setFeedbackMessage] = useState("");
+  const [feedbackError, setFeedbackError] = useState("");
 
   // Field name to label mapping
   const fieldLabels = {
@@ -48,6 +50,8 @@ export const FormProvider = ({ children }) => {
     process.env.REACT_APP_API_BASE_URL || "http://localhost:3001";
 
   const handleFeedbackSubmit = async (feedback) => {
+    setFeedbackMessage("");
+    setFeedbackError("");
     try {
       const response = await fetch("/api/feedback", {
         method: "POST",
@@ -59,11 +63,12 @@ export const FormProvider = ({ children }) => {
       const data = await response.json();
       if (response.ok) {
         setShowFeedbackForm(false); // Optionally close the form on successful submission
+        setFeedbackMessage("Thank you for your feedback!");
       } else {
-        throw new Error(data.error || "Failed to submit feedback");
+        setFeedbackError(data.error || "Failed to submit feedback");
       }
     } catch (error) {
-      // Optionally handle errors specifically related to feedback submission
+      setFeedbackError("Failed to submit feedback. Please try again later.");
     }
   };
 
@@ -159,12 +164,11 @@ export const FormProvider = ({ children }) => {
       ) {
         errorMessage = `Please enter a valid range between 1 and 60 for ${fieldLabel}.`;
       }
-      if (
-        !errorMessage &&
-        fieldName === "rent" &&
-        num > Number(formData.totalMonthlyIncome || 0)
-      ) {
-        errorMessage = `Monthly Rent should not exceed Total Monthly Income.`;
+      if (!errorMessage && fieldName === "rent") {
+        const income = Number(formData.totalMonthlyIncome);
+        if (!isNaN(income) && num > income) {
+          errorMessage = `Monthly Rent should not exceed Total Monthly Income.`;
+        }
       }
       if (
         !errorMessage &&
@@ -252,6 +256,8 @@ export const FormProvider = ({ children }) => {
         setResults,
         setShowResults,
         handleFeedbackSubmit,
+        feedbackMessage,
+        feedbackError,
       }}
     >
       {children}

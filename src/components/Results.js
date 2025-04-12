@@ -15,6 +15,16 @@ function Results({ showResults, setShowResults }) {
         <Modal.Title>Results</Modal.Title>
       </Modal.Header>
       <Modal.Body>
+        {/* User guidance/summary explanation */}
+        <div
+          className="results-summary mb-3"
+          style={{ fontSize: "1rem", color: "#333" }}
+        >
+          <strong>How to read your results:</strong> This summary shows your
+          estimated affordability, a breakdown of your costs, and local rent
+          estimates for your chosen location. Use these insights to plan your
+          move and ensure your new housing fits your budget.
+        </div>
         {results && (
           <>
             <Affordability />

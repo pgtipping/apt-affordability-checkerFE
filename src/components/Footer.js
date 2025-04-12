@@ -36,7 +36,7 @@ function Footer() {
           </p>
           <p>
             Created by{" "}
-            <a class="x" href="https://x.com/Pgtipping01">
+            <a className="x" href="https://x.com/Pgtipping01">
               @pgtipping
             </a>
           </p>
