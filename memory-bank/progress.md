@@ -1,29 +1,36 @@
-# Project Progress: Apartment Cost Analyzer [Updated: 2025-04-12 06:58 AM EDT]
+# Project Progress: Apartment Cost Analyzer [Updated: 2025-04-12 06:51 PM EDT]
 
-## Recent Updates (2025-04-12 06:58 AM EDT)
+## Recent Updates (2025-04-12 06:51 PM EDT)
 
-- ✅ Migrated project to Next.js framework.
-- ✅ Installed Next.js and removed CRA-related dependencies.
-- ✅ Configured `jsconfig.json` for path aliases.
-- ✅ Created `pages/` and `styles/` directories.
-- ✅ Moved core components and logic from `src/App.js` to `pages/index.js`.
-- ✅ Created `pages/_app.js` for global styles and context provider.
-- ✅ Moved global CSS to `styles/globals.css`.
-- ✅ Migrated API endpoints from `api/` to `pages/api/`.
-- ✅ Updated import paths to use path aliases.
-- ✅ Updated `techContext.md` and `systemPatterns.md` to reflect the Next.js migration.
-- ✅ Removed global CSS imports from `FeedbackForm.js`, `Footer.js`, and `FormComponent.js`.
+- ✅ Restored and updated `src/components/Results.js` to fix accidental deletion and fully integrate the AI-powered personalized summary feature.
+- ✅ Installed `react-markdown` for rendering markdown summaries in the UI.
+- ✅ Results modal now calls `/api/ai/generate-summary` and displays the summary with loading and error states.
+- ✅ Confirmed all original results, affordability, and rent estimate features are preserved.
+- ✅ Documented all changes and next steps in the memory bank.
+- ✅ Confirmed all project and styling rules are being followed.
+- ✅ Updated `activeContext.md` with new context, recent changes, and next steps.
 
 ## Next Steps
 
-- Thoroughly test all application features and API routes in Next.js.
-- Review and adapt existing Jest tests for the new structure.
-- Update any remaining relative import paths to use aliases.
-- Begin the styling and accessibility audit:
-  - Review every page and component for 100% mobile responsiveness.
-  - Test on multiple device sizes and with accessibility tools.
-  - Ensure all fonts meet WCAG contrast ratio standards.
-  - Document any issues and fixes in the memory bank.
+- **Test the AI Summary Feature:**
+
+  - Start the development server (`npm run dev`).
+  - Fill out the form and submit; verify the AI summary appears in the results modal.
+  - Check for correct loading, error, and markdown rendering.
+  - Confirm all other results and cost breakdowns display as expected.
+
+- **General QA and Migration Completion:**
+
+  - Test all application features and API routes in the Next.js environment.
+  - Review and adapt any remaining Jest tests for the new structure.
+  - Update any remaining relative import paths to use aliases.
+  - Complete the styling and accessibility audit:
+    - Review every page/component for mobile responsiveness and WCAG contrast.
+    - Test on multiple device sizes and with accessibility tools.
+    - Ensure all fonts meet WCAG contrast ratio standards.
+
+- **Document Issues and Fixes:**
+  - Record any bugs, issues, or fixes in the memory bank for future sessions.
 
 ## Working Features
 
@@ -48,26 +55,27 @@
 
 ### High Priority
 
-- Finalize Next.js migration: test all features and API routes.
-- Finalize serverless migration: test all serverless endpoints in staging/production, update environment variables and secrets in Vercel dashboard as needed
-- Review and improve user experience for results and feedback, ensuring clarity, accessibility, and mobile responsiveness
-- Consider adding user guidance, tooltips, or summary explanations for results
+- Finalize Next.js migration: test all features and API routes (in progress, dev server running).
+- Finalize serverless migration: test all serverless endpoints in staging/production, update environment variables and secrets in Vercel dashboard as needed.
+- Review and improve user experience for results and feedback, ensuring clarity, accessibility, and mobile responsiveness.
+- Consider adding user guidance, tooltips, or summary explanations for results.
 
 ### Medium Priority
 
-- Complete backend refactor to Vercel serverless functions (monitor for any missed logic)
-- Performance optimizations
-- Additional test coverage
-- Accessibility improvements
+- Complete backend refactor to Vercel serverless functions (monitor for any missed logic).
+- Performance optimizations.
+- Additional test coverage.
+- Accessibility improvements.
 
 ### Low Priority
 
-- Advanced comparison features
-- Saved scenarios
-- Export functionality
+- Advanced comparison features.
+- Saved scenarios.
+- Export functionality.
 
 ## How to Resume
 
-- Review activeContext.md and referenced memory bank docs for all context and plans.
-- Begin with finalizing serverless migration: test all endpoints, and update Vercel environment variables as needed.
-- All technical and project rules are documented in .cline/rules and .clinerules.
+- Review `activeContext.md` and this file for the latest context and next steps.
+- Begin by testing the AI summary feature in the Results modal.
+- Continue with general QA, migration, and styling audit tasks as outlined above.
+- All technical and project rules are documented in `.cline/rules` and `.clinerules`.

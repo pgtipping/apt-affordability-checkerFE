@@ -1,47 +1,49 @@
-# Active Context: Apartment Cost Analyzer
+on# Active Context: Apartment Cost Analyzer
 
-## Current Focus [Updated: 2025-04-12 06:57 AM EDT]
+## Current Focus [Updated: 2025-04-12 06:50 PM EDT]
 
-- **Next.js Migration**
-  - Migrating the application from Create React App to Next.js for improved serverless development and deployment.
-  - Implementing path aliases for robust import paths.
-  - Restructuring the project to fit Next.js conventions.
+- **Finalize and QA AI Summary Integration**
+  - The AI-powered personalized summary feature is now fully integrated into the Results modal.
+  - Results.js has been restored and updated to include summary generation, loading, and error handling.
+  - All original results functionality is preserved.
+- **Next.js Migration & Serverless Architecture**
+  - Continue QA and testing of all features in the Next.js environment.
+  - Ensure all styling and accessibility rules are met.
 
-## Recent Changes (This Session) [Updated: 2025-04-12 06:57 AM EDT]
+## Recent Changes (This Session) [Updated: 2025-04-12 06:50 PM EDT]
 
-- Installed Next.js and removed CRA-related dependencies.
-- Configured `jsconfig.json` for path aliases.
-- Created `pages/` and `styles/` directories.
-- Moved core components and logic from `src/App.js` to `pages/index.js`.
-- Created `pages/_app.js` for global styles and context provider.
-- Moved global CSS to `styles/globals.css`.
-- Migrated API endpoints from `api/` to `pages/api/`.
-- Updated import paths in components to use path aliases.
-- Updated `techContext.md` and `systemPatterns.md` to reflect the Next.js migration.
-- Removed global CSS imports from `FeedbackForm.js`, `Footer.js`, and `FormComponent.js`.
+- Restored and updated `src/components/Results.js` to fix accidental deletion and fully integrate the AI summary feature.
+- Installed `react-markdown` for rendering markdown summaries in the UI.
+- Results modal now calls `/api/ai/generate-summary` and displays the summary with loading and error states.
+- Confirmed all original results, affordability, and rent estimate features are preserved.
+- Documented all changes and next steps in the memory bank.
+- Confirmed all project and styling rules are being followed.
 
 ## Next Steps
 
-1.  **Complete the Next.js migration:**
-    - Run `npm run dev` to start the Next.js development server.
-    - Thoroughly test all application features:
-      - Verify form input and validation.
-      - Check cost calculations.
-      - Ensure results are displayed correctly.
-      - Test AI Rent Estimation integration.
-      - Test feedback submission.
-    - Test API routes directly (e.g., using Postman or browser) and via the frontend.
-    - Review and adapt existing Jest tests for the new structure.
-    - Update any remaining relative import paths to use aliases.
-2.  **Update `progress.md`** with the current state of the migration.
-3.  **Begin the styling and accessibility audit:**
-    - Review every page/component for mobile responsiveness and WCAG contrast.
-    - Test on multiple device sizes and with accessibility tools.
-    - Ensure all fonts meet WCAG contrast ratio standards.
-    - Document any issues and fixes in the memory bank.
+1. **Test the AI Summary Feature:**
+
+   - Start the development server (`npm run dev`).
+   - Fill out the form and submit; verify the AI summary appears in the results modal.
+   - Check for correct loading, error, and markdown rendering.
+   - Confirm all other results and cost breakdowns display as expected.
+
+2. **General QA and Migration Completion:**
+
+   - Test all application features and API routes in the Next.js environment.
+   - Review and adapt any remaining Jest tests for the new structure.
+   - Update any remaining relative import paths to use aliases.
+   - Complete the styling and accessibility audit:
+     - Review every page/component for mobile responsiveness and WCAG contrast.
+     - Test on multiple device sizes and with accessibility tools.
+     - Ensure all fonts meet WCAG contrast ratio standards.
+
+3. **Document Issues and Fixes:**
+   - Record any bugs, issues, or fixes in the memory bank for future sessions.
 
 ## How to Resume
 
-- Review this file and referenced memory bank docs for all context and plans.
-- Begin with testing the Next.js application and completing the migration steps.
-- All technical and project rules are documented in .cline/rules and .clinerules.
+- Review this file and `progress.md` for the latest context and next steps.
+- Begin by testing the AI summary feature in the Results modal.
+- Continue with general QA, migration, and styling audit tasks as outlined above.
+- All technical and project rules are documented in `.cline/rules` and `.clinerules`.

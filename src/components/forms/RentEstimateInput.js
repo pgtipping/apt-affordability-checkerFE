@@ -11,42 +11,28 @@ import { useFormContext } from "@/context/FormContext";
 function RentEstimateInput({ onInputChange }) {
   const { formData, formErrors } = useFormContext();
 
+  // Tooltip always shows the same message now
   const renderTooltip = (props) => (
     <Tooltip id="rent-tooltip" {...props}>
-      {formData.rentEstimates
-        ? "Based on estimates for your location"
-        : "Enter your monthly rent amount"}
+      Enter the monthly rent for the apartment you are considering
     </Tooltip>
   );
 
   return (
     <InputGroup className="mb-3">
-      <InputGroup.Text style={{ width: "170px" }}>
-        {formData.rentEstimates ? "Suggested Rent" : "Monthly Rent"}
-      </InputGroup.Text>
+      <InputGroup.Text style={{ width: "170px" }}>Monthly Rent</InputGroup.Text>
       <OverlayTrigger placement="top" overlay={renderTooltip}>
         <FormControl
           id="rent"
-          placeholder={
-            formData.rentEstimates
-              ? "Based on location estimates"
-              : "Enter monthly rent"
-          }
+          placeholder="Enter monthly rent"
           type="number"
           value={formData.rent}
           onChange={(e) => onInputChange("rent", e.target.value)}
           isInvalid={!!formErrors.rentError}
-          readOnly={!!formData.rentEstimates}
+          // Removed readOnly attribute
         />
       </OverlayTrigger>
-      {formData.rentEstimates && (
-        <Button
-          variant="outline-secondary"
-          onClick={() => onInputChange("rent", "")}
-        >
-          Clear
-        </Button>
-      )}
+      {/* Removed Clear button */}
       <FormControl.Feedback type="invalid">
         {formErrors.rentError}
       </FormControl.Feedback>

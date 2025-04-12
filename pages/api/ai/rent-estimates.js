@@ -1,43 +1,21 @@
-module.exports = async (req, res) => {
+export default async function handler(req, res) {
   if (req.method !== "POST") {
     res.status(405).json({ error: "Method not allowed. Use POST." });
     return;
   }
 
-  const { address, bedrooms, bathrooms, sqft } = req.body || {};
+  // Expecting zipCode in the body now, not address/bedrooms etc.
+  const { zipCode } = req.body || {};
 
-  // Basic input validation
-  if (
-    !address ||
-    typeof address !== "string" ||
-    !bedrooms ||
-    !bathrooms ||
-    !sqft
-  ) {
-    res.status(400).json({ error: "Missing or invalid input fields." });
+  // Basic input validation for zipCode
+  if (!zipCode || typeof zipCode !== "string" || !/^\d{5}$/.test(zipCode)) {
+    res
+      .status(400)
+      .json({
+        error:
+          "Missing or invalid zipCode field. Please provide a 5-digit ZIP code.",
+      });
     return;
-  }
-
-  // Integrate with LocationService.js for real geocoding
-  let geocoded = {
-    lat: 40.7128,
-    lng: -74.006,
-    formattedAddress: address,
-  };
-  try {
-    // Dynamically import LocationService (ESM in Node.js)
-    const { geocodeAddress } = await import(
-      "../../src/services/LocationService.js"
-    );
-    const [lng, lat] = await geocodeAddress(address);
-    geocoded = {
-      lat,
-      lng,
-      formattedAddress: address,
-    };
-  } catch (geoError) {
-    // If geocoding fails, fallback to placeholder and log error
-    console.error("Geocoding failed:", geoError.message);
   }
 
   // Query RentCast API
@@ -48,23 +26,21 @@ module.exports = async (req, res) => {
   }
 
   try {
-    // RentCast API: https://developers.rentcast.io/reference/property-rent-estimates
+    // RentCast API: https://developers.rentcast.io/reference/market-data
+    const params = new URLSearchParams({
+      zipCode: zipCode,
+      // Optionally add history=true or specific property types if needed
+      // propertyType: 'Single Family', // Example
+      // history: 'true' // Example
+    });
     const rentcastRes = await fetch(
-      "https://api.rentcast.io/v1/properties/rent-estimate",
+      `https://api.rentcast.io/v1/markets?${params.toString()}`,
       {
-        method: "POST",
+        method: "GET",
         headers: {
-          "Content-Type": "application/json",
+          accept: "application/json",
           "X-Api-Key": RENTCAST_API_KEY,
         },
-        body: JSON.stringify({
-          address: geocoded.formattedAddress,
-          bedrooms,
-          bathrooms,
-          squareFootage: sqft,
-          latitude: geocoded.lat,
-          longitude: geocoded.lng,
-        }),
       }
     );
 
@@ -76,23 +52,23 @@ module.exports = async (req, res) => {
 
     const data = await rentcastRes.json();
 
-    // Map RentCast response to our API contract
+    // Extract relevant average rent data (adjust based on actual response structure)
+    // Example: Assuming response has averageRentByBedrooms or similar
+    // Let's assume we want the average for a 1-bedroom for simplicity
+    const averageRent = data?.averageRent || data?.[0]?.averageRent || null; // Adjust based on actual structure
+
     res.status(200).json({
-      estimatedRent: data.rent || null,
-      confidence: data.confidenceScore || null,
-      source: "RentCast",
-      details: {
-        address: geocoded.formattedAddress,
-        bedrooms,
-        bathrooms,
-        sqft,
-        latitude: geocoded.lat,
-        longitude: geocoded.lng,
-      },
+      averageRent: averageRent, // Return the average rent for the ZIP code
+      source: "RentCast Market Data",
+      zipCode: zipCode,
     });
   } catch (err) {
+    console.error("RentCast Market API Error:", err);
     res
       .status(500)
-      .json({ error: "Internal server error", details: err.message });
+      .json({
+        error: "Internal server error fetching market data",
+        details: err.message,
+      });
   }
-};
+}

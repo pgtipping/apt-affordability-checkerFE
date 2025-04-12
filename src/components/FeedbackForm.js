@@ -19,7 +19,7 @@ const FeedbackForm = ({ darkMode }) => {
       <Modal.Body>
         <Form onSubmit={handleSubmit}>
           <Form.Group>
-            <Form.Label>Enter your feedback here:</Form.Label>
+            <Form.Label>Tell us how we can make this more useful:</Form.Label>
             <Form.Control
               as="textarea"
               value={feedback}

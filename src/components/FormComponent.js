@@ -20,6 +20,7 @@ import MonthsToEvaluateInput from "@/components/forms/MonthsToEvaluateInput";
 import Results from "@/components/Results";
 import FeedbackForm from "@/components/FeedbackForm";
 import Footer from "@/components/Footer"; // Import the Footer component
+import styles from "./FormComponent.module.css";
 
 function FormComponent() {
   const {
@@ -46,7 +47,7 @@ function FormComponent() {
   }, []);
 
   const feedbackTooltip = (
-    <Tooltip id="feedback-tooltip">Leave us feedback</Tooltip>
+    <Tooltip id="feedback-tooltip">How can we make this more useful?</Tooltip>
   );
 
   const toggleDarkMode = () => {
@@ -82,14 +83,20 @@ function FormComponent() {
   };
 
   return (
-    <div className={`page-container ${darkMode ? "dark-mode" : ""}`}>
+    <div
+      className={`${styles["page-container"]} ${
+        darkMode ? styles["dark-mode"] : ""
+      }`}
+    >
       <header>
-        <Container className="content-wrap mt-6">
-          <Row className="justify-content-center mt-3">
+        <Container className={styles["content-wrap"]}>
+          <Row className="justify-content-center">
             <Col>
-              <div className="d-flex align-items-center justify-content-center">
+              <div className="d-flex align-items-center justify-content-center pt-3">
                 <div
-                  className={`toggle-icon ${flipping ? "flip" : ""}`}
+                  className={`${styles["toggle-icon"]} ${
+                    flipping ? styles.flip : ""
+                  }`}
                   onClick={toggleDarkMode}
                 >
                   <img
@@ -108,10 +115,10 @@ function FormComponent() {
         </Container>
       </header>
       <main>
-        <Container className="content-wrap mt-6">
+        <Container className={styles["content-wrap"] + " mt-6"}>
           <Row className="justify-content-center mt-5">
             <Col xs={12} md={10} lg={8}>
-              <div className="blog-intro mb-4">
+              <div className={styles["blog-intro"] + " mb-4"}>
                 <h1 className="m-0">Apartment Affordability Checker</h1>
                 <p>
                   Welcome to the Apartment Affordability Checker, a
@@ -142,7 +149,7 @@ function FormComponent() {
                 </div>
               )}
               <div className="d-flex justify-content-between align-items-center mb-3">
-                <OverlayTrigger placement="left" overlay={feedbackTooltip}>
+                <OverlayTrigger placement="right" overlay={feedbackTooltip}>
                   <Button
                     variant={darkMode ? "outline-light" : "outline-primary"}
                     onClick={() => setShowFeedbackForm(true)}
@@ -173,14 +180,16 @@ function FormComponent() {
                 />
                 <Button
                   type="submit"
-                  className={`btn ${
-                    darkMode ? "btn-dark" : "btn-primary"
-                  } calculate-button`}
+                  className={`btn ${darkMode ? "btn-dark" : "btn-primary"} ${
+                    styles["calculate-button"]
+                  }`}
                   onClick={handleCalculate}
                 >
                   Calculate Affordability
                 </Button>
-                {formError && <div className="error mt-3">{formError}</div>}
+                {formError && (
+                  <div className={styles.error + " mt-3"}>{formError}</div>
+                )}
               </Form>
               <Results
                 results={results}

@@ -1,7 +1,5 @@
 import React, { createContext, useContext, useState } from "react";
-import AIService from "../services/AIService";
 
-// Create a Context
 const FormContext = createContext();
 
 // Provider Component
@@ -14,7 +12,7 @@ export const FormProvider = ({ children }) => {
     totalMonthlyIncome: "",
     totalSavings: "",
     monthsToEvaluate: "",
-    rentEstimates: null,
+    rentEstimates: null, // Restored
     location: "",
   });
 
@@ -80,48 +78,68 @@ export const FormProvider = ({ children }) => {
     }));
     validateField(fieldName, value);
 
-    // If location changes and has length, fetch rent estimates
+    // If location changes and has length, fetch rent estimates (Restored)
     if (fieldName === "location" && value.length > 3) {
       fetchRentEstimates(value);
     }
   };
 
   const fetchRentEstimates = async (location) => {
-    try {
-      // TODO: Parameterize bedrooms, bathrooms, sqft from formData as UI evolves
-      const address = location;
-      const bedrooms = formData.bedrooms || 1;
-      const bathrooms = formData.bathrooms || 1;
-      const sqft = formData.sqft || 900;
+    // Attempt to extract ZIP code from location string
+    const zipMatch = location.match(/\b\d{5}\b/);
+    const zipCode = zipMatch ? zipMatch[0] : null;
 
-      const estimate = await AIService.getLocalRentEstimate({
-        address,
-        bedrooms,
-        bathrooms,
-        sqft,
+    if (!zipCode) {
+      // Optionally clear previous estimate or show message if no ZIP found
+      setFormData((prev) => ({ ...prev, rentEstimates: null }));
+      // Optionally set an error message in formErrors if desired
+      // setFormErrors((prev) => ({ ...prev, locationError: "Please include a 5-digit ZIP code in the location." }));
+      return; // Exit if no ZIP code found
+    }
+
+    try {
+      const response = await fetch("/api/ai/rent-estimates", {
+        method: "POST", // The API route itself expects POST
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ zipCode }), // Send zipCode
       });
 
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(
+          errorData.error || "Failed to fetch market rent estimate"
+        );
+      }
+
+      const estimate = await response.json();
+
+      // Store the market average rent estimate
       setFormData((prev) => ({
         ...prev,
         rentEstimates: {
-          averageRent: estimate.estimatedRent,
-          confidence: estimate.confidence,
+          averageRent: estimate.averageRent,
           source: estimate.source,
-          details: estimate.details,
+          zipCode: estimate.zipCode,
           lastUpdated: new Date().toISOString(),
         },
-        rent: estimate.estimatedRent,
+        // Do not automatically update the user's rent input
       }));
+      // Clear any previous location/rent errors related to fetching
+      setFormErrors((prev) => ({ ...prev, locationError: "", rentError: "" }));
     } catch (error) {
-      console.error("Failed to fetch rent estimates:", error);
+      console.error("Failed to fetch market rent estimates:", error);
       setFormData((prev) => ({
         ...prev,
-        rentEstimates: null,
+        rentEstimates: null, // Clear estimate on error
       }));
+      // Set an error message specific to market rent fetching
       setFormErrors((prevErrors) => ({
         ...prevErrors,
-        rentError:
-          "Unable to fetch rent estimate for this location. Please check your address or try again later.",
+        // Or a general form error
+        locationError:
+          "Unable to fetch market rent estimate for this ZIP code.",
       }));
     }
   };
@@ -130,7 +148,7 @@ export const FormProvider = ({ children }) => {
     let errorMessage = "";
     const fieldLabel = fieldLabels[fieldName];
 
-    // Required check for all fields except rentEstimates
+    // Required check for all fields except rentEstimates (Restored)
     if (
       fieldName !== "rentEstimates" &&
       (value === undefined ||
@@ -181,8 +199,10 @@ export const FormProvider = ({ children }) => {
 
     // Location validation
     if (!errorMessage && fieldName === "location") {
-      if (typeof value !== "string" || value.trim().length < 5) {
-        errorMessage = "Please enter a valid address (at least 5 characters).";
+      // Allow city or ZIP, adjust validation if needed
+      if (typeof value !== "string" || value.trim().length < 2) {
+        errorMessage =
+          "Please enter a valid City or ZIP code (at least 2 characters).";
       }
     }
 
@@ -199,6 +219,8 @@ export const FormProvider = ({ children }) => {
 
     // Validate all fields before submission
     const isFormValid = Object.keys(formData).every((key) => {
+      // Skip validation for rentEstimates
+      if (key === "rentEstimates") return true;
       const isValid = validateField(key, formData[key]);
       return isValid; // Update validation state
     });

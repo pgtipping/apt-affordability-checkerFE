@@ -1,21 +1,22 @@
 import React from "react";
 import { FaReddit } from "react-icons/fa";
+import styles from "./Footer.module.css";
 
 function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="footer">
-      <div className="footer-content">
-        <div className="credits">
-          <p className="credits-heading">Credits</p>
-          <ul className="credits-list">
+    <footer className={styles.footer}>
+      <div className={styles["footer-content"]}>
+        <div className={styles.credits}>
+          <p className={styles["credits-heading"]}>Credits</p>
+          <ul className={styles["credits-list"]}>
             <li>
               <a
                 href="https://www.flaticon.com/free-icons/moon"
-                title="moon icons"
+                title="moon icon"
               >
-                Moon icons created by Good Ware - Flaticon
+                Moon icon created by Good Ware - Flaticon
               </a>
             </li>
             <li>
@@ -28,19 +29,19 @@ function Footer() {
             </li>
           </ul>
         </div>
-        <div className="info">
+        <div className={styles.info}>
           <p>
             © {currentYear} Apartment Affordability Checker. All rights
             reserved.
           </p>
           <p>
             Created by{" "}
-            <a className="x" href="https://x.com/Pgtipping01">
+            <a className={styles.x} href="https://x.com/Pgtipping01">
               @pgtipping
             </a>
           </p>
         </div>
-        <div className="social-media">
+        <div className={styles["social-media"]}>
           <a
             href="https://x.com/Pgtipping01"
             target="_blank"
@@ -52,7 +53,7 @@ function Footer() {
               viewBox="0 0 512 512"
               width="24"
               height="24"
-              className="social-icon"
+              className={styles["social-icon"]}
             >
               <path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z" />
             </svg>
@@ -63,7 +64,7 @@ function Footer() {
             rel="noopener noreferrer"
             title="Reddit"
           >
-            <FaReddit className="social-icon" />
+            <FaReddit className={styles["social-icon"]} />
           </a>
         </div>
       </div>

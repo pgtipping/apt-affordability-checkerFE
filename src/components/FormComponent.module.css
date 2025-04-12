@@ -1,0 +1,112 @@
+/* Custom CSS */
+
+.dark-mode {
+  background-color: #444; /* Dark background color */
+  color: #fff; /* White text color */
+}
+
+.dark-mode input,
+.dark-mode select {
+  background-color: #555; /* Dark background color for form inputs */
+  color: #fff; /* White text color for form inputs */
+}
+
+.dark-mode .btn-info {
+  background-color: #333; /* Dark background color for info buttons */
+  border-color: #fff; /* White border color for info buttons */
+  color: #fff; /* White text color for info buttons */
+}
+
+.dark-mode .btn-primary,
+.dark-mode .btn-outline-primary {
+  background-color: #007bff; /* Primary color for buttons */
+  border-color: #007bff; /* Primary border color for buttons */
+  color: #fff; /* White text color for buttons */
+}
+
+.dark-mode .btn-dark,
+.dark-mode .btn-outline-dark {
+  background-color: #343a40; /* Dark color for buttons */
+  border-color: #343a40; /* Dark border color for buttons */
+  color: #fff; /* White text color for buttons */
+}
+
+.form-check {
+  justify-content: center;
+  display: flex !important;
+  gap: 5px;
+}
+
+#darkModeSwitch .form-check-label {
+  display: flex;
+  align-items: center;
+}
+
+#darkModeSwitch .form-check-label span {
+  margin: 0 0.5 rem;
+}
+
+.page-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.content-wrap {
+  flex: 1;
+  margin-bottom: 10px;
+}
+
+.toggle-icon {
+  transition: transform 0.5s, opacity 0.5s;
+}
+
+.toggle-icon:hover {
+  transform: scale(1.1);
+  opacity: 0.8;
+}
+
+.feedback-button,
+.calculate-button {
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.feedback-button:hover,
+.calculate-button:hover {
+  transform: scale(1.05);
+}
+
+.form-control:focus {
+  border-color: #80bdff;
+  box-shadow: 0 0 5px rgba(128, 189, 255, 0.5);
+}
+
+.form-control:invalid {
+  border-color: #dc3545;
+  box-shadow: 0 0 5px rgba(220, 53, 69, 0.5);
+}
+
+.input-group-text {
+  padding: 0.375rem 0.5rem !important;
+}
+
+@keyframes flip {
+  0% {
+    transform: rotateY(0);
+  }
+  50% {
+    transform: rotateY(90deg);
+    opacity: 0;
+  }
+  51% {
+    opacity: 0;
+  }
+  100% {
+    transform: rotateY(180deg);
+    opacity: 1;
+  }
+}
+
+.flip {
+  animation: flip 1s forwards;
+}

@@ -96,23 +96,6 @@ const AIService = {
       throw error;
     }
   },
-  // Get rent estimate from local serverless endpoint (RentCast)
-  async getLocalRentEstimate({ address, bedrooms, bathrooms, sqft }) {
-    // Mock rent estimate data to avoid API calls
-    return {
-      estimatedRent: 2500,
-      confidence: 0.8,
-      source: "Mock Data",
-      details: {
-        address,
-        bedrooms,
-        bathrooms,
-        sqft,
-        latitude: 40.7128,
-        longitude: -74.006,
-      },
-    };
-  },
 };
 
 export default AIService;
