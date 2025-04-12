@@ -1,4 +1,4 @@
-# Project Progress: Apartment Cost Analyzer [Updated: 2025-04-11 20:33 EDT]
+# Project Progress: Apartment Cost Analyzer [Updated: 2025-04-11 22:00 EDT]
 
 ## Completed Features
 
@@ -25,7 +25,7 @@
 - ✅ Completed security audit: MAPBOX_API_KEY and RENTCAST_API_KEY confirmed not exposed to client code
 - ✅ Comprehensive form validation implemented for all user inputs (required fields, numeric ranges, logical constraints, cross-field checks). All validation errors are now clearly surfaced to users in a mobile-responsive, accessible manner.
 - ✅ Enhanced results visualization in RentEstimateView.js: ARIA labels, axis labels, data source/confidence, improved color contrast, and clarity. All results components are now more mobile responsive and accessible.
-- ✅ All backend endpoints migrated to Vercel serverless functions under /api (validate, feedback, ai/rent-estimates). Client fetch calls updated to use new endpoints. Feedback submission and validation now fully serverless.
+- ✅ All backend endpoints migrated to Vercel serverless functions under /api (validate, feedback, ai/rent-estimates, ai/recommendations, ai/predictions, ai/insights). Client fetch calls updated to use new endpoints. Feedback submission and validation now fully serverless. Legacy server.js (Express backend) has been deleted.
 
 ## Working Features
 
@@ -34,6 +34,9 @@
 - Results rendering
 - Feedback submission (serverless)
 - AI Rent Estimation integration (RentCast, via serverless function)
+- AI Recommendations (serverless)
+- AI Predictions (serverless)
+- AI Insights (serverless)
 - Address geocoding via Mapbox (LocationService.js)
 - Serverless migration preparation
 - Location mapping and geocoding planning
@@ -48,7 +51,7 @@
 
 ### High Priority
 
-- Finalize serverless migration: remove any legacy backend/server.js or similar files if present (none found), test all serverless endpoints in staging/production, update environment variables and secrets in Vercel dashboard as needed
+- Finalize serverless migration: test all serverless endpoints in staging/production, update environment variables and secrets in Vercel dashboard as needed
 
 - Review and improve user experience for results and feedback, ensuring clarity, accessibility, and mobile responsiveness
 - Consider adding user guidance, tooltips, or summary explanations for results
@@ -69,7 +72,7 @@
 ## How to Resume
 
 - Review activeContext.md and referenced memory bank docs for all context and plans.
-- Begin with finalizing serverless migration: remove any legacy backend/server.js or similar files if present, test all endpoints, and update Vercel environment variables as needed.
+- Begin with finalizing serverless migration: test all endpoints, and update Vercel environment variables as needed.
 - All technical and project rules are documented in .cline/rules and .clinerules.
 
-_Last updated: 2025-04-11 20:33 EDT_
+_Last updated: 2025-04-11 22:00 EDT_

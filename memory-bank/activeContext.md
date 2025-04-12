@@ -1,12 +1,13 @@
 # Active Context: Apartment Cost Analyzer
 
-## Current Focus [Updated: 2025-04-11 20:33 EDT]
+## Current Focus [Updated: 2025-04-11 22:00 EDT]
 
 - **Serverless Migration**
-  - All backend endpoints migrated to Vercel serverless functions under /api (validate, feedback, ai/rent-estimates)
+  - All backend endpoints migrated to Vercel serverless functions under /api (validate, feedback, ai/rent-estimates, ai/recommendations, ai/predictions, ai/insights)
   - Client fetch calls updated to use new endpoints
   - Feedback submission and validation now fully serverless
-  - Next: Remove any legacy backend/server.js or similar files if present (none found)
+  - Legacy server.js (Express backend) has been deleted; all backend logic is now serverless
+  - Next: Test all serverless endpoints in staging/production, update environment variables and secrets in Vercel dashboard as needed
 - **Results Visualization & UX**
   - Enhanced results visualization in RentEstimateView.js: added ARIA labels, axis labels, data source/confidence, improved color contrast, and clarity
   - All results components are now more mobile responsive and accessible
@@ -24,8 +25,9 @@
 
 ## Recent Changes (This Session)
 
-- Migrated all backend endpoints to Vercel serverless functions: /api/validate, /api/feedback, /api/ai/rent-estimates
+- Migrated all backend endpoints to Vercel serverless functions: /api/validate, /api/feedback, /api/ai/rent-estimates, /api/ai/recommendations, /api/ai/predictions, /api/ai/insights
 - Updated client fetch calls for feedback and validation to use new serverless endpoints
+- Deleted legacy server.js (Express backend); all backend logic is now serverless
 - Enhanced RentEstimateView.js for accessibility, clarity, and data context: ARIA labels, axis labels, data source/confidence, improved color contrast, and chart clarity
 - Implemented robust, comprehensive form validation in FormContext.js, including required checks, numeric and range validation, logical constraints, and clear error messaging
 - All validation errors are now displayed to users in a mobile-responsive, accessible way
@@ -47,7 +49,6 @@
 
 1. **Serverless Migration Finalization**
 
-   - Remove any legacy backend/server.js or similar files if present (none found)
    - Test all serverless endpoints in staging/production
    - Update environment variables and secrets in Vercel dashboard as needed
 
@@ -63,7 +64,7 @@
 ## How to Resume
 
 - Review this file and referenced memory bank docs for all context and plans.
-- Begin with finalizing serverless migration: remove any legacy backend/server.js or similar files if present, test all endpoints, and update Vercel environment variables as needed.
+- Begin with finalizing serverless migration: test all endpoints, and update Vercel environment variables as needed.
 - All technical and project rules are documented in .cline/rules and .clinerules.
 
-_Last updated: 2025-04-11 20:33 EDT_
+_Last updated: 2025-04-11 22:00 EDT_
