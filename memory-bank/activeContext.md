@@ -1,11 +1,14 @@
 # Active Context: Apartment Cost Analyzer
 
-## Current Focus [Updated: 2025-04-11 19:54 EDT]
+## Current Focus [Updated: 2025-04-11 20:01 EDT]
 
+- **Results Visualization & UX**
+  - Enhanced results visualization in RentEstimateView.js: added ARIA labels, axis labels, data source/confidence, improved color contrast, and clarity
+  - All results components are now more mobile responsive and accessible
+  - Next: Review and improve user experience for results and feedback
 - **Form Validation & Results**
   - Comprehensive form validation implemented for all user inputs (required fields, numeric ranges, logical constraints, cross-field checks)
   - All validation errors are now clearly surfaced to users in a mobile-responsive, accessible manner
-  - Next: Enhance results visualization and user experience
 - **Geocoding & Rent Estimate Integration**
   - Mapbox account created, MAPBOX_API_KEY configured
   - LocationService.js implemented for address geocoding
@@ -19,6 +22,7 @@
 
 ## Recent Changes (This Session)
 
+- Enhanced RentEstimateView.js for accessibility, clarity, and data context: ARIA labels, axis labels, data source/confidence, improved color contrast, and chart clarity
 - Implemented robust, comprehensive form validation in FormContext.js, including required checks, numeric and range validation, logical constraints, and clear error messaging
 - All validation errors are now displayed to users in a mobile-responsive, accessible way
 - Completed a full audit of API key usage. Confirmed MAPBOX_API_KEY and RENTCAST_API_KEY are only referenced server-side and never exposed to the client bundle. Frontend communicates with backend endpoints for all sensitive operations.
@@ -37,11 +41,10 @@
 
 ## Next Steps (Priority Order)
 
-1. **Results Visualization & UX**
+1. **Results UX & Feedback**
 
-   - Enhance results visualization for clarity and insight
-   - Ensure all results components are fully mobile responsive and accessible
-   - Review and improve user experience for results and feedback
+   - Review and improve user experience for results and feedback, ensuring clarity, accessibility, and mobile responsiveness
+   - Consider adding user guidance, tooltips, or summary explanations for results
 
 2. **Serverless Migration**
 
@@ -55,7 +58,7 @@
 ## How to Resume
 
 - Review this file and referenced memory bank docs for all context and plans.
-- Begin with enhancing results visualization and user experience. Focus on clarity, mobile responsiveness, and accessibility.
+- Begin with reviewing and improving user experience for results and feedback. Focus on clarity, accessibility, and mobile responsiveness.
 - All technical and project rules are documented in .cline/rules and .clinerules.
 
-_Last updated: 2025-04-11 19:54 EDT_
+_Last updated: 2025-04-11 20:01 EDT_
