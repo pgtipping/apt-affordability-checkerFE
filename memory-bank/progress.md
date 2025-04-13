@@ -1,14 +1,11 @@
-# Project Progress: Apartment Cost Analyzer [Updated: 2025-04-13 03:43 AM EDT]
+# Project Progress: Apartment Cost Analyzer [Updated: 2025-04-13 03:53 AM EDT]
 
-## Recent Updates (2025-04-13 03:43 AM EDT)
+## Recent Updates (2025-04-13 03:53 AM EDT)
 
-- ✅ Fixed Next.js error: "The default export is not a React Component in page: '/\_document'" by converting `pages/_document.js` to a class component extending `Document`.
-- ✅ Added `.next/` to `.gitignore` to prevent build artifacts from being tracked by git.
-- ✅ Removed all committed `.next` files from version control.
-- ✅ Confirmed `.vercel/` and other build output folders are already ignored.
-- ✅ Repository now follows best practices for ignoring build and deployment artifacts.
-- ✅ Ensured all static assets are referenced with root-relative paths.
-- ✅ Confirmed all API endpoint tests pass; only React component tests fail due to ESM dependency issues in Jest (documented for future sessions).
+- ✅ Fixed Vercel deployment errors:
+  - Added `import React from "react";` to `pages/_app.js`, `pages/_document.js`, and `pages/index.js` to resolve "React is not defined" SSR/prerendering errors.
+  - Installed ESLint as a dev dependency to resolve build requirement.
+  - Ensured all top-level Next.js files are SSR-compatible and meet Vercel build requirements.
 - ✅ Documented all changes and next steps in the memory bank.
 
 ## Next Steps

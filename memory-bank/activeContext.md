@@ -1,21 +1,18 @@
 # Active Context: Apartment Cost Analyzer
 
-## Current Focus [Updated: 2025-04-13 03:44 AM EDT]
+## Current Focus [Updated: 2025-04-13 03:52 AM EDT]
 
-- **Repository Hygiene & Production Deployment Fix**
-  - Fixed Next.js error: "The default export is not a React Component in page: '/\_document'" by converting `pages/_document.js` to a class component extending `Document`.
-  - Added `.next/` to `.gitignore` to prevent build artifacts from being tracked by git.
-  - Removed all committed `.next` files from version control.
-  - Confirmed `.vercel/` and other build output folders are already ignored.
-  - Repository now follows best practices for ignoring build and deployment artifacts.
-  - All API endpoint tests pass; only React component tests fail due to ESM dependency issues in Jest (documented for future sessions).
+- **Production Deployment Error Fixes**
+  - Fixed Vercel deployment errors by adding `import React from "react";` to `pages/_app.js`, `pages/_document.js`, and `pages/index.js`.
+  - Installed ESLint as a dev dependency to resolve build requirement.
+  - Ensured all top-level Next.js files are SSR-compatible.
+  - Ready to commit and push changes, then verify production deployment.
 
-## Recent Changes (This Session) [Updated: 2025-04-13 03:44 AM EDT]
+## Recent Changes (This Session) [Updated: 2025-04-13 03:52 AM EDT]
 
-- Fixed Next.js `_document` export error.
-- Added `.next/` to `.gitignore` and removed all committed `.next` files from git.
-- Confirmed `.vercel/` and other build output folders are already ignored.
-- Repository now follows best practices for ignoring build and deployment artifacts.
+- Added `import React from "react";` to `pages/_app.js`, `pages/_document.js`, and `pages/index.js` to resolve "React is not defined" SSR/prerendering errors.
+- Installed ESLint as a dev dependency to resolve Vercel build error.
+- Confirmed all top-level Next.js files are now compatible with SSR and Vercel build requirements.
 - Documented all changes and next steps in the memory bank.
 
 ## Next Steps
