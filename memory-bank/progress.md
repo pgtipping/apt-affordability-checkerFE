@@ -37,6 +37,14 @@
 - Continue with general QA, migration, and styling audit tasks as outlined above.
 - All technical and project rules are documented in `.clinerules`.
 
+---
+
+#### 2025-04-13T04:56:19-04:00
+
+- **Production 404 errors resolved:**  
+  The app was returning 404 errors for the root URL and static files in production on Vercel. The issue was caused by the absence of a `next.config.js` file, which prevented Vercel from detecting and building the Next.js frontend.  
+  **Solution:** Added a minimal `next.config.js` file to the project root. After redeployment, the app and static files loaded correctly in production.
+
 ## Working Features
 
 - Form input collection
