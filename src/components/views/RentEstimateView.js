@@ -1,5 +1,5 @@
 import React from "react";
-import { useFormContext } from "@/context/FormContext";
+// import { useFormContext } from "@/context/FormContext"; // No longer needed, use props
 import styles from "./RentEstimateView.module.css";
 import {
   BarChart,
@@ -11,14 +11,16 @@ import {
   Label,
 } from "recharts";
 
-const RentEstimateView = () => {
-  const { formData } = useFormContext();
+// Accept rentEstimates as a prop
+const RentEstimateView = ({ rentEstimates }) => {
+  // Remove context fetching: const { formData } = useFormContext();
 
-  const chartData = formData.rentEstimates
+  // Use the rentEstimates prop for chart data
+  const chartData = rentEstimates
     ? [
-        { name: "Low", value: formData.rentEstimates.lowRent },
-        { name: "Average", value: formData.rentEstimates.averageRent },
-        { name: "High", value: formData.rentEstimates.highRent },
+        { name: "Low", value: rentEstimates.lowRent },
+        { name: "Average", value: rentEstimates.averageRent },
+        { name: "High", value: rentEstimates.highRent },
       ]
     : [];
 
@@ -27,28 +29,29 @@ const RentEstimateView = () => {
     "Bar chart showing low, average, and high rent estimates for the selected location.";
 
   // Data source and confidence note
-  const source = formData.rentEstimates?.source || "RentCast API";
-  const confidence = formData.rentEstimates?.confidence
-    ? `Confidence: ${formData.rentEstimates.confidence}`
+  // Use the rentEstimates prop for source and confidence
+  const source = rentEstimates?.source || "RentCast API";
+  const confidence = rentEstimates?.confidence
+    ? `Confidence: ${rentEstimates.confidence}`
     : "";
 
   return (
     <div className={styles.container}>
       <h3 id="rent-estimates-title">Rent Estimates</h3>
-      {formData.rentEstimates ? (
+      {/* Check the rentEstimates prop */}
+      {rentEstimates ? (
         <>
           <div className={styles.estimates}>
             <div className={styles.estimateItem}>
               <span>Average Rent:</span>
               <span style={{ color: "#1b5e20" }}>
-                ${formData.rentEstimates.averageRent}
+                ${rentEstimates.averageRent}
               </span>
             </div>
             <div className={styles.estimateItem}>
               <span>Range:</span>
               <span style={{ color: "#1b5e20" }}>
-                ${formData.rentEstimates.lowRent} - $
-                {formData.rentEstimates.highRent}
+                ${rentEstimates.lowRent} - ${rentEstimates.highRent}
               </span>
             </div>
             <div className={styles.estimateItem}>

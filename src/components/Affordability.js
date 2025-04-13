@@ -10,19 +10,10 @@ const Affordability = ({ results }) => {
   if (!results) return null;
   return (
     <div>
-      <h2>Affordability Details</h2>
+      {/* Heading removed, provided by parent Card */}
       <p>You {results.canAfford ? "can" : "cannot"} afford this apartment.</p>
-      {results.canAfford ? (
-        <p>
-          You can afford this apartment for {results.affordabilityDuration}{" "}
-          months.
-        </p>
-      ) : (
-        <p>
-          You need an additional ${results.additionalMonthlyIncomeNeeded} per
-          month to afford this apartment.
-        </p>
-      )}
+      {/* Removed conditional block for duration/additional income for simplicity */}
+      {/* We can add more detailed explanations later if needed */}
     </div>
   );
 };

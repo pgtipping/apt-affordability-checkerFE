@@ -200,10 +200,12 @@ export default async function handler(req, res) {
     res.status(200).json({ summary });
   } catch (err) {
     // This catch block might be redundant now due to inner catches, but kept for safety
-    console.error("Error in generate-summary handler:", err);
+    const errorMessage =
+      err instanceof Error ? err.message : "An unknown error occurred";
+    console.error("Error in generate-summary handler:", errorMessage, err); // Log the full error too
     res.status(500).json({
       error: "Internal server error generating summary.",
-      details: err.message,
+      details: errorMessage,
     });
   }
 }

@@ -9,12 +9,10 @@ export default async function handler(req, res) {
 
   // Basic input validation for zipCode
   if (!zipCode || typeof zipCode !== "string" || !/^\d{5}$/.test(zipCode)) {
-    res
-      .status(400)
-      .json({
-        error:
-          "Missing or invalid zipCode field. Please provide a 5-digit ZIP code.",
-      });
+    res.status(400).json({
+      error:
+        "Missing or invalid zipCode field. Please provide a 5-digit ZIP code.",
+    });
     return;
   }
 
@@ -51,24 +49,30 @@ export default async function handler(req, res) {
     }
 
     const data = await rentcastRes.json();
+    // Temporary log to inspect RentCast response structure
+    // Temporary log removed
 
     // Extract relevant average rent data (adjust based on actual response structure)
     // Example: Assuming response has averageRentByBedrooms or similar
     // Let's assume we want the average for a 1-bedroom for simplicity
-    const averageRent = data?.averageRent || data?.[0]?.averageRent || null; // Adjust based on actual structure
+    // Extract relevant rent data (adjust based on actual response structure)
+    // Attempt to find values at top level or within the first array element
+    const averageRent = data?.averageRent || data?.[0]?.averageRent || null;
+    const lowRent = data?.lowRent || data?.[0]?.lowRent || null;
+    const highRent = data?.highRent || data?.[0]?.highRent || null;
 
     res.status(200).json({
-      averageRent: averageRent, // Return the average rent for the ZIP code
+      averageRent: averageRent,
+      lowRent: lowRent, // Return low rent if available
+      highRent: highRent, // Return high rent if available
       source: "RentCast Market Data",
       zipCode: zipCode,
     });
   } catch (err) {
     console.error("RentCast Market API Error:", err);
-    res
-      .status(500)
-      .json({
-        error: "Internal server error fetching market data",
-        details: err.message,
-      });
+    res.status(500).json({
+      error: "Internal server error fetching market data",
+      details: err.message,
+    });
   }
 }
