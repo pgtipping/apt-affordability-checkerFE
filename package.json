@@ -52,6 +52,22 @@
   },
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
-    "@babel/preset-react": "^7.24.1"
+    "@babel/preset-env": "^7.26.9",
+    "@babel/preset-react": "^7.26.3",
+    "identity-obj-proxy": "^3.0.0"
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "^@/components/(.*)$": "<rootDir>/src/components/$1",
+      "^@/context/(.*)$": "<rootDir>/src/context/$1",
+      "^@/services/(.*)$": "<rootDir>/src/services/$1",
+      "^@/styles/(.*)$": "<rootDir>/src/styles/$1",
+      "^@/utils/(.*)$": "<rootDir>/src/utils/$1",
+      "\\.(css|less|scss|sass)$": "identity-obj-proxy"
+    },
+    "transformIgnorePatterns": [
+      "/node_modules/(?!(react-markdown|recharts|@google/generative-ai|devlop)/).+\\.(js|jsx)$",
+      "\\.pnp\\.[^\\/]+$"
+    ]
   }
 }
