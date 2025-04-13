@@ -1,25 +1,23 @@
-# Project Progress: Apartment Cost Analyzer [Updated: 2025-04-12 06:51 PM EDT]
+# Project Progress: Apartment Cost Analyzer [Updated: 2025-04-12 10:05 PM EDT]
 
-## Recent Updates (2025-04-12 06:51 PM EDT)
+## Recent Updates (2025-04-12 10:05 PM EDT)
 
-- ✅ Restored and updated `src/components/Results.js` to fix accidental deletion and fully integrate the AI-powered personalized summary feature.
-- ✅ Installed `react-markdown` for rendering markdown summaries in the UI.
-- ✅ Results modal now calls `/api/ai/generate-summary` and displays the summary with loading and error states.
-- ✅ Confirmed all original results, affordability, and rent estimate features are preserved.
+- ✅ Fixed rent estimate fetching to use the correct RentCast "market" endpoint via `/api/ai/rent-estimates` with zip code.
+- ✅ Added verbose error logging in `fetchRentEstimates` (FormContext.js) for easier debugging of rent estimate and calculation failures.
+- ✅ Improved error handling and logging for missing or invalid rent estimate data.
+- ✅ Confirmed all API endpoints are tested and operational.
 - ✅ Documented all changes and next steps in the memory bank.
-- ✅ Confirmed all project and styling rules are being followed.
-- ✅ Updated `activeContext.md` with new context, recent changes, and next steps.
 
 ## Next Steps
 
-- **Test the AI Summary Feature:**
+- **Reproduce the rent estimate and affordability calculation issue:**
 
-  - Start the development server (`npm run dev`).
-  - Fill out the form and submit; verify the AI summary appears in the results modal.
-  - Check for correct loading, error, and markdown rendering.
-  - Confirm all other results and cost breakdowns display as expected.
+  - Fill out the form with a valid location (including a 5-digit ZIP code).
+  - Submit and observe the results modal.
+  - If rent estimates or affordability metrics are missing, check the browser console and server logs for new verbose error messages.
+  - Record any errors or missing data for further investigation.
 
-- **General QA and Migration Completion:**
+- **Continue QA and Migration Completion:**
 
   - Test all application features and API routes in the Next.js environment.
   - Review and adapt any remaining Jest tests for the new structure.
@@ -76,6 +74,6 @@
 ## How to Resume
 
 - Review `activeContext.md` and this file for the latest context and next steps.
-- Begin by testing the AI summary feature in the Results modal.
+- Begin by reproducing the rent estimate/calculation issue and checking logs for errors.
 - Continue with general QA, migration, and styling audit tasks as outlined above.
-- All technical and project rules are documented in `.cline/rules` and `.clinerules`.
+- All technical and project rules are documented in `.clinerules`.

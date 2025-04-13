@@ -31,9 +31,8 @@ async function callOpenRouter(modelId, prompt) {
         body: JSON.stringify({
           model: modelId,
           messages: [{ role: "user", content: prompt }],
-          // Optional: Add other parameters like temperature, max_tokens etc.
+          max_tokens: 500, // Limit summary length
           // temperature: 0.7,
-          // max_tokens: 500,
         }),
       }
     );
@@ -170,6 +169,10 @@ export default async function handler(req, res) {
       }
     }
 
+    // Truncate summary to 1000 characters for UI safety
+    if (summary.length > 1000) {
+      summary = summary.slice(0, 1000) + "\n\n*(Summary truncated for length)*";
+    }
     res.status(200).json({ summary });
   } catch (err) {
     // This catch block might be redundant now due to inner catches, but kept for safety

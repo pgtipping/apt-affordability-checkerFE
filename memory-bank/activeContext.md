@@ -1,34 +1,30 @@
 on# Active Context: Apartment Cost Analyzer
 
-## Current Focus [Updated: 2025-04-12 06:50 PM EDT]
+## Current Focus [Updated: 2025-04-12 10:05 PM EDT]
 
-- **Finalize and QA AI Summary Integration**
-  - The AI-powered personalized summary feature is now fully integrated into the Results modal.
-  - Results.js has been restored and updated to include summary generation, loading, and error handling.
-  - All original results functionality is preserved.
-- **Next.js Migration & Serverless Architecture**
-  - Continue QA and testing of all features in the Next.js environment.
-  - Ensure all styling and accessibility rules are met.
+- **Debug and QA Rent Estimate & Affordability Calculation**
+  - Rent estimate fetching now uses the correct RentCast "market" endpoint via `/api/ai/rent-estimates` with zip code.
+  - Verbose error logging added in `fetchRentEstimates` (FormContext.js) for easier debugging.
+  - Error handling improved for missing or invalid rent estimate data.
+  - All API endpoints tested and operational.
 
-## Recent Changes (This Session) [Updated: 2025-04-12 06:50 PM EDT]
+## Recent Changes (This Session) [Updated: 2025-04-12 10:05 PM EDT]
 
-- Restored and updated `src/components/Results.js` to fix accidental deletion and fully integrate the AI summary feature.
-- Installed `react-markdown` for rendering markdown summaries in the UI.
-- Results modal now calls `/api/ai/generate-summary` and displays the summary with loading and error states.
-- Confirmed all original results, affordability, and rent estimate features are preserved.
-- Documented all changes and next steps in the memory bank.
-- Confirmed all project and styling rules are being followed.
+- Fixed rent estimate fetching to use the correct endpoint and parameters.
+- Added detailed error logging for rent estimate and calculation failures.
+- Confirmed all API endpoints are tested and operational.
+- Updated memory bank documentation with clear next steps.
 
 ## Next Steps
 
-1. **Test the AI Summary Feature:**
+1. **Reproduce the rent estimate and affordability calculation issue:**
 
-   - Start the development server (`npm run dev`).
-   - Fill out the form and submit; verify the AI summary appears in the results modal.
-   - Check for correct loading, error, and markdown rendering.
-   - Confirm all other results and cost breakdowns display as expected.
+   - Fill out the form with a valid location (including a 5-digit ZIP code).
+   - Submit and observe the results modal.
+   - If rent estimates or affordability metrics are missing, check the browser console and server logs for new verbose error messages.
+   - Record any errors or missing data for further investigation.
 
-2. **General QA and Migration Completion:**
+2. **Continue QA and Migration Completion:**
 
    - Test all application features and API routes in the Next.js environment.
    - Review and adapt any remaining Jest tests for the new structure.
@@ -44,6 +40,6 @@ on# Active Context: Apartment Cost Analyzer
 ## How to Resume
 
 - Review this file and `progress.md` for the latest context and next steps.
-- Begin by testing the AI summary feature in the Results modal.
+- Begin by reproducing the rent estimate/calculation issue and checking logs for errors.
 - Continue with general QA, migration, and styling audit tasks as outlined above.
-- All technical and project rules are documented in `.cline/rules` and `.clinerules`.
+- All technical and project rules are documented in `.clinerules`.

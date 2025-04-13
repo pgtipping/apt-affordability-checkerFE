@@ -107,13 +107,36 @@ export const FormProvider = ({ children }) => {
       });
 
       if (!response.ok) {
-        const errorData = await response.json();
+        let errorDetails = "";
+        let errorData = null;
+        try {
+          errorData = await response.json();
+          errorDetails = JSON.stringify(errorData);
+        } catch (jsonErr) {
+          try {
+            errorDetails = await response.text();
+          } catch (textErr) {
+            errorDetails = "Unable to parse error response";
+          }
+        }
+        console.error(
+          `[fetchRentEstimates] Failed to fetch market rent estimate for zipCode=${zipCode}. Status: ${response.status}. Details: ${errorDetails}`
+        );
         throw new Error(
-          errorData.error || "Failed to fetch market rent estimate"
+          (errorData && errorData.error) ||
+            "Failed to fetch market rent estimate"
         );
       }
 
       const estimate = await response.json();
+
+      if (!estimate || !estimate.averageRent) {
+        console.error(
+          `[fetchRentEstimates] No averageRent returned for zipCode=${zipCode}. Full response: ${JSON.stringify(
+            estimate
+          )}`
+        );
+      }
 
       // Store the market average rent estimate
       setFormData((prev) => ({
@@ -129,7 +152,10 @@ export const FormProvider = ({ children }) => {
       // Clear any previous location/rent errors related to fetching
       setFormErrors((prev) => ({ ...prev, locationError: "", rentError: "" }));
     } catch (error) {
-      console.error("Failed to fetch market rent estimates:", error);
+      console.error(
+        `[fetchRentEstimates] Exception for zipCode=${zipCode}:`,
+        error
+      );
       setFormData((prev) => ({
         ...prev,
         rentEstimates: null, // Clear estimate on error
