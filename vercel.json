@@ -1,6 +1,7 @@
 {
   "version": 2,
   "builds": [
+    { "src": "next.config.js", "use": "@vercel/next" },
     { "src": "api/ai/insights.js", "use": "@vercel/node" },
     { "src": "api/ai/predictions.js", "use": "@vercel/node" },
     { "src": "api/ai/recommendations.js", "use": "@vercel/node" },
