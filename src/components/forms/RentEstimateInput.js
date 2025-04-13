@@ -4,7 +4,8 @@ import {
   FormControl,
   Tooltip,
   OverlayTrigger,
-  Button,
+  Button, // Keep Button if needed elsewhere, but Form is needed now
+  Form, // Import Form
 } from "react-bootstrap";
 import { useFormContext } from "@/context/FormContext";
 
@@ -19,24 +20,35 @@ function RentEstimateInput({ onInputChange }) {
   );
 
   return (
-    <InputGroup className="mb-3">
-      <InputGroup.Text style={{ width: "170px" }}>Monthly Rent</InputGroup.Text>
-      <OverlayTrigger placement="top" overlay={renderTooltip}>
-        <FormControl
-          id="rent"
-          placeholder="Enter monthly rent"
-          type="number"
-          value={formData.rent}
-          onChange={(e) => onInputChange("rent", e.target.value)}
-          isInvalid={!!formErrors.rentError}
-          // Removed readOnly attribute
-        />
-      </OverlayTrigger>
-      {/* Removed Clear button */}
-      <FormControl.Feedback type="invalid">
+    // Add Form.Label for accessibility, visually hidden
+    <Form.Group className="mb-3">
+      <Form.Label htmlFor="rent" className="visually-hidden">
+        Monthly Rent
+      </Form.Label>
+      <InputGroup>
+        {/* Remove fixed width style */}
+        <InputGroup.Text>Monthly Rent</InputGroup.Text>
+        <OverlayTrigger placement="top" overlay={renderTooltip}>
+          <FormControl
+            id="rent"
+            placeholder="Enter monthly rent"
+            type="number"
+            value={formData.rent}
+            onChange={(e) => onInputChange("rent", e.target.value)}
+            isInvalid={!!formErrors.rentError}
+            // Removed readOnly attribute
+          />
+        </OverlayTrigger>
+        {/* Removed Clear button */}
+        <FormControl.Feedback type="invalid">
+          {formErrors.rentError}
+        </FormControl.Feedback>
+      </InputGroup>
+      {/* Keep Feedback outside InputGroup but inside Form.Group */}
+      <FormControl.Feedback type="invalid" style={{ display: "block" }}>
         {formErrors.rentError}
       </FormControl.Feedback>
-    </InputGroup>
+    </Form.Group>
   );
 }
 

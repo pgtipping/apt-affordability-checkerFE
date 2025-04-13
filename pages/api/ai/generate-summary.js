@@ -10,32 +10,53 @@ const PRIMARY_MODEL = "deepseek/deepseek-chat-v3-0324";
 const FALLBACK_MODEL = "google/gemma-3-27b-it"; // OpenRouter fallback
 const FINAL_FALLBACK_MODEL = "gemini/gemma-3-27b-it"; // Gemini fallback (adjust if needed)
 
-async function callOpenRouter(modelId, prompt) {
+// Add timeoutMs parameter with a default (e.g., null or a very long default if needed)
+async function callOpenRouter(modelId, prompt, timeoutMs = null) {
   // Placeholder for OpenRouter API call
   console.log(`Attempting to call OpenRouter with model: ${modelId}`);
   if (!OPENROUTER_API_KEY) {
     throw new Error("OpenRouter API key not configured.");
   }
+  let controller;
+  let timeoutId;
+
   try {
+    const fetchOptions = {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${OPENROUTER_API_KEY}`,
+        "Content-Type": "application/json",
+        // Optional headers...
+      },
+      body: JSON.stringify({
+        model: modelId,
+        messages: [{ role: "user", content: prompt }],
+        // max_tokens: 500, // Ensure this line is commented out or removed
+        // temperature: 0.7,
+      }),
+    };
+
+    // Add AbortController for timeout if timeoutMs is provided
+    if (timeoutMs && timeoutMs > 0) {
+      controller = new AbortController();
+      fetchOptions.signal = controller.signal;
+      timeoutId = setTimeout(() => {
+        console.log(
+          `OpenRouter call for ${modelId} timed out after ${timeoutMs}ms.`
+        );
+        controller.abort();
+      }, timeoutMs);
+    }
+
     const response = await fetch(
       "https://openrouter.ai/api/v1/chat/completions",
-      {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${OPENROUTER_API_KEY}`,
-          "Content-Type": "application/json",
-          // Optional: Add other headers like HTTP-Referer or X-Title if needed by OpenRouter
-          // "HTTP-Referer": "YOUR_SITE_URL",
-          // "X-Title": "YOUR_SITE_NAME",
-        },
-        body: JSON.stringify({
-          model: modelId,
-          messages: [{ role: "user", content: prompt }],
-          max_tokens: 500, // Limit summary length
-          // temperature: 0.7,
-        }),
-      }
+      fetchOptions
     );
+
+    // Clear timeout if fetch completes before timeout
+    if (timeoutId) {
+      clearTimeout(timeoutId);
+    }
 
     if (!response.ok) {
       const errorBody = await response.text();
@@ -58,8 +79,11 @@ async function callOpenRouter(modelId, prompt) {
 
     return data.choices[0].message.content;
   } catch (error) {
-    console.error(`Error calling OpenRouter model ${modelId}:`, error);
-    // Re-throw the error to be caught by the main handler's fallback logic
+    console.error(
+      `Error calling OpenRouter model ${modelId}:`,
+      error.name === "AbortError" ? "Request timed out" : error
+    );
+    // Re-throw the error
     throw error;
   }
 }
@@ -144,6 +168,7 @@ export default async function handler(req, res) {
     let summary = "";
     try {
       // 1. Try Primary OpenRouter Model
+      // 1. Try Primary OpenRouter Model (no timeout, no token limit)
       summary = await callOpenRouter(PRIMARY_MODEL, prompt);
     } catch (error1) {
       console.warn(
@@ -151,7 +176,9 @@ export default async function handler(req, res) {
       );
       try {
         // 2. Try Fallback OpenRouter Model
-        summary = await callOpenRouter(FALLBACK_MODEL, prompt);
+        // 2. Try Fallback OpenRouter Model with 45s timeout
+        // 2. Try Fallback OpenRouter Model with 45s timeout (no token limit)
+        summary = await callOpenRouter(FALLBACK_MODEL, prompt, 45000);
       } catch (error2) {
         console.warn(
           `Fallback model (${FALLBACK_MODEL}) failed: ${error2.message}. Trying Gemini fallback.`
@@ -169,10 +196,7 @@ export default async function handler(req, res) {
       }
     }
 
-    // Truncate summary to 1000 characters for UI safety
-    if (summary.length > 1000) {
-      summary = summary.slice(0, 1000) + "\n\n*(Summary truncated for length)*";
-    }
+    // REMOVED summary truncation logic
     res.status(200).json({ summary });
   } catch (err) {
     // This catch block might be redundant now due to inner catches, but kept for safety

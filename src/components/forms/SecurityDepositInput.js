@@ -4,6 +4,7 @@ import {
   FormControl,
   Tooltip,
   OverlayTrigger,
+  Form, // Import Form
 } from "react-bootstrap";
 import { useFormContext } from "@/context/FormContext";
 
@@ -17,24 +18,33 @@ function SecurityDepositInput({ onInputChange }) {
   );
 
   return (
-    <InputGroup className="mb-3">
-      <InputGroup.Text style={{ width: "170px" }}>
+    // Add Form.Label for accessibility, visually hidden
+    <Form.Group className="mb-3">
+      <Form.Label htmlFor="security-deposit" className="visually-hidden">
         Security Deposit
-      </InputGroup.Text>
-      <OverlayTrigger placement="top" overlay={renderTooltip}>
-        <FormControl
-          id="security-deposit"
-          placeholder="Enter security deposit amount"
-          type="number"
-          value={formData.securityDeposit}
-          onChange={(e) => onInputChange("securityDeposit", e.target.value)}
-          isInvalid={!!formErrors.securityDepositError}
-        />
-      </OverlayTrigger>
-      <FormControl.Feedback type="invalid">
+      </Form.Label>
+      <InputGroup>
+        {/* Remove fixed width style */}
+        <InputGroup.Text>Security Deposit</InputGroup.Text>
+        <OverlayTrigger placement="top" overlay={renderTooltip}>
+          <FormControl
+            id="security-deposit"
+            placeholder="Enter security deposit amount"
+            type="number"
+            value={formData.securityDeposit}
+            onChange={(e) => onInputChange("securityDeposit", e.target.value)}
+            isInvalid={!!formErrors.securityDepositError}
+          />
+        </OverlayTrigger>
+        <FormControl.Feedback type="invalid">
+          {formErrors.securityDepositError}
+        </FormControl.Feedback>
+      </InputGroup>
+      {/* Keep Feedback outside InputGroup but inside Form.Group */}
+      <FormControl.Feedback type="invalid" style={{ display: "block" }}>
         {formErrors.securityDepositError}
       </FormControl.Feedback>
-    </InputGroup>
+    </Form.Group>
   );
 }
 

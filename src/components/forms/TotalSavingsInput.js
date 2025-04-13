@@ -4,6 +4,7 @@ import {
   FormControl,
   Tooltip,
   OverlayTrigger,
+  Form, // Import Form
 } from "react-bootstrap";
 import { useFormContext } from "@/context/FormContext";
 
@@ -18,24 +19,33 @@ function TotalSavingsInput({ onInputChange }) {
   );
 
   return (
-    <InputGroup className="mb-3">
-      <InputGroup.Text style={{ width: "170px" }}>
+    // Add Form.Label for accessibility, visually hidden
+    <Form.Group className="mb-3">
+      <Form.Label htmlFor="total-savings" className="visually-hidden">
         Total Savings
-      </InputGroup.Text>
-      <OverlayTrigger placement="top" overlay={renderTooltip}>
-        <FormControl
-          id="total-savings"
-          placeholder="Enter total savings"
-          type="number"
-          value={formData.totalSavings}
-          onChange={(e) => onInputChange("totalSavings", e.target.value)}
-          isInvalid={!!formErrors.totalSavingsError}
-        />
-      </OverlayTrigger>
-      <FormControl.Feedback type="invalid">
+      </Form.Label>
+      <InputGroup>
+        {/* Remove fixed width style */}
+        <InputGroup.Text>Total Savings</InputGroup.Text>
+        <OverlayTrigger placement="top" overlay={renderTooltip}>
+          <FormControl
+            id="total-savings"
+            placeholder="Enter total savings"
+            type="number"
+            value={formData.totalSavings}
+            onChange={(e) => onInputChange("totalSavings", e.target.value)}
+            isInvalid={!!formErrors.totalSavingsError}
+          />
+        </OverlayTrigger>
+        <FormControl.Feedback type="invalid">
+          {formErrors.totalSavingsError}
+        </FormControl.Feedback>
+      </InputGroup>
+      {/* Keep Feedback outside InputGroup but inside Form.Group */}
+      <FormControl.Feedback type="invalid" style={{ display: "block" }}>
         {formErrors.totalSavingsError}
       </FormControl.Feedback>
-    </InputGroup>
+    </Form.Group>
   );
 }
 

@@ -41,13 +41,7 @@ export default function handler(req, res) {
       errors[field] = `${field} must be a valid positive number.`;
     }
   });
-  if (
-    !errors.rent &&
-    !errors.totalMonthlyIncome &&
-    Number(rent) > Number(totalMonthlyIncome)
-  ) {
-    errors.rent = "Monthly Rent should not exceed Total Monthly Income.";
-  }
+  // Rent vs Income check removed - Handled reliably in client-side handleSubmit
   if (
     !errors.securityDeposit &&
     !errors.rent &&

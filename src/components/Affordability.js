@@ -1,9 +1,12 @@
 // Affordability.js
 import React from "react";
-import { useFormContext } from "../context/FormContext";
+// import { useFormContext } from "@/context/FormContext"; // No longer needed, use props
 
-const Affordability = ({ affordability }) => {
-  const { results } = useFormContext();
+// Accept 'results' prop directly from parent page
+const Affordability = ({ results }) => {
+  // Remove context fetching: const { results } = useFormContext();
+
+  // Check the passed prop
   if (!results) return null;
   return (
     <div>

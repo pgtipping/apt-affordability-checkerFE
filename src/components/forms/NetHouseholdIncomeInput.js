@@ -4,6 +4,7 @@ import {
   FormControl,
   Tooltip,
   OverlayTrigger,
+  Form, // Import Form
 } from "react-bootstrap";
 import { useFormContext } from "@/context/FormContext";
 
@@ -18,24 +19,35 @@ function TotalMonthlyIncomeInput({ onInputChange }) {
   );
 
   return (
-    <InputGroup className="mb-3">
-      <InputGroup.Text style={{ width: "170px" }}>
+    // Add Form.Label for accessibility, visually hidden
+    <Form.Group className="mb-3">
+      <Form.Label htmlFor="total-monthly-income" className="visually-hidden">
         Monthly Income
-      </InputGroup.Text>
-      <OverlayTrigger placement="top" overlay={renderTooltip}>
-        <FormControl
-          id="total-monthly-income"
-          placeholder="Enter total monthly income"
-          type="number"
-          value={formData.totalMonthlyIncome}
-          onChange={(e) => onInputChange("totalMonthlyIncome", e.target.value)}
-          isInvalid={!!formErrors.totalMonthlyIncomeError}
-        />
-      </OverlayTrigger>
-      <FormControl.Feedback type="invalid">
+      </Form.Label>
+      <InputGroup>
+        {/* Remove fixed width style */}
+        <InputGroup.Text>Monthly Income</InputGroup.Text>
+        <OverlayTrigger placement="top" overlay={renderTooltip}>
+          <FormControl
+            id="total-monthly-income"
+            placeholder="Enter total monthly income"
+            type="number"
+            value={formData.totalMonthlyIncome}
+            onChange={(e) =>
+              onInputChange("totalMonthlyIncome", e.target.value)
+            }
+            isInvalid={!!formErrors.totalMonthlyIncomeError}
+          />
+        </OverlayTrigger>
+        <FormControl.Feedback type="invalid">
+          {formErrors.totalMonthlyIncomeError}
+        </FormControl.Feedback>
+      </InputGroup>
+      {/* Keep Feedback outside InputGroup but inside Form.Group */}
+      <FormControl.Feedback type="invalid" style={{ display: "block" }}>
         {formErrors.totalMonthlyIncomeError}
       </FormControl.Feedback>
-    </InputGroup>
+    </Form.Group>
   );
 }
 

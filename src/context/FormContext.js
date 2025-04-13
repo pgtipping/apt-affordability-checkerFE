@@ -1,9 +1,11 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useState, useEffect } from "react"; // Added useEffect potentially for router
+import { useRouter } from "next/router"; // Import useRouter
 
 const FormContext = createContext();
 
 // Provider Component
 export const FormProvider = ({ children }) => {
+  const router = useRouter(); // Initialize router
   const [formData, setFormData] = useState({
     movingAndSetupCost: "",
     monthlyLivingCost: "",
@@ -28,7 +30,7 @@ export const FormProvider = ({ children }) => {
   const [formError, setFormError] = useState(""); // Global form error state
   const [results, setResults] = useState(null); // State to store calculation results
   const [showFeedbackForm, setShowFeedbackForm] = useState(false);
-  const [showResults, setShowResults] = useState(false);
+  // const [showResults, setShowResults] = useState(false); // No longer needed for modal
   const [feedbackMessage, setFeedbackMessage] = useState("");
   const [feedbackError, setFeedbackError] = useState("");
 
@@ -72,10 +74,24 @@ export const FormProvider = ({ children }) => {
 
   // Handle input changes
   const handleInputChange = (fieldName, value) => {
+    // Reset ALL errors on any input change to prevent stale cross-field validation issues during typing
+    setFormErrors({
+      movingAndSetupCostError: "",
+      monthlyLivingCostError: "",
+      rentError: "",
+      securityDepositError: "",
+      totalMonthlyIncomeError: "",
+      totalSavingsError: "",
+      monthsToEvaluateError: "",
+      locationError: "",
+    });
+
     setFormData((prev) => ({
       ...prev,
       [fieldName]: value,
     }));
+
+    // Now validate the new value
     validateField(fieldName, value);
 
     // If location changes and has length, fetch rent estimates (Restored)
@@ -208,12 +224,7 @@ export const FormProvider = ({ children }) => {
       ) {
         errorMessage = `Please enter a valid range between 1 and 60 for ${fieldLabel}.`;
       }
-      if (!errorMessage && fieldName === "rent") {
-        const income = Number(formData.totalMonthlyIncome);
-        if (!isNaN(income) && num > income) {
-          errorMessage = `Monthly Rent should not exceed Total Monthly Income.`;
-        }
-      }
+      // Rent vs Income check removed from here - will be done in handleSubmit
       if (
         !errorMessage &&
         fieldName === "securityDeposit" &&
@@ -232,16 +243,46 @@ export const FormProvider = ({ children }) => {
       }
     }
 
-    setFormErrors((prevErrors) => ({
-      ...prevErrors,
-      [`${fieldName}Error`]: errorMessage,
-    }));
+    // Update the error state for the current field
+    setFormErrors((prevErrors) => {
+      const updatedErrors = { ...prevErrors };
+
+      // Explicitly clear the current field's error before setting a new one
+      updatedErrors[`${fieldName}Error`] = "";
+
+      // If validating the rent field, ensure its error is cleared first
+      if (fieldName === "rent") {
+        updatedErrors.rentError = "";
+      }
+
+      // Set the new error message if one exists
+      if (errorMessage) {
+        updatedErrors[`${fieldName}Error`] = errorMessage;
+      }
+
+      // Logic to clear rentError when income is validated removed,
+      // as resetting all errors in handleSubmit is more robust.
+
+      return updatedErrors;
+    });
     return errorMessage === "";
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setFormError(""); // Reset form error message
+    setFormError(""); // Reset global form error message
+
+    // Reset individual field errors before re-validating
+    setFormErrors({
+      movingAndSetupCostError: "",
+      monthlyLivingCostError: "",
+      rentError: "",
+      securityDepositError: "",
+      totalMonthlyIncomeError: "",
+      totalSavingsError: "",
+      monthsToEvaluateError: "",
+      locationError: "", // Ensure locationError is also reset
+    });
 
     // Validate all fields before submission
     const isFormValid = Object.keys(formData).every((key) => {
@@ -252,6 +293,18 @@ export const FormProvider = ({ children }) => {
     });
 
     if (isFormValid) {
+      // Add specific cross-field validation here after individual fields are valid
+      const rentNum = Number(formData.rent);
+      const incomeNum = Number(formData.totalMonthlyIncome);
+      if (!isNaN(rentNum) && !isNaN(incomeNum) && rentNum > incomeNum) {
+        setFormErrors((prev) => ({
+          ...prev,
+          rentError: "Monthly Rent should not exceed Total Monthly Income.",
+        }));
+        setFormError("Please correct the errors in the form.");
+        return; // Stop submission if this specific validation fails
+      }
+
       // Proceed with form submission
       try {
         const response = await fetch("/api/validate", {
@@ -277,8 +330,46 @@ export const FormProvider = ({ children }) => {
           setFormError("Failed to submit form. Please try again later.");
           return;
         }
-        setResults(data); // Update the results state with the response
-        // Handle response data here
+        // Perform client-side calculations after successful validation
+        const movingCost = Number(formData.movingAndSetupCost) || 0;
+        const livingCost = Number(formData.monthlyLivingCost) || 0;
+        const rentCost = Number(formData.rent) || 0;
+        const depositCost = Number(formData.securityDeposit) || 0;
+        const income = Number(formData.totalMonthlyIncome) || 0;
+        const savings = Number(formData.totalSavings) || 0;
+        const months = Number(formData.monthsToEvaluate) || 1; // Default to 1 if invalid
+
+        const initialCosts = movingCost + depositCost;
+        const totalMonthlyCosts = livingCost + rentCost;
+        const totalCostOverTime = initialCosts + totalMonthlyCosts * months;
+        const monthlyNetIncome = income - totalMonthlyCosts;
+
+        const canAffordInitial = savings >= initialCosts;
+        const canAffordMonthly = monthlyNetIncome >= 0;
+        const canAfford = canAffordInitial && canAffordMonthly;
+        const additionalMonthlyIncomeNeeded = canAffordMonthly
+          ? 0
+          : Math.abs(monthlyNetIncome);
+
+        // TODO: Implement affordabilityDuration calculation if needed
+
+        // Update results state with calculated values
+        setResults({
+          success: true, // Keep success flag from API
+          initialCosts: initialCosts.toFixed(2),
+          totalMonthlyCosts: totalMonthlyCosts.toFixed(2),
+          totalCostOverTime: totalCostOverTime.toFixed(2),
+          canAfford: canAfford,
+          additionalMonthlyIncomeNeeded:
+            additionalMonthlyIncomeNeeded.toFixed(2),
+          // affordabilityDuration: calculatedDuration, // Add when implemented
+        });
+        // Navigate to results page with formData
+        const queryString = `?formData=${encodeURIComponent(
+          JSON.stringify(formData)
+        )}`;
+        router.push(`/results${queryString}`);
+        // setShowResults(true); // No longer needed
       } catch (error) {
         setFormError("Failed to submit form. Please try again later.");
       }
@@ -294,15 +385,15 @@ export const FormProvider = ({ children }) => {
         setFormData,
         formErrors,
         formError,
-        results,
-        showResults,
+        results, // Keep results state for potential direct access if needed, though results page recalculates
+        // showResults, // Remove modal state
         setFormError,
         handleSubmit,
         handleInputChange,
         showFeedbackForm,
         setShowFeedbackForm,
-        setResults,
-        setShowResults,
+        setResults, // Keep setResults
+        // setShowResults, // Remove modal setter
         handleFeedbackSubmit,
         feedbackMessage,
         feedbackError,

@@ -17,7 +17,7 @@ import SecurityDepositInput from "@/components/forms/SecurityDepositInput";
 import TotalMonthlyIncomeInput from "@/components/forms/NetHouseholdIncomeInput";
 import TotalSavingsInput from "@/components/forms/TotalSavingsInput";
 import MonthsToEvaluateInput from "@/components/forms/MonthsToEvaluateInput";
-import Results from "@/components/Results";
+// import Results from "@/components/Results"; // Remove Results import (now a separate page)
 import FeedbackForm from "@/components/FeedbackForm";
 import Footer from "@/components/Footer"; // Import the Footer component
 import styles from "./FormComponent.module.css";
@@ -34,8 +34,8 @@ function FormComponent() {
     feedbackMessage,
     feedbackError,
   } = useFormContext();
-  const [results, setResults] = useState(null);
-  const [showResults, setShowResults] = useState(false);
+  // const [results, setResults] = useState(null); // Remove local results state
+  // const [showResults, setShowResults] = useState(false); // Remove modal show state
   const [darkMode, setDarkMode] = useState(true); // Set dark mode as default
   const [flipping, setFlipping] = useState(false);
   const [userAdjustedSecurityDeposit, setUserAdjustedSecurityDeposit] =
@@ -59,12 +59,7 @@ function FormComponent() {
     }, 500); // Duration of the flip animation
   };
 
-  const handleCalculate = (e) => {
-    e.preventDefault();
-    handleSubmit(e); // Handle form submission
-    setResults({}); // Assuming this will hold the calculation results
-    setShowResults(true); // Show the results modal
-  };
+  // Remove handleCalculate - Form onSubmit now directly uses handleSubmit from context
 
   useEffect(() => {
     if (!userAdjustedSecurityDeposit) {
@@ -183,7 +178,7 @@ function FormComponent() {
                   className={`btn ${darkMode ? "btn-dark" : "btn-primary"} ${
                     styles["calculate-button"]
                   }`}
-                  onClick={handleCalculate}
+                  // Remove onClick={handleCalculate} - Form onSubmit handles this via context
                 >
                   Calculate Affordability
                 </Button>
@@ -191,11 +186,7 @@ function FormComponent() {
                   <div className={styles.error + " mt-3"}>{formError}</div>
                 )}
               </Form>
-              <Results
-                results={results}
-                showResults={showResults}
-                setShowResults={setShowResults}
-              />
+              {/* Remove Results component rendering - now handled by pages/results.js */}
             </Col>
           </Row>
         </Container>

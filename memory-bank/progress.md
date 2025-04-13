@@ -1,41 +1,42 @@
-# Project Progress: Apartment Cost Analyzer [Updated: 2025-04-13 03:53 AM EDT]
+# Project Progress: Apartment Cost Analyzer [Updated: 2025-04-13 17:57 EDT]
 
-## Recent Updates (2025-04-13 03:53 AM EDT)
+## Recent Updates (2025-04-13 17:57 EDT)
 
 - ✅ Fixed Vercel deployment errors:
   - Added `import React from "react";` to `pages/_app.js`, `pages/_document.js`, and `pages/index.js` to resolve "React is not defined" SSR/prerendering errors.
   - Installed ESLint as a dev dependency to resolve build requirement.
   - Ensured all top-level Next.js files are SSR-compatible and meet Vercel build requirements.
 - ✅ Documented all changes and next steps in the memory bank.
+- ✅ Committed and pushed Vercel deployment fixes (Commit: `f6cea5c`).
+- ✅ Verified Vercel deployment fix is successful.
+- ✅ Fixed rent vs. income validation bug (incorrectly showing during input).
+- ✅ Added client-side calculation logic to display results correctly.
+- ✅ Refactored results display from modal to a dedicated `/results` page with side-by-side layout using Cards.
+- ✅ Improved accessibility (added labels) and responsiveness (removed fixed width) for 8 form input components.
+- ✅ Removed token limits and added 45s timeout for fallback AI model calls in summary generation API.
+- ✅ Addressed results page duplication (likely dev artifact) and improved formatting.
 
 ## Next Steps
 
-- **Commit and push all changes to the repository.**
-- **Verify production deployment fix:**
-
-  - Deploy the latest code to production.
-  - Confirm the app loads and displays correctly (no blank page).
-  - Check that favicons and meta tags are present and no `%PUBLIC_URL%` errors appear in the console.
-
+- **Commit and push recent fixes and improvements.**
 - **Continue QA and Migration Completion:**
 
-  - Test all application features and API routes in the Next.js environment.
-  - Review and adapt any remaining Jest tests for the new structure.
-  - Update any remaining relative import paths to use aliases.
-  - Complete the styling and accessibility audit:
-    - Review every page/component for mobile responsiveness and WCAG contrast.
-    - Test on multiple device sizes and with accessibility tools.
-    - Ensure all fonts meet WCAG contrast ratio standards.
+  - Test the new `/results` page functionality thoroughly (noting potential dev-mode duplication).
+  - Test AI summary generation, including fallback and timeout.
+  - Test all other application features and API routes.
+  - Review and adapt Jest tests.
+  - Update remaining relative import paths.
+  - Continue styling and accessibility audit (WCAG contrast, responsiveness testing).
 
-- **Document Issues and Fixes:**
+- **Document Issues and Fixes (Ongoing):**
   - Record any bugs, issues, or fixes in the memory bank for future sessions.
 
 ## How to Resume
 
 - Review `activeContext.md` and this file for the latest context and next steps.
-- Begin by verifying the production deployment fix and confirming the app loads correctly.
-- Continue with general QA, migration, and styling audit tasks as outlined above.
-- All technical and project rules are documented in `.clinerules`.
+- Run `npm run build`.
+- If successful, commit and push changes.
+- Proceed with testing (including `/results` page, AI summary) and other QA tasks.
 
 ---
 
@@ -61,24 +62,26 @@
 
 ## Known Issues
 
-- No test coverage documented
-- Serverless migration finalization pending (test endpoints, update Vercel env vars)
+- No test coverage documented.
+- Serverless migration finalization pending (test endpoints, update Vercel env vars).
+- Results page duplication observed in dev mode (likely Strict Mode artifact, monitor in production).
+- Console errors (`Abort fetching`, `Node not found`) observed in dev mode (likely related to routing/Strict Mode, monitor in production).
 
 ## Remaining Work
 
 ### High Priority
 
-- Finalize Next.js migration: test all features and API routes (in progress, dev server running).
-- Finalize serverless migration: test all serverless endpoints in staging/production, update environment variables and secrets in Vercel dashboard as needed.
-- Review and improve user experience for results and feedback, ensuring clarity, accessibility, and mobile responsiveness.
-- Consider adding user guidance, tooltips, or summary explanations for results.
+- Test new `/results` page functionality thoroughly.
+- Test AI summary generation (including fallback/timeout).
+- Finalize Next.js migration: test remaining features and API routes.
+- Finalize serverless migration: test serverless endpoints in staging/production, update Vercel env vars.
+- Review and improve user experience for results page layout and feedback mechanism.
 
 ### Medium Priority
 
-- Complete backend refactor to Vercel serverless functions (monitor for any missed logic).
 - Performance optimizations.
-- Additional test coverage.
-- Accessibility improvements.
+- Add test coverage (Jest).
+- Continue accessibility improvements (WCAG contrast, etc.).
 
 ### Low Priority
 
@@ -89,6 +92,6 @@
 ## How to Resume
 
 - Review `activeContext.md` and this file for the latest context and next steps.
-- Begin by reproducing the rent estimate/calculation issue and checking logs for errors.
-- Continue with general QA, migration, and styling audit tasks as outlined above.
-- All technical and project rules are documented in `.clinerules`.
+- Run `npm run build`.
+- If successful, commit and push changes.
+- Proceed with testing and QA tasks.

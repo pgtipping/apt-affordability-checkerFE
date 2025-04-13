@@ -4,6 +4,7 @@ import {
   FormControl,
   Tooltip,
   OverlayTrigger,
+  Form, // Import Form
 } from "react-bootstrap";
 import { useFormContext } from "@/context/FormContext";
 
@@ -17,24 +18,33 @@ function MonthsToEvaluateInput({ onInputChange }) {
   );
 
   return (
-    <InputGroup className="mb-3">
-      <InputGroup.Text style={{ width: "170px" }}>
+    // Add Form.Label for accessibility, visually hidden
+    <Form.Group className="mb-3">
+      <Form.Label htmlFor="months-to-evaluate" className="visually-hidden">
         Months to Evaluate
-      </InputGroup.Text>
-      <OverlayTrigger placement="top" overlay={renderTooltip}>
-        <FormControl
-          id="months-to-evaluate"
-          placeholder="Enter number of months to evaluate affordability"
-          type="number"
-          value={formData.monthsToEvaluate}
-          onChange={(e) => onInputChange("monthsToEvaluate", e.target.value)}
-          isInvalid={!!formErrors.monthsToEvaluateError}
-        />
-      </OverlayTrigger>
-      <FormControl.Feedback type="invalid">
+      </Form.Label>
+      <InputGroup>
+        {/* Remove fixed width style */}
+        <InputGroup.Text>Months to Evaluate</InputGroup.Text>
+        <OverlayTrigger placement="top" overlay={renderTooltip}>
+          <FormControl
+            id="months-to-evaluate"
+            placeholder="Enter number of months to evaluate affordability"
+            type="number"
+            value={formData.monthsToEvaluate}
+            onChange={(e) => onInputChange("monthsToEvaluate", e.target.value)}
+            isInvalid={!!formErrors.monthsToEvaluateError}
+          />
+        </OverlayTrigger>
+        <FormControl.Feedback type="invalid">
+          {formErrors.monthsToEvaluateError}
+        </FormControl.Feedback>
+      </InputGroup>
+      {/* Keep Feedback outside InputGroup but inside Form.Group */}
+      <FormControl.Feedback type="invalid" style={{ display: "block" }}>
         {formErrors.monthsToEvaluateError}
       </FormControl.Feedback>
-    </InputGroup>
+    </Form.Group>
   );
 }
 
