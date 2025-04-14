@@ -17,9 +17,8 @@
 
 ## Next Steps [Updated: 2025-04-14 18:16 EDT]
 
-1.  **Manually create a Vercel Deploy Hook** in the Vercel project settings and set the `VERCEL_DEPLOY_HOOK_URL` environment variable in Vercel.
-2.  **Set the `VERCEL_DEPLOY_TRIGGER_SECRET` environment variable** in the Vercel project settings with a strong, random secret key.
-3.  Stage changes (`git add .`).
-4.  Commit changes (`git commit -m "feat: implement automated monthly ZORI data update"`).
-5.  Push committed changes to the remote repository (`git push`).
-6.  Monitor Vercel deployments to ensure the ZORI data is updated monthly.
+1. Test new `/results` page functionality thoroughly.
+2. Test AI summary generation (including fallback/timeout).
+3. Finalize Next.js migration: test remaining features and API routes.
+4. Finalize serverless migration: test serverless endpoints in staging/production, update Vercel env vars.
+5. Review and improve user experience for results page layout and feedback mechanism.
