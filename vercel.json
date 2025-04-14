@@ -22,7 +22,6 @@
     {
       "path": "/api/trigger-deploy",
       "schedule": "0 0 1 * *",
-      "method": "POST",
       "headers": {
         "Authorization": "Bearer ${VERCEL_DEPLOY_TRIGGER_SECRET}"
       }

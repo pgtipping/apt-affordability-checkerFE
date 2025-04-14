@@ -48,69 +48,45 @@
 - ✅ All work complies with project rules: memory bank usage, mobile-first, WCAG contrast, professional icons only, plain English explanations, and updating the memory bank before staging.
 - ✅ Ready for build: next step is to run `npm run build` to verify the app is error-free.
 
-## Next Steps [2025-04-13 20:58 EDT]
+## Next Steps [2025-04-14 16:35 EDT]
 
-- Test `/api/ai/rent-estimates` with a variety of ZIP codes to verify correct rent values and error handling.
-- If successful, continue with integration of ZORI data into the frontend and further QA as needed.
-- Stage all files, commit, and push changes to `origin main`.
-- Document any issues or edge cases in the memory bank.
+1.  **Manually create a Vercel Deploy Hook** in the Vercel project settings and set the `VERCEL_DEPLOY_HOOK_URL` environment variable in Vercel.
+2.  **Set the `VERCEL_DEPLOY_TRIGGER_SECRET` environment variable** in the Vercel project settings with a strong, random secret key.
+3.  Stage changes (`git add .`).
+4.  Commit changes (`git commit -m "feat: implement automated monthly ZORI data update"`).
+5.  Push committed changes to the remote repository (`git push`).
+6.  Monitor Vercel deployments to ensure the ZORI data is updated monthly.
 
-## Next Steps [Updated: 2025-04-14 15:50 EDT]
+## Remaining Work
 
-1.  Stage changes (`git add .`).
-2.  Commit changes (`git commit -m "fix: finalize results page fixes (currency, error, cleanup)"`).
-3.  Push committed changes to the remote repository (`git push`).
-4.  Redeploy to Vercel and confirm all fixes (currency formatting, error handling, button removal) are working correctly.
-5.  If deployment is successful, proceed with implementing the automated monthly update workflow for the ZORI data.
-6.  Consider implementing AI response streaming in a future task for improved UX.
+### High Priority
 
-## How to Resume
+- Manually create a Vercel Deploy Hook and set the environment variable.
+- Set the `VERCEL_DEPLOY_TRIGGER_SECRET` environment variable.
+- Monitor Vercel deployments to ensure the ZORI data is updated monthly.
+- Test new `/results` page functionality thoroughly.
+- Test AI summary generation (including fallback/timeout).
+- Finalize Next.js migration: test remaining features and API routes.
+- Finalize serverless migration: test serverless endpoints in staging/production, update Vercel env vars.
+- Review and improve user experience for results page layout and feedback mechanism.
 
-- Review `activeContext.md` and this file for the latest context and next steps.
-- Stage, commit, and push final changes.
-- Redeploy to Vercel and perform final verification.
-- If successful, proceed with ZORI data automation implementation.
+### Medium Priority
 
----
+- Performance optimizations.
+- Add test coverage (Jest).
+- Continue accessibility improvements (WCAG contrast, etc.).
 
-#### 2025-04-13T04:56:19-04:00
+### Low Priority
 
-- **Production 404 errors resolved:**  
-  The app was returning 404 errors for the root URL and static files in production on Vercel. The issue was caused by the absence of a `next.config.js` file, which prevented Vercel from detecting and building the Next.js frontend.  
-  **Solution:** Added a minimal `next.config.js` file to the project root. After redeployment, the app and static files loaded correctly in production.
+- Advanced comparison features.
+- Saved scenarios.
+- Export functionality.
 
-## Working Features
+## Recent Updates (2025-04-14 18:16 EDT)
 
-- Form input collection
-- Basic cost calculations
-- Results rendering
-- Feedback submission (serverless)
-- AI Rent Estimation integration (ZORI, via static JSON lookup)
-- AI Recommendations (serverless)
-- AI Predictions (serverless)
-- AI Insights (serverless)
-- Address geocoding via Mapbox (LocationService.js)
-- Serverless architecture (Next.js API routes)
-- Path aliases for simplified imports
+- ✅ Removed `method` property from Vercel Cron Job configuration in `vercel.json` to fix deployment error.
 
-## Known Issues
-
-- No test coverage documented.
-- Serverless migration finalization pending (test endpoints, update Vercel env vars).
-- Results page duplication observed in dev mode (likely Strict Mode artifact, monitor in production).
-- Console errors (`Abort fetching`, `Node not found`) observed in dev mode (likely related to routing/Strict Mode, monitor in production).
-
-## Recent Updates (2025-04-14 16:35 EDT)
-
-- ✅ Implemented automatic ZORI data download in `scripts/convert-zori-csv-to-json.js`.
-- ✅ Added `axios` dependency.
-- ✅ Added `prebuild` script to `package.json`.
-- ✅ Created `.env.example` with placeholders for Vercel Deploy Hook URL and secret.
-- ✅ Created API endpoint `pages/api/trigger-deploy.js` to trigger Vercel deployments.
-- ✅ Configured Vercel Cron Job in `vercel.json` to trigger monthly deployments.
-- ✅ Removed comments from `vercel.json`
-
-## Next Steps [Updated: 2025-04-14 16:35 EDT]
+## Next Steps [Updated: 2025-04-14 18:16 EDT]
 
 1.  **Manually create a Vercel Deploy Hook** in the Vercel project settings and set the `VERCEL_DEPLOY_HOOK_URL` environment variable in Vercel.
 2.  **Set the `VERCEL_DEPLOY_TRIGGER_SECRET` environment variable** in the Vercel project settings with a strong, random secret key.
