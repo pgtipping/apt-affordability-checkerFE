@@ -1,11 +1,11 @@
 # Vercel Deployment Log
 
-[16:38:43.112] Cloning github.com/pgtipping/apt-affordability-checkerFE (Branch: main, Commit: c870909)
-[16:38:43.884] Cloning completed: 771.000ms
-[16:38:46.021] Restored build cache from previous deployment (9NzoKZZgikqohQGGC6RMTzodsDNA)
-[16:38:46.125] Running build in Washington, D.C., USA (East) – iad1
-[16:38:46.516] Running "vercel build"
-[16:38:46.912] Vercel CLI 41.5.0
-[16:38:47.015] Error: Invalid vercel.json - `crons[0]` should NOT have additional property `method`. Please remove it.
-[16:38:47.016] View Documentation: <https://vercel.com/docs/concepts/projects/project-configuration#crons>
-[16:38:47.258]
+[18:43:42.724] Cloning github.com/pgtipping/apt-affordability-checkerFE (Branch: main, Commit: 7f28e95)
+[18:43:43.646] Cloning completed: 922.000ms
+[18:43:45.524] Restored build cache from previous deployment (9NzoKZZgikqohQGGC6RMTzodsDNA)
+[18:43:45.725] Running build in Washington, D.C., USA (East) – iad1
+[18:43:46.119] Running "vercel build"
+[18:43:46.500] Vercel CLI 41.5.0
+[18:43:46.603] Error: Invalid vercel.json - `crons[0]` should NOT have additional property `headers`. Please remove it.
+[18:43:46.604] View Documentation: https://vercel.com/docs/concepts/projects/project-configuration#crons
+[18:43:46.835]
