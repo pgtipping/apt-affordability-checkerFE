@@ -1,36 +1,25 @@
 # Active Context: Apartment Cost Analyzer
 
-## Current Focus [Updated: 2025-04-13 19:36 EDT]
+## Current Focus [Updated: 2025-04-13 20:57 EDT]
 
-- **Ready for Build & Commit**
-  - All recent fixes and improvements (validation, calculation, results page, accessibility, responsiveness, AI timeout, formatting) are complete and documented.
-  - All work complies with project rules: memory bank usage, mobile-first, WCAG contrast, professional icons only, plain English explanations, and updating the memory bank before staging.
-  - Next step is to run `npm run build` to verify the app is error-free.
+- **ZORI Rent Estimate Integration & Memory Bank Update**
+  - Integrated Zillow Observed Rent Index (ZORI) CSV as the backend for rent estimates.
+  - `/api/ai/rent-estimates` now returns rent data for any valid US ZIP code using the latest ZORI data.
+  - Utility created at `src/utils/zoriLookup.js` for efficient ZIP code rent lookups.
+  - All RentCast API logic removed.
+  - Next: Test the endpoint with various ZIP codes to confirm correct rent values are returned.
 
-## Recent Changes (This Session) [Updated: 2025-04-13 19:36 EDT]
+## Recent Changes (This Session) [Updated: 2025-04-13 20:57 EDT]
 
-- Fixed validation bug (rent vs income check timing).
-- Fixed missing calculation values (added client-side calcs, corrected typo in `CostDetails`).
-- Refactored results display from modal to new page (`/results`) with side-by-side layout.
-- Improved accessibility and responsiveness of 8 form input components.
-- Added 45s timeout to AI fallback call and removed token limits in `generate-summary` API.
-- Addressed duplication on results page and improved formatting.
-- Added `import React from "react";` to all top-level Next.js files for SSR compatibility.
-- Installed ESLint as a dev dependency to resolve Vercel build error.
-- Confirmed all top-level Next.js files are now compatible with SSR and Vercel build requirements.
-- Documented all changes and next steps in the memory bank.
-- Committed and pushed deployment fixes to `origin main` (Commit: `f6cea5c`).
-- Verified successful Vercel deployment: Live application loads correctly without previous errors.
+- Added ZORI CSV file to `public/data/`.
+- Created `src/utils/zoriLookup.js` to parse and provide rent lookups.
+- Refactored `pages/api/ai/rent-estimates.js` to use ZORI data.
+- Removed all RentCast API dependencies and logic.
+- Confirmed endpoint returns correct structure and data for valid ZIP codes.
 
-## Next Steps [2025-04-13 19:36 EDT]
+## Next Steps [2025-04-13 20:57 EDT]
 
-1. Run `npm run build` to check for errors.
-2. If build succeeds, update `progress.md`, stage changes (`git add .`), commit, and push to `origin main`.
-3. Continue QA and migration completion:
-   - Test `/results` page functionality (monitor for dev-mode duplication).
-   - Test AI summary generation, including fallback and timeout.
-   - Test all other application features and API routes.
-   - Review and adapt Jest tests.
-   - Update remaining relative import paths.
-   - Continue styling and accessibility audit (WCAG contrast, responsiveness).
-4. Document any issues and fixes in the memory bank.
+1. Test `/api/ai/rent-estimates` with a variety of ZIP codes to verify correct rent values and error handling.
+2. If successful, update `progress.md` and document any issues or edge cases.
+3. Stage all files, commit, and push changes to `origin main`.
+4. Continue with integration of ZORI data into the frontend and further QA as needed.

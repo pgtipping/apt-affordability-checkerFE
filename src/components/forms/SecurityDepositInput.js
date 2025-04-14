@@ -25,7 +25,9 @@ function SecurityDepositInput({ onInputChange }) {
       </Form.Label>
       <InputGroup>
         {/* Remove fixed width style */}
-        <InputGroup.Text>Security Deposit</InputGroup.Text>
+        <InputGroup.Text className={styles["form-label-uniform"]}>
+          Security Deposit
+        </InputGroup.Text>
         <OverlayTrigger placement="top" overlay={renderTooltip}>
           <FormControl
             id="security-deposit"

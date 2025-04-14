@@ -27,7 +27,9 @@ function RentEstimateInput({ onInputChange }) {
       </Form.Label>
       <InputGroup>
         {/* Remove fixed width style */}
-        <InputGroup.Text>Monthly Rent</InputGroup.Text>
+        <InputGroup.Text className={styles["form-label-uniform"]}>
+          Monthly Rent
+        </InputGroup.Text>
         <OverlayTrigger placement="top" overlay={renderTooltip}>
           <FormControl
             id="rent"

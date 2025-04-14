@@ -25,7 +25,9 @@ function MonthsToEvaluateInput({ onInputChange }) {
       </Form.Label>
       <InputGroup>
         {/* Remove fixed width style */}
-        <InputGroup.Text>Months to Evaluate</InputGroup.Text>
+        <InputGroup.Text className={styles["form-label-uniform"]}>
+          Months to Evaluate
+        </InputGroup.Text>
         <OverlayTrigger placement="top" overlay={renderTooltip}>
           <FormControl
             id="months-to-evaluate"

@@ -26,7 +26,9 @@ function TotalMonthlyIncomeInput({ onInputChange }) {
       </Form.Label>
       <InputGroup>
         {/* Remove fixed width style */}
-        <InputGroup.Text>Monthly Income</InputGroup.Text>
+        <InputGroup.Text className={styles["form-label-uniform"]}>
+          Monthly Income
+        </InputGroup.Text>
         <OverlayTrigger placement="top" overlay={renderTooltip}>
           <FormControl
             id="total-monthly-income"

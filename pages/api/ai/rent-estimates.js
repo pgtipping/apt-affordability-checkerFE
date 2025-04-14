@@ -16,62 +16,24 @@ export default async function handler(req, res) {
     return;
   }
 
-  // Query RentCast API
-  const RENTCAST_API_KEY = process.env.RENTCAST_API_KEY;
-  if (!RENTCAST_API_KEY) {
-    res.status(500).json({ error: "RentCast API key not configured." });
-    return;
-  }
-
+  // ZORI CSV lookup logic will be inserted here.
   try {
-    // RentCast API: https://developers.rentcast.io/reference/market-data
-    const params = new URLSearchParams({
-      zipCode: zipCode,
-      // Optionally add history=true or specific property types if needed
-      // propertyType: 'Single Family', // Example
-      // history: 'true' // Example
-    });
-    const rentcastRes = await fetch(
-      `https://api.rentcast.io/v1/markets?${params.toString()}`,
-      {
-        method: "GET",
-        headers: {
-          accept: "application/json",
-          "X-Api-Key": RENTCAST_API_KEY,
-        },
-      }
-    );
-
-    if (!rentcastRes.ok) {
-      const errorText = await rentcastRes.text();
-      res.status(502).json({ error: "RentCast API error", details: errorText });
-      return;
-    }
-
-    const data = await rentcastRes.json();
-    // Temporary log to inspect RentCast response structure
-    // Temporary log removed
-
-    // Extract relevant average rent data (adjust based on actual response structure)
-    // Example: Assuming response has averageRentByBedrooms or similar
-    // Let's assume we want the average for a 1-bedroom for simplicity
-    // Extract relevant rent data (adjust based on actual response structure)
-    // Attempt to find values at top level or within the first array element
-    const averageRent = data?.averageRent || data?.[0]?.averageRent || null;
-    const lowRent = data?.lowRent || data?.[0]?.lowRent || null;
-    const highRent = data?.highRent || data?.[0]?.highRent || null;
+    // Dynamically import the ZORI lookup utility
+    const { getRentByZip } = require("../../../src/utils/zoriLookup");
+    const result = getRentByZip(zipCode);
 
     res.status(200).json({
-      averageRent: averageRent,
-      lowRent: lowRent, // Return low rent if available
-      highRent: highRent, // Return high rent if available
-      source: "RentCast Market Data",
-      zipCode: zipCode,
+      averageRent: result.rent,
+      lowRent: null,
+      highRent: null,
+      source: result.source,
+      zipCode: result.zip,
+      month: result.month,
     });
   } catch (err) {
-    console.error("RentCast Market API Error:", err);
+    console.error("ZORI Rent Lookup Error:", err);
     res.status(500).json({
-      error: "Internal server error fetching market data",
+      error: "Internal server error fetching rent estimate from ZORI",
       details: err.message,
     });
   }

@@ -25,7 +25,9 @@ function MonthlyLivingCostInput({ onInputChange }) {
       </Form.Label>
       <InputGroup>
         {/* Remove fixed width style */}
-        <InputGroup.Text>Monthly Living Costs</InputGroup.Text>
+        <InputGroup.Text className={styles["form-label-uniform"]}>
+          Monthly Living Costs
+        </InputGroup.Text>
         <OverlayTrigger placement="top" overlay={renderTooltip}>
           <FormControl
             id="monthly-living-cost"

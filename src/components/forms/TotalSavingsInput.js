@@ -26,7 +26,9 @@ function TotalSavingsInput({ onInputChange }) {
       </Form.Label>
       <InputGroup>
         {/* Remove fixed width style */}
-        <InputGroup.Text>Total Savings</InputGroup.Text>
+        <InputGroup.Text className={styles["form-label-uniform"]}>
+          Total Savings
+        </InputGroup.Text>
         <OverlayTrigger placement="top" overlay={renderTooltip}>
           <FormControl
             id="total-savings"

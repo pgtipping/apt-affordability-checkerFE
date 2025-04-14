@@ -25,7 +25,9 @@ function LocationInput({ onInputChange }) {
       </Form.Label>
       <InputGroup>
         {/* Remove fixed width style */}
-        <InputGroup.Text>Location</InputGroup.Text>
+        <InputGroup.Text className={styles["form-label-uniform"]}>
+          Location
+        </InputGroup.Text>
         <OverlayTrigger placement="top" overlay={renderTooltip}>
           <FormControl
             id="location"

@@ -26,7 +26,9 @@ function MovingAndSetupCostInput({ onInputChange }) {
       </Form.Label>
       <InputGroup>
         {/* Remove fixed width style */}
-        <InputGroup.Text>Moving & Setup Cost</InputGroup.Text>
+        <InputGroup.Text className={styles["form-label-uniform"]}>
+          Moving & Setup Cost
+        </InputGroup.Text>
         <OverlayTrigger placement="top" overlay={renderTooltip}>
           <FormControl
             id="moving-setup-cost"
