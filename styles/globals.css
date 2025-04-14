@@ -67,10 +67,12 @@ h2 {
 }
 
 /* Specific styles for AI Summary headings */
-.ai-summary-markdown h2,
-.ai-summary-markdown h3,
-.ai-summary-markdown h4 {
-  font-size: calc(0.75rem + 0.9vw); /* Apply H2 size to H3/H4 in summary */
+div.ai-summary-markdown h2,
+div.ai-summary-markdown h3,
+div.ai-summary-markdown h4 {
+  font-size: calc(
+    0.75rem + 0.9vw
+  ) !important; /* Apply H2 size to H3/H4 in summary */
   /* Add margin-top for spacing if needed */
   margin-top: 1rem;
 }

@@ -166,6 +166,7 @@ export default async function handler(req, res) {
     2. Compare the user's planned rent to the market average for the ZIP code.
     3. Comment on the affordability based on the provided calculation results.
     4. Provide 2-3 actionable recommendations or points to consider (e.g., negotiation points, savings goals, budget adjustments).
+    5. DO NOT include a main header, only subheaders.
     Keep the tone helpful and encouraging. Format using markdown.
   `;
 
@@ -203,7 +204,9 @@ export default async function handler(req, res) {
   } catch (err) {
     // This catch block might be redundant now due to inner catches, but kept for safety
     const errorMessage =
-      err instanceof Error ? err.message : "An unknown error occurred";
+      err instanceof Error
+        ? err.message
+        : "An unknown error occurred. Please try again.";
     console.error("Error in generate-summary handler:", errorMessage, err); // Log the full error too
     res.status(500).json({
       error: "Internal server error generating summary.",

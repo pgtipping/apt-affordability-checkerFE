@@ -1,4 +1,18 @@
-# Project Progress: Apartment Cost Analyzer [Updated: 2025-04-14 03:02 EDT]
+# Project Progress: Apartment Cost Analyzer [Updated: 2025-04-14 14:27 EDT]
+
+## Recent Updates (2025-04-14 14:27 EDT)
+
+- ✅ Fixed AI summary generation 504 timeout error by configuring Vercel function `maxDuration` to 60s and setting internal API call timeouts to 25s in `pages/api/ai/generate-summary.js`.
+- ✅ Updated results page UI (`pages/results.js`):
+  - Removed main `<h1>Affordability Results</h1>` header.
+  - Changed AI summary card header to "Summary & Recommendations".
+  - Added AI disclaimer text below the summary section.
+- ✅ Updated global styles (`styles/globals.css`):
+  - Added responsive font sizes for `h1` (`calc(0.375rem + 1.5vw)`) and `h2` (`calc(0.75rem + 0.9vw)`).
+  - Added specific rules to apply `h2` font size to `h2`, `h3`, `h4` within the `.ai-summary-markdown` container for consistency.
+- ✅ Confirmed ZORI data represents an aggregate rent measure across SFR, Condo, and MFR.
+- ✅ Updated memory bank (`activeContext.md`, `progress.md`) with current status and next steps.
+- ✅ Committed all fixes and UI updates.
 
 ## Recent Updates (2025-04-14 03:02 EDT)
 
@@ -34,18 +48,18 @@
 - Stage all files, commit, and push changes to `origin main`.
 - Document any issues or edge cases in the memory bank.
 
-## Next Steps [Updated: 2025-04-14 03:02 EDT]
+## Next Steps [Updated: 2025-04-14 14:27 EDT]
 
-1. Thoroughly test the application locally to confirm all fixes are working as expected (no build errors, no runtime errors, correct rent estimates fetched and displayed).
-2. If local testing is successful, commit and push changes.
-3. Deploy to Vercel and confirm the build succeeds and the application functions correctly in production.
-4. If deployment is successful, proceed with implementing the automated monthly update workflow for the ZORI data.
+1.  Push committed changes to the remote repository (`git push`).
+2.  Deploy to Vercel and confirm the build succeeds and the application functions correctly in production (UI updates and AI summary).
+3.  If deployment is successful, proceed with implementing the automated monthly update workflow for the ZORI data.
+4.  Consider implementing AI response streaming in a future task for improved UX.
 
 ## How to Resume
 
 - Review `activeContext.md` and this file for the latest context and next steps.
-- Test the application locally to confirm fixes.
-- If successful, commit, push, and deploy to Vercel.
+- Push changes to remote repository.
+- Deploy to Vercel and test.
 - If deployment is successful, proceed with automation implementation.
 
 ---
@@ -102,7 +116,6 @@
 ## How to Resume
 
 - Review `activeContext.md` and this file for the latest context and next steps.
-- Test `/api/ai/rent-estimates` endpoint with sample ZIP codes.
-- Test the application locally to confirm fixes.
-- If successful, commit, push, and deploy to Vercel.
+- Push changes to remote repository.
+- Deploy to Vercel and test.
 - If deployment is successful, proceed with automation implementation.

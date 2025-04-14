@@ -83,7 +83,7 @@ function Results({ showResults, setShowResults }) {
             )}
             <div className="results-divider" />
             <div className="ai-summary-section mt-3">
-              <h5>AI-Powered Personalized Summary</h5>
+              <h5>Summary & Recommendations</h5>
               {loading && (
                 <div className="d-flex align-items-center mb-2">
                   <Spinner animation="border" size="sm" className="me-2" />

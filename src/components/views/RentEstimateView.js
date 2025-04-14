@@ -37,7 +37,6 @@ const RentEstimateView = ({ rentEstimates }) => {
 
   return (
     <div className={styles.container}>
-      <h3 id="rent-estimates-title">Rent Estimates</h3>
       {/* Check the rentEstimates prop */}
       {rentEstimates ? (
         <>

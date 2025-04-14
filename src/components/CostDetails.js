@@ -9,7 +9,6 @@ const CostDetails = () => {
 
   return (
     <div>
-      <h2>Cost Details</h2>
       <p>Initial Costs: ${results.initialCosts}</p>
       <p>Total Monthly Costs: ${results.totalMonthlyCosts}</p>{" "}
       {/* Fix typo: Cost -> Costs */}
