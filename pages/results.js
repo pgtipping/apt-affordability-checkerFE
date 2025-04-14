@@ -54,12 +54,13 @@ const calculateResults = (formData) => {
 
   // TODO: affordabilityDuration calculation if needed
 
+  // Return raw numbers; formatting will be handled by formatCurrency in components
   return {
-    initialCosts: initialCosts.toFixed(2),
-    totalMonthlyCosts: totalMonthlyCosts.toFixed(2),
-    totalCostOverTime: totalCostOverTime.toFixed(2),
+    initialCosts: initialCosts,
+    totalMonthlyCosts: totalMonthlyCosts,
+    totalCostOverTime: totalCostOverTime,
     canAfford: canAfford,
-    additionalMonthlyIncomeNeeded: additionalMonthlyIncomeNeeded.toFixed(2),
+    additionalMonthlyIncomeNeeded: additionalMonthlyIncomeNeeded,
     // affordabilityDuration: calculatedDuration, // Add when implemented
   };
 };
@@ -144,7 +145,8 @@ export default function ResultsPage() {
           setSummary(data.summary || "");
         })
         .catch((err) => {
-          // Log the actual error for debugging, but show a generic message to the user
+          // ALWAYS show the generic error message, regardless of the actual error type.
+          // Log the specific error to the console for debugging.
           console.error("AI Summary Generation Error:", err);
           setSummaryError(
             "Could not connect to the service. Please check your internet connection and try again."
@@ -259,13 +261,7 @@ export default function ResultsPage() {
                 )}
               </Card.Body>
             </Card>
-            <Button
-              variant="secondary"
-              onClick={() => router.back()}
-              className="mt-3"
-            >
-              &larr; Back to Form
-            </Button>
+            {/* REMOVED second Back to Form button */}
           </Col>
         </Row>
       </Container>

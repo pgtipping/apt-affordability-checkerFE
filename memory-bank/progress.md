@@ -1,10 +1,15 @@
-# Project Progress: Apartment Cost Analyzer [Updated: 2025-04-14 15:00 EDT]
+# Project Progress: Apartment Cost Analyzer [Updated: 2025-04-14 15:39 EDT]
 
-## Recent Updates (2025-04-14 15:00 EDT)
+## Recent Updates (2025-04-14 15:39 EDT)
 
-- ✅ Simplified AI summary frontend error handling in `pages/results.js` to display a single generic message ("Could not connect to the service...") for all errors, while logging specifics to console.
-- ✅ Attempted fix for production AI summary 504 error (Attempt 2): Reduced internal OpenRouter API call timeouts from 25s to 22s each in `pages/api/ai/generate-summary.js`.
-- ✅ Attempted fix for production AI summary 504 error (Attempt 1): Configured Vercel function `maxDuration` to 60s and set internal API call timeouts to 25s in `pages/api/ai/generate-summary.js`.
+- ✅ Added `console.log` statements to `CostDetails.js`, `Affordability.js`, and `RentEstimateView.js` to debug currency formatting data types.
+- ✅ Attempted fix for currency formatting by applying direct `toLocaleString` in components (still resulted in missing commas).
+- ✅ Ensured raw numbers passed from `calculateResults` in `pages/results.js` (removed `.toFixed(2)`).
+- ✅ Reinforced AI summary frontend error handling in `pages/results.js` (generic message).
+- ✅ Removed redundant "Back to Form" button from `pages/results.js`.
+- ✅ Deleted unused old component file `src/components/Results.js`.
+- ✅ Kept reduced internal OpenRouter API call timeouts (22s) in `pages/api/ai/generate-summary.js`.
+- ✅ Attempted fix for production AI summary 504 error (Attempt 1): Configured Vercel function `maxDuration` to 60s and set initial internal API call timeouts to 25s in `pages/api/ai/generate-summary.js`.
 - ✅ Updated results page UI (`pages/results.js`):
   - Removed main `<h1>Affordability Results</h1>` header.
   - Changed AI summary card header to "Summary & Recommendations".
@@ -13,7 +18,7 @@
   - Added responsive font sizes for `h1` (`calc(0.375rem + 1.5vw)`) and `h2` (`calc(0.75rem + 0.9vw)`).
   - Added specific rules to apply `h2` font size to `h2`, `h3`, `h4` within the `.ai-summary-markdown` container for consistency.
 - ✅ Confirmed ZORI data represents an aggregate rent measure across SFR, Condo, and MFR.
-- ✅ Updated memory bank (`activeContext.md`, `progress.md`) with current status and next steps after timeout fix and simplified frontend error handling.
+- ✅ Updated memory bank (`activeContext.md`, `progress.md`) with current status and debugging steps.
 - ✅ Committed initial fixes and UI updates.
 
 ## Recent Updates (2025-04-14 03:02 EDT)
@@ -50,21 +55,23 @@
 - Stage all files, commit, and push changes to `origin main`.
 - Document any issues or edge cases in the memory bank.
 
-## Next Steps [Updated: 2025-04-14 15:00 EDT]
+## Next Steps [Updated: 2025-04-14 15:39 EDT]
 
 1.  Stage changes (`git add .`).
-2.  Commit changes (`git commit -m "fix: simplify AI summary error message & reduce timeouts"`).
+2.  Commit changes (`git commit -m "chore: add console logs for currency formatting debug"`).
 3.  Push committed changes to the remote repository (`git push`).
-4.  Redeploy to Vercel and confirm the 504 error is resolved and the generic frontend error message displays correctly on failure.
-5.  If deployment is successful, proceed with implementing the automated monthly update workflow for the ZORI data.
-6.  Consider implementing AI response streaming in a future task for improved UX.
+4.  **User Action:** Redeploy to Vercel.
+5.  **User Action:** Access the results page in the browser, open the developer console, and report the logged values and types for the currency fields.
+6.  Based on console logs, determine the root cause and apply the correct fix for currency formatting.
+7.  If formatting is fixed and deployment successful, proceed with ZORI data automation.
 
 ## How to Resume
 
 - Review `activeContext.md` and this file for the latest context and next steps.
-- Stage, commit, and push changes to remote repository.
-- Redeploy to Vercel and test the AI summary functionality and simplified error handling.
-- If deployment is successful, proceed with ZORI data automation implementation.
+- Stage, commit, and push changes including console logs.
+- User needs to redeploy and inspect browser console logs on the results page.
+- Provide console output to Cline to diagnose the formatting issue.
+- If formatting is fixed and deployment successful, proceed with ZORI data automation implementation.
 
 ---
 
