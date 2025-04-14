@@ -8,6 +8,7 @@ import {
   Form, // Import Form
 } from "react-bootstrap";
 import { useFormContext } from "@/context/FormContext";
+import styles from "../FormComponent.module.css";
 
 function RentEstimateInput({ onInputChange }) {
   const { formData, formErrors } = useFormContext();

@@ -45,13 +45,14 @@ const RentEstimateView = ({ rentEstimates }) => {
             <div className={styles.estimateItem}>
               <span>Average Rent:</span>
               <span style={{ color: "#1b5e20" }}>
-                ${rentEstimates.averageRent}
+                ${rentEstimates.averageRent?.toFixed(2)}
               </span>
             </div>
             <div className={styles.estimateItem}>
               <span>Range:</span>
               <span style={{ color: "#1b5e20" }}>
-                ${rentEstimates.lowRent} - ${rentEstimates.highRent}
+                ${rentEstimates.lowRent?.toFixed(2)} - $
+                {rentEstimates.highRent?.toFixed(2)}
               </span>
             </div>
             <div className={styles.estimateItem}>

@@ -1,25 +1,25 @@
 # Active Context: Apartment Cost Analyzer
 
-## Current Focus [Updated: 2025-04-13 20:57 EDT]
+## Current Focus [Updated: 2025-04-14 03:02 EDT]
 
-- **ZORI Rent Estimate Integration & Memory Bank Update**
-  - Integrated Zillow Observed Rent Index (ZORI) CSV as the backend for rent estimates.
-  - `/api/ai/rent-estimates` now returns rent data for any valid US ZIP code using the latest ZORI data.
-  - Utility created at `src/utils/zoriLookup.js` for efficient ZIP code rent lookups.
-  - All RentCast API logic removed.
-  - Next: Test the endpoint with various ZIP codes to confirm correct rent values are returned.
+- **Fix Vercel Build & Runtime Errors**
+  - Resolved Vercel build failure (`Module not found: Can't resolve 'csv-parse/sync'`) by switching ZORI rent lookup to use a pre-generated static JSON file (`public/data/zori-latest.json`).
+  - Fixed `ReferenceError: styles is not defined` in multiple form components by adding missing CSS module imports.
+  - Corrected rent estimate lookup logic in `src/utils/zoriLookup.js` to handle ZIP codes with leading zeros.
+  - Formatted rent estimate display in `src/components/views/RentEstimateView.js` to two decimal places.
 
-## Recent Changes (This Session) [Updated: 2025-04-13 20:57 EDT]
+## Recent Changes (This Session) [Updated: 2025-04-14 03:02 EDT]
 
-- Added ZORI CSV file to `public/data/`.
-- Created `src/utils/zoriLookup.js` to parse and provide rent lookups.
-- Refactored `pages/api/ai/rent-estimates.js` to use ZORI data.
-- Removed all RentCast API dependencies and logic.
-- Confirmed endpoint returns correct structure and data for valid ZIP codes.
+- Created script `scripts/convert-zori-csv-to-json.js` to generate `public/data/zori-latest.json`.
+- Generated `public/data/zori-latest.json` with latest rent data per ZIP.
+- Updated `src/utils/zoriLookup.js` to use `zori-latest.json` instead of runtime CSV parsing.
+- Added `import styles from '../FormComponent.module.css'` to `LocationInput.js`, `MonthsToEvaluateInput.js`, `SecurityDepositInput.js`, `TotalSavingsInput.js`, `RentEstimateInput.js`, `NetHouseholdIncomeInput.js`.
+- Updated `src/components/views/RentEstimateView.js` to format rent values using `toFixed(2)`.
+- Installed `csv-parse` dependency (needed for conversion script).
 
-## Next Steps [2025-04-13 20:57 EDT]
+## Next Steps [Updated: 2025-04-14 03:02 EDT]
 
-1. Test `/api/ai/rent-estimates` with a variety of ZIP codes to verify correct rent values and error handling.
-2. If successful, update `progress.md` and document any issues or edge cases.
-3. Stage all files, commit, and push changes to `origin main`.
-4. Continue with integration of ZORI data into the frontend and further QA as needed.
+1. Thoroughly test the application locally to confirm all fixes are working as expected (no build errors, no runtime errors, correct rent estimates fetched and displayed).
+2. If local testing is successful, commit and push changes.
+3. Deploy to Vercel and confirm the build succeeds and the application functions correctly in production.
+4. If deployment is successful, proceed with implementing the automated monthly update workflow for the ZORI data.
