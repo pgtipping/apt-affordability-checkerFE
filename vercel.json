@@ -15,6 +15,17 @@
     { "src": "/api/ai/recommendations", "dest": "api/ai/recommendations.js" },
     { "src": "/api/ai/rent-estimates", "dest": "api/ai/rent-estimates.js" },
     { "src": "/api/feedback", "dest": "api/feedback/index.js" },
-    { "src": "/api/validate", "dest": "api/validate/index.js" }
+    { "src": "/api/validate", "dest": "api/validate/index.js" },
+    { "src": "/api/trigger-deploy", "dest": "pages/api/trigger-deploy.js" }
+  ],
+  "crons": [
+    {
+      "path": "/api/trigger-deploy",
+      "schedule": "0 0 1 * *",
+      "method": "POST",
+      "headers": {
+        "Authorization": "Bearer ${VERCEL_DEPLOY_TRIGGER_SECRET}"
+      }
+    }
   ]
 }

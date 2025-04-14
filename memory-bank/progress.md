@@ -100,10 +100,32 @@
 - Results page duplication observed in dev mode (likely Strict Mode artifact, monitor in production).
 - Console errors (`Abort fetching`, `Node not found`) observed in dev mode (likely related to routing/Strict Mode, monitor in production).
 
+## Recent Updates (2025-04-14 16:35 EDT)
+
+- ✅ Implemented automatic ZORI data download in `scripts/convert-zori-csv-to-json.js`.
+- ✅ Added `axios` dependency.
+- ✅ Added `prebuild` script to `package.json`.
+- ✅ Created `.env.example` with placeholders for Vercel Deploy Hook URL and secret.
+- ✅ Created API endpoint `pages/api/trigger-deploy.js` to trigger Vercel deployments.
+- ✅ Configured Vercel Cron Job in `vercel.json` to trigger monthly deployments.
+- ✅ Removed comments from `vercel.json`
+
+## Next Steps [Updated: 2025-04-14 16:35 EDT]
+
+1.  **Manually create a Vercel Deploy Hook** in the Vercel project settings and set the `VERCEL_DEPLOY_HOOK_URL` environment variable in Vercel.
+2.  **Set the `VERCEL_DEPLOY_TRIGGER_SECRET` environment variable** in the Vercel project settings with a strong, random secret key.
+3.  Stage changes (`git add .`).
+4.  Commit changes (`git commit -m "feat: implement automated monthly ZORI data update"`).
+5.  Push committed changes to the remote repository (`git push`).
+6.  Monitor Vercel deployments to ensure the ZORI data is updated monthly.
+
 ## Remaining Work
 
 ### High Priority
 
+- Manually create a Vercel Deploy Hook and set the environment variable.
+- Set the `VERCEL_DEPLOY_TRIGGER_SECRET` environment variable.
+- Monitor Vercel deployments to ensure the ZORI data is updated monthly.
 - Test new `/results` page functionality thoroughly.
 - Test AI summary generation (including fallback/timeout).
 - Finalize Next.js migration: test remaining features and API routes.
@@ -125,6 +147,6 @@
 ## How to Resume
 
 - Review `activeContext.md` and this file for the latest context and next steps.
-- Push changes to remote repository.
+- Stage, commit, and push changes to remote repository.
 - Deploy to Vercel and test.
 - If successful, proceed with ZORI data automation implementation.

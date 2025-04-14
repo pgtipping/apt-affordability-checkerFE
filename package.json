@@ -29,6 +29,7 @@
   },
   "scripts": {
     "dev": "next dev",
+    "prebuild": "node scripts/convert-zori-csv-to-json.js",
     "build": "next build",
     "start": "next start",
     "test": "jest",
