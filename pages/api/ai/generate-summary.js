@@ -173,15 +173,15 @@ export default async function handler(req, res) {
   try {
     let summary = "";
     try {
-      // 1. Try Primary OpenRouter Model with 25s timeout
-      summary = await callOpenRouter(PRIMARY_MODEL, prompt, 25000); // Adjusted timeout to 25s
+      // 1. Try Primary OpenRouter Model with 22s timeout
+      summary = await callOpenRouter(PRIMARY_MODEL, prompt, 22000); // Adjusted timeout to 22s
     } catch (error1) {
       console.warn(
         `Primary model (${PRIMARY_MODEL}) failed: ${error1.message}. Trying OpenRouter fallback.`
       );
       try {
-        // 2. Try Fallback OpenRouter Model with 25s timeout
-        summary = await callOpenRouter(FALLBACK_MODEL, prompt, 25000); // Adjusted timeout to 25s
+        // 2. Try Fallback OpenRouter Model with 22s timeout
+        summary = await callOpenRouter(FALLBACK_MODEL, prompt, 22000); // Adjusted timeout to 22s
       } catch (error2) {
         console.warn(
           `Fallback model (${FALLBACK_MODEL}) failed: ${error2.message}. Trying Gemini fallback.`

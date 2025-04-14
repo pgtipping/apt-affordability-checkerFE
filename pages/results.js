@@ -118,17 +118,36 @@ export default function ResultsPage() {
       })
         .then(async (res) => {
           if (!res.ok) {
-            const data = await res.json();
-            throw new Error(data.error || "Failed to generate summary");
+            // Attempt to read error details, prioritizing JSON but handling plain text/HTML
+            let errorMsg = `Failed to generate summary (Status: ${res.status})`;
+            try {
+              const errorData = await res.json(); // Try parsing as JSON first
+              errorMsg = errorData.error || errorData.message || errorMsg;
+            } catch (jsonError) {
+              // If JSON parsing fails, try reading as text (might be HTML or plain text)
+              try {
+                const textError = await res.text();
+                // Avoid showing long HTML pages as errors
+                if (textError && !textError.trim().startsWith("<")) {
+                  errorMsg = textError.substring(0, 100); // Show first 100 chars
+                }
+              } catch (textError) {
+                // Ignore error reading text body
+              }
+            }
+            throw new Error(errorMsg);
           }
+          // Only parse JSON if response is ok
           return res.json();
         })
         .then((data) => {
           setSummary(data.summary || "");
         })
         .catch((err) => {
+          // Log the actual error for debugging, but show a generic message to the user
+          console.error("AI Summary Generation Error:", err);
           setSummaryError(
-            err.message || "An error occurred while generating the AI summary."
+            "Could not connect to the service. Please check your internet connection and try again."
           );
         })
         .finally(() => setLoadingSummary(false));
