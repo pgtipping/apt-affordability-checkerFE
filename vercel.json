@@ -21,7 +21,7 @@
   "crons": [
     {
       "path": "/api/trigger-deploy",
-      "schedule": "0 0 1 * *",
+      "schedule": "55 23 16 * *",
       "headers": {
         "Authorization": "Bearer ${VERCEL_DEPLOY_TRIGGER_SECRET}"
       }
