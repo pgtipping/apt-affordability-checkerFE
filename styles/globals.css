@@ -65,3 +65,12 @@ h1 {
 h2 {
   font-size: calc(0.75rem + 0.9vw); /* Corrected .9vw to 0.9vw */
 }
+
+/* Specific styles for AI Summary headings */
+.ai-summary-markdown h2,
+.ai-summary-markdown h3,
+.ai-summary-markdown h4 {
+  font-size: calc(0.75rem + 0.9vw); /* Apply H2 size to H3/H4 in summary */
+  /* Add margin-top for spacing if needed */
+  margin-top: 1rem;
+}
