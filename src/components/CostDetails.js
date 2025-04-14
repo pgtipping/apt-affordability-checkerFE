@@ -1,19 +1,9 @@
 // CostDetails.js
 import React from "react";
-// Temporarily remove formatCurrency import to test direct toLocaleString
-// import { formatCurrency } from "@/utils/formatCurrency";
+// Restore central utility function import
+import { formatCurrency } from "@/utils/formatCurrency";
 
-// Helper for direct formatting (handles potential null/NaN)
-const formatDirectly = (value) => {
-  const number = Number(value);
-  if (isNaN(number)) return "$ -"; // Handle non-numeric inputs
-  return number.toLocaleString("en-US", {
-    style: "currency",
-    currency: "USD",
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2,
-  });
-};
+// Removed local formatDirectly helper
 
 // Accept results as a prop instead of using context
 const CostDetails = ({ results }) => {
@@ -23,28 +13,13 @@ const CostDetails = ({ results }) => {
     return <div>Loading cost details...</div>;
   }
 
-  // Log values and types before formatting
-  console.log(
-    "CostDetails - initialCosts:",
-    results.initialCosts,
-    typeof results.initialCosts
-  );
-  console.log(
-    "CostDetails - totalMonthlyCosts:",
-    results.totalMonthlyCosts,
-    typeof results.totalMonthlyCosts
-  );
-  console.log(
-    "CostDetails - totalCostOverTime:",
-    results.totalCostOverTime,
-    typeof results.totalCostOverTime
-  );
+  // Removed console logs
 
   return (
     <div>
-      <p>Initial Costs: {formatDirectly(results.initialCosts)}</p>
-      <p>Total Monthly Costs: {formatDirectly(results.totalMonthlyCosts)}</p>
-      <p>Total Cost Over Time: {formatDirectly(results.totalCostOverTime)}</p>
+      <p>Initial Costs: {formatCurrency(results.initialCosts)}</p>
+      <p>Total Monthly Costs: {formatCurrency(results.totalMonthlyCosts)}</p>
+      <p>Total Cost Over Time: {formatCurrency(results.totalCostOverTime)}</p>
     </div>
   );
 };

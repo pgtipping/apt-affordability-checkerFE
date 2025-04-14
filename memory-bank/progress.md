@@ -1,10 +1,10 @@
-# Project Progress: Apartment Cost Analyzer [Updated: 2025-04-14 15:39 EDT]
+# Project Progress: Apartment Cost Analyzer [Updated: 2025-04-14 15:50 EDT]
 
-## Recent Updates (2025-04-14 15:39 EDT)
+## Recent Updates (2025-04-14 15:50 EDT)
 
-- ✅ Added `console.log` statements to `CostDetails.js`, `Affordability.js`, and `RentEstimateView.js` to debug currency formatting data types.
-- ✅ Attempted fix for currency formatting by applying direct `toLocaleString` in components (still resulted in missing commas).
-- ✅ Ensured raw numbers passed from `calculateResults` in `pages/results.js` (removed `.toFixed(2)`).
+- ✅ Fixed currency formatting display (added commas, e.g., $1,000.00) by ensuring raw numbers were passed from `calculateResults` and applying `toLocaleString` via the `formatCurrency` utility.
+- ✅ Reverted `CostDetails.js`, `Affordability.js`, `RentEstimateView.js` back to using central `formatCurrency` utility after confirming fix.
+- ✅ Removed debugging `console.log` statements from components.
 - ✅ Reinforced AI summary frontend error handling in `pages/results.js` (generic message).
 - ✅ Removed redundant "Back to Form" button from `pages/results.js`.
 - ✅ Deleted unused old component file `src/components/Results.js`.
@@ -18,7 +18,7 @@
   - Added responsive font sizes for `h1` (`calc(0.375rem + 1.5vw)`) and `h2` (`calc(0.75rem + 0.9vw)`).
   - Added specific rules to apply `h2` font size to `h2`, `h3`, `h4` within the `.ai-summary-markdown` container for consistency.
 - ✅ Confirmed ZORI data represents an aggregate rent measure across SFR, Condo, and MFR.
-- ✅ Updated memory bank (`activeContext.md`, `progress.md`) with current status and debugging steps.
+- ✅ Updated memory bank (`activeContext.md`, `progress.md`) with final fixes and cleanup.
 - ✅ Committed initial fixes and UI updates.
 
 ## Recent Updates (2025-04-14 03:02 EDT)
@@ -55,23 +55,21 @@
 - Stage all files, commit, and push changes to `origin main`.
 - Document any issues or edge cases in the memory bank.
 
-## Next Steps [Updated: 2025-04-14 15:39 EDT]
+## Next Steps [Updated: 2025-04-14 15:50 EDT]
 
 1.  Stage changes (`git add .`).
-2.  Commit changes (`git commit -m "chore: add console logs for currency formatting debug"`).
+2.  Commit changes (`git commit -m "fix: finalize results page fixes (currency, error, cleanup)"`).
 3.  Push committed changes to the remote repository (`git push`).
-4.  **User Action:** Redeploy to Vercel.
-5.  **User Action:** Access the results page in the browser, open the developer console, and report the logged values and types for the currency fields.
-6.  Based on console logs, determine the root cause and apply the correct fix for currency formatting.
-7.  If formatting is fixed and deployment successful, proceed with ZORI data automation.
+4.  Redeploy to Vercel and confirm all fixes (currency formatting, error handling, button removal) are working correctly.
+5.  If deployment is successful, proceed with implementing the automated monthly update workflow for the ZORI data.
+6.  Consider implementing AI response streaming in a future task for improved UX.
 
 ## How to Resume
 
 - Review `activeContext.md` and this file for the latest context and next steps.
-- Stage, commit, and push changes including console logs.
-- User needs to redeploy and inspect browser console logs on the results page.
-- Provide console output to Cline to diagnose the formatting issue.
-- If formatting is fixed and deployment successful, proceed with ZORI data automation implementation.
+- Stage, commit, and push final changes.
+- Redeploy to Vercel and perform final verification.
+- If successful, proceed with ZORI data automation implementation.
 
 ---
 
@@ -129,4 +127,4 @@
 - Review `activeContext.md` and this file for the latest context and next steps.
 - Push changes to remote repository.
 - Deploy to Vercel and test.
-- If deployment is successful, proceed with ZORI data automation implementation.
+- If successful, proceed with ZORI data automation implementation.

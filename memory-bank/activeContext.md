@@ -1,16 +1,19 @@
 # Active Context: Apartment Cost Analyzer
 
-## Current Focus [Updated: 2025-04-14 15:39 EDT]
+## Current Focus [Updated: 2025-04-14 15:50 EDT]
 
-- **Debug Currency Formatting Issue**
-  - Added `console.log` statements to `CostDetails.js`, `Affordability.js`, and `RentEstimateView.js` to inspect the value and `typeof` data being passed for currency formatting at render time.
-  - Kept direct `Number(value).toLocaleString(...)` formatting within these components.
-  - Kept previous fixes: raw numbers from `calculateResults`, reinforced error handling, removed button, deleted old component, reduced API timeouts.
-- **Prepare for Redeployment & Debugging**
-  - Memory Bank updated with the addition of console logging for debugging.
-  - Ready to stage, commit, and push changes. Next step requires user to redeploy and inspect console logs.
+- **Finalize Results Page Fixes & Cleanup**
+  - Confirmed currency formatting is now working correctly (with commas).
+  - Reverted `CostDetails.js`, `Affordability.js`, and `RentEstimateView.js` back to using the central `formatCurrency` utility function.
+  - Removed debugging `console.log` statements from components.
+  - Kept previous fixes: ensured raw numbers from `calculateResults`, reinforced error handling, removed button, deleted old component, reduced API timeouts.
+- **Prepare for Final Deployment**
+  - Memory Bank updated with all consolidated fixes and cleanup.
+  - Ready to stage, commit, and push final changes for this round of fixes.
+- **Previous Focus: Debug Currency Formatting Issue**
+  - Added console logs to diagnose data types (confirmed numbers were passed).
 - **Previous Focus: Fix Currency Formatting (Direct `toLocaleString`) & Consolidate All Fixes**
-  - Applied direct `toLocaleString` formatting (still resulted in missing commas).
+  - Applied direct `toLocaleString` formatting (this step, combined with passing raw numbers, fixed the issue).
 - **Previous Focus: Fix Currency Formatting (via Utility)**
   - Deleted unused `src/components/Results.js`.
   - Kept reduced API timeouts (22s) in `pages/api/ai/generate-summary.js`.
@@ -46,16 +49,15 @@
   - Corrected rent estimate lookup logic in `src/utils/zoriLookup.js` to handle ZIP codes with leading zeros.
   - Formatted rent estimate display in `src/components/views/RentEstimateView.js` to two decimal places.
 
-## Recent Changes (This Session) [Updated: 2025-04-14 15:39 EDT]
+## Recent Changes (This Session) [Updated: 2025-04-14 15:50 EDT]
 
-- Added `console.log` for value/type to `CostDetails.js`.
-- Added `console.log` for value/type to `Affordability.js`.
-- Added `console.log` for value/type to `RentEstimateView.js`.
-- Modified `src/components/CostDetails.js`: Use direct `toLocaleString` formatting (previous step).
-- Modified `src/components/Affordability.js`: Use direct `toLocaleString` formatting (previous step).
-- Modified `src/components/views/RentEstimateView.js`: Use direct `toLocaleString` formatting (previous step).
+- Modified `src/components/CostDetails.js`: Removed logs, reverted to `formatCurrency`.
+- Modified `src/components/Affordability.js`: Removed logs, reverted to `formatCurrency`.
+- Modified `src/components/views/RentEstimateView.js`: Removed logs, reverted to `formatCurrency`.
+- Added `console.log` statements for debugging (previous step).
+- Applied direct `toLocaleString` formatting in components (previous step).
 - Modified `pages/results.js`: Removed `.toFixed(2)` from `calculateResults` function.
-- Created `src/utils/formatCurrency.js` (currently unused by components).
+- Created `src/utils/formatCurrency.js`.
 - Modified `pages/results.js`: Reinforced generic error handling in `fetch` call and removed redundant button.
 - Deleted `src/components/Results.js`.
 - Modified `pages/api/ai/generate-summary.js`: Reduced internal timeouts for `callOpenRouter` from 25000ms to 22000ms.
@@ -71,12 +73,11 @@
 - Updated `src/components/views/RentEstimateView.js` to format rent values using `toFixed(2)`.
 - Installed `csv-parse` dependency (needed for conversion script).
 
-## Next Steps [Updated: 2025-04-14 15:39 EDT]
+## Next Steps [Updated: 2025-04-14 15:50 EDT]
 
 1.  Stage changes (`git add .`).
-2.  Commit changes (`git commit -m "chore: add console logs for currency formatting debug"`).
+2.  Commit changes (`git commit -m "fix: finalize results page fixes (currency, error, cleanup)"`).
 3.  Push committed changes to the remote repository (`git push`).
-4.  **User Action:** Redeploy to Vercel.
-5.  **User Action:** Access the results page in the browser, open the developer console, and report the logged values and types for the currency fields.
-6.  Based on console logs, determine the root cause and apply the correct fix for currency formatting.
-7.  If formatting is fixed and deployment successful, proceed with ZORI data automation.
+4.  Redeploy to Vercel and confirm all fixes (currency formatting, error handling, button removal) are working correctly.
+5.  If deployment is successful, proceed with implementing the automated monthly update workflow for the ZORI data.
+6.  Consider implementing AI response streaming in a future task for improved UX.

@@ -1,6 +1,6 @@
 import React from "react";
-// Remove formatCurrency import, apply formatting directly
-// import { formatCurrency } from "@/utils/formatCurrency";
+// Restore central utility function import
+import { formatCurrency } from "@/utils/formatCurrency";
 import styles from "./RentEstimateView.module.css";
 import {
   BarChart,
@@ -12,18 +12,7 @@ import {
   Label,
 } from "recharts";
 
-// Helper for direct formatting (handles potential null/NaN)
-// Duplicated here for clarity, could be moved back to utils if this works
-const formatDirectly = (value) => {
-  const number = Number(value);
-  if (isNaN(number)) return "$ -"; // Handle non-numeric inputs
-  return number.toLocaleString("en-US", {
-    style: "currency",
-    currency: "USD",
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2,
-  });
-};
+// Removed local formatDirectly helper
 
 // Accept rentEstimates as a prop
 const RentEstimateView = ({ rentEstimates }) => {
@@ -53,37 +42,22 @@ const RentEstimateView = ({ rentEstimates }) => {
     <div className={styles.container}>
       {/* Check the rentEstimates prop */}
       {rentEstimates ? (
-        <>
-          {/* Log values and types before formatting */}
-          {console.log(
-            "RentEstimateView - averageRent:",
-            rentEstimates.averageRent,
-            typeof rentEstimates.averageRent
-          )}
-          {console.log(
-            "RentEstimateView - lowRent:",
-            rentEstimates.lowRent,
-            typeof rentEstimates.lowRent
-          )}
-          {console.log(
-            "RentEstimateView - highRent:",
-            rentEstimates.highRent,
-            typeof rentEstimates.highRent
-          )}
+        <div>
+          {/* Removed console logs */}
           <div className={styles.estimates}>
             <div className={styles.estimateItem}>
               <span>Average Rent:</span>
               <span style={{ color: "#1b5e20" }}>
-                {/* Apply direct formatting */}
-                {formatDirectly(rentEstimates.averageRent)}
+                {/* Use central utility function */}
+                {formatCurrency(rentEstimates.averageRent)}
               </span>
             </div>
             <div className={styles.estimateItem}>
               <span>Range:</span>
               <span style={{ color: "#1b5e20" }}>
-                {/* Apply direct formatting */}
-                {formatDirectly(rentEstimates.lowRent)} -{" "}
-                {formatDirectly(rentEstimates.highRent)}
+                {/* Use central utility function */}
+                {formatCurrency(rentEstimates.lowRent)} -{" "}
+                {formatCurrency(rentEstimates.highRent)}
               </span>
             </div>
             <div className={styles.estimateItem}>
@@ -121,22 +95,14 @@ const RentEstimateView = ({ rentEstimates }) => {
                   />
                 </YAxis>
                 <Tooltip
-                  // Apply direct formatting in tooltip
-                  // Also log the value passed to the tooltip formatter
-                  formatter={(value) => {
-                    console.log(
-                      "RentEstimateView Tooltip - value:",
-                      value,
-                      typeof value
-                    );
-                    return [formatDirectly(value), "Rent"];
-                  }}
+                  // Use central utility function in tooltip
+                  formatter={(value) => [formatCurrency(value), "Rent"]}
                 />
                 <Bar dataKey="value" fill="#1b5e20" />
               </BarChart>
             </ResponsiveContainer>
           </div>
-        </>
+        </div> // Changed closing fragment to match opening div
       ) : (
         <p className={styles.noData}>
           No rent estimates available. Enter a location to get estimates.
