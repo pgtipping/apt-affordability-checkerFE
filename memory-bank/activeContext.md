@@ -17,8 +17,9 @@
 
 ## Next Steps [Updated: 2025-04-14 18:16 EDT]
 
-1. Test new `/results` page functionality thoroughly.
-2. Test AI summary generation (including fallback/timeout).
-3. Finalize Next.js migration: test remaining features and API routes.
-4. Finalize serverless migration: test serverless endpoints in staging/production, update Vercel env vars.
-5. Review and improve user experience for results page layout and feedback mechanism.
+1. Monitor Vercel deployments to ensure the ZORI data is updated monthly.
+2. Test new `/results` page functionality thoroughly.
+3. Test AI summary generation (including fallback/timeout).
+4. Finalize Next.js migration: test remaining features and API routes.
+5. Finalize serverless migration: test serverless endpoints in staging/production, update Vercel env vars.
+6. Review and improve user experience for results page layout and feedback mechanism.
