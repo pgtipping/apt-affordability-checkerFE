@@ -23,3 +23,4 @@
 4. Finalize Next.js migration: test remaining features and API routes.
 5. Finalize serverless migration: test serverless endpoints in staging/production, update Vercel env vars.
 6. Review and improve user experience for results page layout and feedback mechanism.
+7. Verify CSS changes are reflected in production.
