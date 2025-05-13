@@ -1,10 +1,10 @@
-import React from "react";
-import FormComponent from "@/components/FormComponent";
+import { useEffect } from "react";
+import { useRouter } from "next/router";
 
 export default function Home() {
-  return (
-    <div>
-      <FormComponent />
-    </div>
-  );
+  const router = useRouter();
+  useEffect(() => {
+    router.replace("/affordability");
+  }, [router]);
+  return null;
 }

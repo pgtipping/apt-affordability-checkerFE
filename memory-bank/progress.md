@@ -1,4 +1,35 @@
-# Project Progress: Apartment Cost Analyzer [Updated: 2025-04-14 15:50 EDT]
+# Project Progress: Apartment Cost Analyzer [Updated: 2025-05-12 18:45:11 EDT]
+
+## 2025-05-12 18:45:11 – Session End: Scenario Planner Tab Removed
+- Removed the Scenario Planner tab/button from the Affordability Calculator page (`pages/affordability.js`).
+- Only the Affordability Calculator tab is now visible to users, simplifying the UI and preparing for further refactor work.
+
+
+## 2025-05-13 01:59:17 – Session End: Scenario Planner Rule Restored & UI Aligned
+
+- Scenario Planner logic restored to use 28% of gross income for rent (Ramit Sethi’s 28/36 rule).
+- Removed all net income/expenses calculation from rent logic.
+- Guide text, tooltips, and UI updated to reference 28% gross income and authoritative source.
+- UI and dark mode styling aligned across Affordability Calculator and Scenario Planner tabs.
+- Extra/duplicate buttons and layout inconsistencies removed.
+- Placeholder and label updates for clarity and consistency.
+
+### Next Steps
+
+- Monitor user feedback for clarity and usability of new rule and UI.
+- Consider refactoring to share state and logic across tabs/components.
+- Expand scenario event types or add more user guidance as needed.
+- Continue updating documentation and /memory-bank/ as features evolve.
+
+---
+
+## 2025-05-11 22:38:44 – Session End: Unified Entry
+
+- The root route (`/`) now redirects to `/affordability`, ensuring the app opens to the unified tab-based experience.
+- Remaining tasks:
+  - Refactor `FormComponent` and `ScenarioPlannerPage` to use shared state from the parent.
+  - Test seamless switching and data sharing between tabs.
+  - Remove or redirect legacy pages as needed.
 
 ## Recent Updates (2025-04-14 15:50 EDT)
 
@@ -50,12 +81,12 @@
 
 ## Next Steps [2025-04-14 16:35 EDT]
 
-1.  **Manually create a Vercel Deploy Hook** in the Vercel project settings and set the `VERCEL_DEPLOY_HOOK_URL` environment variable in Vercel.
-2.  **Set the `VERCEL_DEPLOY_TRIGGER_SECRET` environment variable** in the Vercel project settings with a strong, random secret key.
-3.  Stage changes (`git add .`).
-4.  Commit changes (`git commit -m "feat: implement automated monthly ZORI data update"`).
-5.  Push committed changes to the remote repository (`git push`).
-6.  Monitor Vercel deployments to ensure the ZORI data is updated monthly.
+1. **Manually create a Vercel Deploy Hook** in the Vercel project settings and set the `VERCEL_DEPLOY_HOOK_URL` environment variable in Vercel.
+2. **Set the `VERCEL_DEPLOY_TRIGGER_SECRET` environment variable** in the Vercel project settings with a strong, random secret key.
+3. Stage changes (`git add .`).
+4. Commit changes (`git commit -m "feat: implement automated monthly ZORI data update"`).
+5. Push committed changes to the remote repository (`git push`).
+6. Monitor Vercel deployments to ensure the ZORI data is updated monthly.
 
 ## Remaining Work
 
@@ -88,12 +119,12 @@
 
 ## Next Steps [Updated: 2025-04-14 18:16 EDT]
 
-1.  **Manually create a Vercel Deploy Hook** in the Vercel project settings and set the `VERCEL_DEPLOY_HOOK_URL` environment variable in Vercel.
-2.  **Set the `VERCEL_DEPLOY_TRIGGER_SECRET` environment variable** in the Vercel project settings with a strong, random secret key.
-3.  Stage changes (`git add .`).
-4.  Commit changes (`git commit -m "feat: implement automated monthly ZORI data update"`).
-5.  Push committed changes to the remote repository (`git push`).
-6.  Monitor Vercel deployments to ensure the ZORI data is updated monthly.
+1. **Manually create a Vercel Deploy Hook** in the Vercel project settings and set the `VERCEL_DEPLOY_HOOK_URL` environment variable in Vercel.
+2. **Set the `VERCEL_DEPLOY_TRIGGER_SECRET` environment variable** in the Vercel project settings with a strong, random secret key.
+3. Stage changes (`git add .`).
+4. Commit changes (`git commit -m "feat: implement automated monthly ZORI data update"`).
+5. Push committed changes to the remote repository (`git push`).
+6. Monitor Vercel deployments to ensure the ZORI data is updated monthly.
 
 ## Remaining Work
 

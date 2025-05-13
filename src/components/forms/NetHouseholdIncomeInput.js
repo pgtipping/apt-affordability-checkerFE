@@ -33,7 +33,7 @@ function TotalMonthlyIncomeInput({ onInputChange }) {
         <OverlayTrigger placement="top" overlay={renderTooltip}>
           <FormControl
             id="total-monthly-income"
-            placeholder="Enter total monthly income"
+            placeholder="monthly gross income"
             type="number"
             value={formData.totalMonthlyIncome}
             onChange={(e) =>

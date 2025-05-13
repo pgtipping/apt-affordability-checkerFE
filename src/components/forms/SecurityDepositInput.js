@@ -32,7 +32,7 @@ function SecurityDepositInput({ onInputChange }) {
         <OverlayTrigger placement="top" overlay={renderTooltip}>
           <FormControl
             id="security-deposit"
-            placeholder="Enter security deposit amount"
+            placeholder="security deposit amount"
             type="number"
             value={formData.securityDeposit}
             onChange={(e) => onInputChange("securityDeposit", e.target.value)}

@@ -25,7 +25,7 @@ function MonthlySavingsInput() {
       >
         <FormControl
           id="monthly-savings"
-          placeholder="Enter your monthly savings & investment amount"
+          placeholder="Monthly savings & investment amount"
           type="number"
           value={formData.monthlySavings}
           onChange={(e) => handleInputChange("monthlySavings", e.target.value)}

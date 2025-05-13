@@ -1,0 +1,18 @@
+---
+description: this rule is for proper project management
+---
+
+# project specific rules
+
+- This project should be configured to only run its development server on localhost:3004
+- do not use emojis. this is a professional mobile-first web app.
+- don't use code to explain when i ask questions. respond in plain english. except i ask to see the code.
+
+## development folder
+
+- /apartment-cost-analyzer
+
+## git directory
+
+- development folder
+

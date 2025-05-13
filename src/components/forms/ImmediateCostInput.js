@@ -27,7 +27,7 @@ function ImmediateCostInput() {
       >
         <FormControl
           id="immediate-cost"
-          placeholder="Enter total immediate cost"
+          placeholder="total immediate cost"
           type="number"
           value={formData.immediateCost}
           onChange={(e) => handleInputChange("immediateCost", e.target.value)}

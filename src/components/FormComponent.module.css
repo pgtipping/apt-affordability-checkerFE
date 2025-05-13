@@ -2,33 +2,38 @@
 
 .dark-mode {
   background-color: #444; /* Dark background color */
-  color: #fff; /* White text color */
+  color: #fff !important; /* White text color */
+}
+
+.dark-mode .card,
+.dark-mode .card-body {
+  color: #fff !important;
 }
 
 .dark-mode input,
 .dark-mode select {
-  background-color: #555; /* Dark background color for form inputs */
-  color: #fff; /* White text color for form inputs */
+  background-color: #555 !important; /* Dark background color for form inputs */
+  color: #fff !important; /* White text color for form inputs */
 }
 
 .dark-mode .btn-info {
-  background-color: #333; /* Dark background color for info buttons */
-  border-color: #fff; /* White border color for info buttons */
-  color: #fff; /* White text color for info buttons */
+  background-color: #333 !important; /* Dark background color for info buttons */
+  border-color: #fff !important; /* White border color for info buttons */
+  color: #fff !important; /* White text color for info buttons */
 }
 
 .dark-mode .btn-primary,
 .dark-mode .btn-outline-primary {
-  background-color: #007bff; /* Primary color for buttons */
-  border-color: #007bff; /* Primary border color for buttons */
-  color: #fff; /* White text color for buttons */
+  background-color: #007bff !important; /* Primary color for buttons */
+  border-color: #007bff !important; /* Primary border color for buttons */
+  color: #fff !important; /* White text color for buttons */
 }
 
 .dark-mode .btn-dark,
 .dark-mode .btn-outline-dark {
-  background-color: #343a40; /* Dark color for buttons */
-  border-color: #343a40; /* Dark border color for buttons */
-  color: #fff; /* White text color for buttons */
+  background-color: #343a40 !important; /* Dark color for buttons */
+  border-color: #343a40 !important; /* Dark border color for buttons */
+  color: #fff !important; /* White text color for buttons */
 }
 
 .form-check {
@@ -77,12 +82,12 @@
 }
 
 .form-control:focus {
-  border-color: #80bdff;
+  border-color: #80bdff !important;
   box-shadow: 0 0 5px rgba(128, 189, 255, 0.5);
 }
 
 .form-control:invalid {
-  border-color: #dc3545;
+  border-color: #dc3545 !important;
   box-shadow: 0 0 5px rgba(220, 53, 69, 0.5);
 }
 

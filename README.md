@@ -8,7 +8,7 @@ Apartment Affordability Checker helps users evaluate their ability to afford a n
 
 Moving & Setup Costs: Calculate one-time costs like moving expenses and immediate setup fees.
 
-Monthly Living Costs: Evaluate ongoing expenses such as utilities and other monthly bills.
+Monthly Expenses: Evaluate ongoing expenses such as utilities and other monthly bills.
 
 Rent and Security Deposit: Automatically set security deposit based on the rent, with the option to adjust manually.
 

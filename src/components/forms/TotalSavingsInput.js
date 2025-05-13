@@ -33,7 +33,7 @@ function TotalSavingsInput({ onInputChange }) {
         <OverlayTrigger placement="top" overlay={renderTooltip}>
           <FormControl
             id="total-savings"
-            placeholder="Enter total savings"
+            placeholder="total savings"
             type="number"
             value={formData.totalSavings}
             onChange={(e) => onInputChange("totalSavings", e.target.value)}

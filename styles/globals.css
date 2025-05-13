@@ -48,6 +48,20 @@ code {
   margin-top: 5px;
 }
 
+.card {
+  background-color: transparent;
+  border: none;
+}
+
+.dark-mode .card,
+.dark-mode .card-body {
+  color: #fff !important;
+}
+
+.dark-mode .text-muted {
+  color: #959ca4 !important;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -59,7 +73,7 @@ code {
 
 /* Responsive Heading Sizes */
 h1 {
-  font-size: calc(0.375rem + 1.5vw);
+  font-size: calc(1.2rem + 1.5vw);
 }
 
 h2 {
@@ -75,4 +89,10 @@ div.ai-summary-markdown h4 {
   ) !important; /* Apply H2 size to H3/H4 in summary */
   /* Add margin-top for spacing if needed */
   margin-top: 1rem;
+}
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: calc(1.5rem + 1vw); /* Adjust for smaller screens */
+  }
 }

@@ -27,7 +27,7 @@ function OtherMonthlyExpensesInput() {
       >
         <FormControl
           id="other-expenses"
-          placeholder="Enter other monthly expenses"
+          placeholder="other monthly expenses"
           type="number"
           value={formData.otherExpenses}
           onChange={(e) => handleInputChange("otherExpenses", e.target.value)}

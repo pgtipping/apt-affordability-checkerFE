@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+
 import {
   Col,
   Container,
@@ -18,11 +19,17 @@ import TotalMonthlyIncomeInput from "@/components/forms/NetHouseholdIncomeInput"
 import TotalSavingsInput from "@/components/forms/TotalSavingsInput";
 import MonthsToEvaluateInput from "@/components/forms/MonthsToEvaluateInput";
 // import Results from "@/components/Results"; // Remove Results import (now a separate page)
-import FeedbackForm from "@/components/FeedbackForm";
-import Footer from "@/components/Footer"; // Import the Footer component
-import styles from "./FormComponent.module.css";
 
-function FormComponent() {
+import styles from "./FormComponent.module.css";
+import Link from "next/link";
+
+function FormComponent({ darkMode, toggleDarkMode }) {
+  // Feedback and error handling can still use context
+  const [userAdjustedSecurityDeposit, setUserAdjustedSecurityDeposit] = useState(false);
+
+
+
+  // Restore handleInputChangeWrapper to use context
   const {
     handleSubmit,
     formData,
@@ -34,41 +41,6 @@ function FormComponent() {
     feedbackMessage,
     feedbackError,
   } = useFormContext();
-  // const [results, setResults] = useState(null); // Remove local results state
-  // const [showResults, setShowResults] = useState(false); // Remove modal show state
-  const [darkMode, setDarkMode] = useState(true); // Set dark mode as default
-  const [flipping, setFlipping] = useState(false);
-  const [userAdjustedSecurityDeposit, setUserAdjustedSecurityDeposit] =
-    useState(false);
-
-  useEffect(() => {
-    // Ensure dark mode is set on initial load
-    document.documentElement.classList.add("dark-mode");
-  }, []);
-
-  const feedbackTooltip = (
-    <Tooltip id="feedback-tooltip">How can we make this more useful?</Tooltip>
-  );
-
-  const toggleDarkMode = () => {
-    setFlipping(true);
-    setTimeout(() => {
-      setDarkMode((prevDarkMode) => !prevDarkMode);
-      document.documentElement.classList.toggle("dark-mode");
-      setFlipping(false);
-    }, 500); // Duration of the flip animation
-  };
-
-  // Remove handleCalculate - Form onSubmit now directly uses handleSubmit from context
-
-  useEffect(() => {
-    if (!userAdjustedSecurityDeposit) {
-      setFormData((prev) => ({
-        ...prev,
-        securityDeposit: formData.rent,
-      }));
-    }
-  }, [formData.rent, userAdjustedSecurityDeposit, setFormData]);
 
   const handleInputChangeWrapper = (fieldName, value) => {
     if (fieldName === "securityDeposit") {
@@ -78,52 +50,12 @@ function FormComponent() {
   };
 
   return (
-    <div
-      className={`${styles["page-container"]} ${
-        darkMode ? styles["dark-mode"] : ""
-      }`}
-    >
-      <header>
-        <Container className={styles["content-wrap"]}>
-          <Row className="justify-content-center">
-            <Col>
-              <div className="d-flex align-items-center justify-content-center pt-3">
-                <div
-                  className={`${styles["toggle-icon"]} ${
-                    flipping ? styles.flip : ""
-                  }`}
-                  onClick={toggleDarkMode}
-                >
-                  <img
-                    src={darkMode ? "/moon.png" : "/sunny.png"}
-                    alt={darkMode ? "Dark Mode" : "Light Mode"}
-                    style={{
-                      width: "55px",
-                      cursor: "pointer",
-                      transition: "transform 0.5s, opacity 0.5s",
-                    }}
-                  />
-                </div>
-              </div>
-            </Col>
-          </Row>
-        </Container>
-      </header>
+    <div className={`${styles["page-container"]} ${darkMode ? styles["dark-mode"] : ""}`}>
+      {/* No header/intro here; handled by parent */}
       <main>
         <Container className={styles["content-wrap"] + " mt-6"}>
           <Row className="justify-content-center mt-5">
             <Col xs={12} md={10} lg={8}>
-              <div className={styles["blog-intro"] + " mb-4"}>
-                <h1 className="m-0">Apartment Affordability Checker</h1>
-                <p>
-                  Welcome to the Apartment Affordability Checker, a
-                  comprehensive web application designed to help users evaluate
-                  their ability to afford a new apartment. It evaluates cost
-                  associated with moving and living in the new apartment and
-                  your overall earnings. Features include real-time
-                  calculations, light/dark mode, and user feedback.{" "}
-                </p>
-              </div>
               {/* Feedback confirmation/error messages */}
               {feedbackMessage && (
                 <div
@@ -143,34 +75,37 @@ function FormComponent() {
                   {/* Optionally add a close button */}
                 </div>
               )}
-              <div className="d-flex justify-content-between align-items-center mb-3">
-                <OverlayTrigger placement="right" overlay={feedbackTooltip}>
-                  <Button
-                    variant={darkMode ? "outline-light" : "outline-primary"}
-                    onClick={() => setShowFeedbackForm(true)}
-                  >
-                    Feedback
-                  </Button>
-                </OverlayTrigger>
-              </div>
-              {showFeedbackForm && <FeedbackForm darkMode={darkMode} />}
               <Form onSubmit={handleSubmit}>
                 <MovingAndSetupCostInput
+                  value={formData.movingAndSetupCost || ""}
                   onInputChange={handleInputChangeWrapper}
                 />
                 <MonthlyLivingCostInput
+                  value={formData.monthlyLivingCost || ""}
                   onInputChange={handleInputChangeWrapper}
                 />
-                <LocationInput onInputChange={handleInputChangeWrapper} />
-                <RentEstimateInput onInputChange={handleInputChangeWrapper} />
+                <LocationInput
+                  value={formData.location || ""}
+                  onInputChange={handleInputChangeWrapper}
+                />
+                <RentEstimateInput
+                  value={formData.rentEstimates || ""}
+                  onInputChange={handleInputChangeWrapper}
+                />
                 <SecurityDepositInput
+                  value={formData.securityDeposit || ""}
                   onInputChange={handleInputChangeWrapper}
                 />
                 <TotalMonthlyIncomeInput
+                  value={formData.netIncome || ""}
                   onInputChange={handleInputChangeWrapper}
                 />
-                <TotalSavingsInput onInputChange={handleInputChangeWrapper} />
+                <TotalSavingsInput
+                  value={formData.savings || ""}
+                  onInputChange={handleInputChangeWrapper}
+                />
                 <MonthsToEvaluateInput
+                  value={formData.monthsToEvaluate || ""}
                   onInputChange={handleInputChangeWrapper}
                 />
                 <Button
@@ -178,9 +113,8 @@ function FormComponent() {
                   className={`btn ${darkMode ? "btn-dark" : "btn-primary"} ${
                     styles["calculate-button"]
                   }`}
-                  // Remove onClick={handleCalculate} - Form onSubmit handles this via context
                 >
-                  Calculate Affordability
+                  Check Affordability
                 </Button>
                 {formError && (
                   <div className={styles.error + " mt-3"}>{formError}</div>
@@ -191,7 +125,7 @@ function FormComponent() {
           </Row>
         </Container>
       </main>
-      <Footer /> {/* Render the Footer component outside the container */}
+
     </div>
   );
 }

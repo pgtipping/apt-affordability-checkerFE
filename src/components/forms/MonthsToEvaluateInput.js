@@ -32,7 +32,7 @@ function MonthsToEvaluateInput({ onInputChange }) {
         <OverlayTrigger placement="top" overlay={renderTooltip}>
           <FormControl
             id="months-to-evaluate"
-            placeholder="Enter number of months to evaluate affordability"
+            placeholder="Months to evaluate"
             type="number"
             value={formData.monthsToEvaluate}
             onChange={(e) => onInputChange("monthsToEvaluate", e.target.value)}

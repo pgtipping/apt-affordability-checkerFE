@@ -27,7 +27,7 @@ function AssociatedCostInput() {
       >
         <FormControl
           id="associated-cost"
-          placeholder="Enter total associated costs"
+          placeholder="total associated costs"
           type="number"
           value={formData.associatedCost}
           onChange={(e) => handleInputChange("associatedCost", e.target.value)}

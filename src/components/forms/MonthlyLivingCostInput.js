@@ -22,17 +22,17 @@ function MonthlyLivingCostInput({ onInputChange }) {
     // Add Form.Label for accessibility, visually hidden
     <Form.Group className="mb-3">
       <Form.Label htmlFor="monthly-living-cost" className="visually-hidden">
-        Monthly Living Costs
+        Monthly Expenses
       </Form.Label>
       <InputGroup>
         {/* Remove fixed width style */}
         <InputGroup.Text className={styles["form-label-uniform"]}>
-          Monthly Living Costs
+          Monthly Expenses
         </InputGroup.Text>
         <OverlayTrigger placement="top" overlay={renderTooltip}>
           <FormControl
             id="monthly-living-cost"
-            placeholder="Enter total monthly living costs"
+            placeholder="Monthly Expenses"
             type="number"
             value={formData.monthlyLivingCost}
             onChange={(e) => onInputChange("monthlyLivingCost", e.target.value)}

@@ -34,7 +34,7 @@ function RentEstimateInput({ onInputChange }) {
         <OverlayTrigger placement="top" overlay={renderTooltip}>
           <FormControl
             id="rent"
-            placeholder="Enter monthly rent"
+            placeholder="monthly rent"
             type="number"
             value={formData.rent}
             onChange={(e) => onInputChange("rent", e.target.value)}

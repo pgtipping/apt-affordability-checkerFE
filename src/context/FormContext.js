@@ -37,7 +37,7 @@ export const FormProvider = ({ children }) => {
   // Field name to label mapping
   const fieldLabels = {
     movingAndSetupCost: "Moving & Setup Costs",
-    monthlyLivingCost: "Monthly Living Costs",
+    monthlyLivingCost: "Monthly Expenses",
     rent: "Monthly Rent",
     securityDeposit: "Security Deposit",
     totalMonthlyIncome: "Total Monthly Income",

@@ -25,7 +25,7 @@ function MovingCostInput() {
       >
         <FormControl
           id="moving-cost"
-          placeholder="Enter total moving cost"
+          placeholder="total moving cost"
           type="number"
           value={formData.movingCost}
           onChange={(e) => handleInputChange("movingCost", e.target.value)}

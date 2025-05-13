@@ -1,0 +1,12 @@
+.header-bar {
+  background: transparent;
+  border-bottom: 1px solid #e5e7eb;
+  box-shadow: none;
+}
+
+@media (max-width: 600px) {
+  .header-bar {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+}

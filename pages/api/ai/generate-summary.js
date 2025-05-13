@@ -144,7 +144,7 @@ export default async function handler(req, res) {
     User's Financial Data:
     - Monthly Income: $${formData.totalMonthlyIncome || "Not provided"}
     - Total Savings: $${formData.totalSavings || "Not provided"}
-    - Monthly Living Costs (excluding rent): $${
+    - Monthly Expenses (excluding rent): $${
       formData.monthlyLivingCost || "Not provided"
     }
     - Planned Monthly Rent: $${formData.rent || "Not provided"}

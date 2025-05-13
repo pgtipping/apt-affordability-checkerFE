@@ -32,7 +32,7 @@ function LocationInput({ onInputChange }) {
         <OverlayTrigger placement="top" overlay={renderTooltip}>
           <FormControl
             id="location"
-            placeholder="Enter city or ZIP"
+            placeholder="Enter city or ZIP code"
             value={formData.location}
             onChange={(e) => onInputChange("location", e.target.value)}
             isInvalid={!!formErrors.locationError}

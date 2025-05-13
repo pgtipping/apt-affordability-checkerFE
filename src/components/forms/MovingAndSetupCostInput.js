@@ -23,17 +23,17 @@ function MovingAndSetupCostInput({ onInputChange }) {
     // Add Form.Label for accessibility, visually hidden to keep InputGroup.Text look
     <Form.Group className="mb-3">
       <Form.Label htmlFor="moving-setup-cost" className="visually-hidden">
-        Moving & Setup Cost
+        Moving Cost
       </Form.Label>
       <InputGroup>
         {/* Remove fixed width style */}
         <InputGroup.Text className={styles["form-label-uniform"]}>
-          Moving & Setup Cost
+          Moving Cost
         </InputGroup.Text>
         <OverlayTrigger placement="top" overlay={renderTooltip}>
           <FormControl
             id="moving-setup-cost"
-            placeholder="Enter moving and setup costs"
+            placeholder="moving and setup costs"
             type="number"
             value={formData.movingAndSetupCost}
             onChange={(e) =>
